@@ -16,7 +16,7 @@
   bottom: 0;
   z-index: 1000; 
   padding-left: 230px;
-  width: 90%;
+  width: 100%;
   z-index: 1000;
   height: 100px;
 
@@ -24,11 +24,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.8rem; 
+    gap: 0.2rem; 
+    margin-right: 15%;
   }
 
   .footer-main-text {
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: bold;
     margin: 0; 
   }
@@ -36,8 +37,8 @@
   .footer-contact-link {
     color: colors.$color-text-light; 
     text-decoration: none; 
-    font-weight: bold;
-    font-size: 1.1rem;
+    font-weight: normal;
+    font-size: 0.90rem;
     transition: color 0.3s ease;
 
     &:hover {
@@ -46,7 +47,7 @@
   }
 
   .footer-address {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     margin: 0;
     line-height: 1.4; 
   }

@@ -1,5 +1,6 @@
 
 import './Footer.scss'; 
+import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
       <footer className="footer">
@@ -7,9 +8,9 @@ const Footer = () => {
         <p className="footer-main-text">
           Ajuntament de València | Valencia Innovation Capital | Startup Valencia
         </p>
-        <a href="/contact" className="footer-contact-link">
+         <Link to="/contact" className="footer-contact-link">
           Contáctanos
-        </a>
+        </Link>
         <p className="footer-address">
           Sala de Formación, Piso 2, La Harinera (C/ de Joan Verdeguer, 116, Poblats Marítims, 46024 Valencia)
         </p>
