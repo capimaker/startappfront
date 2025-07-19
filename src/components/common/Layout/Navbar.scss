@@ -1,0 +1,138 @@
+
+
+@use '../../../styles/colors' as colors; 
+
+.navbar {
+  width: 230px; 
+  height: 100vh; 
+  background-color: colors.$color-primary-dark; 
+  color: colors.$color-text-light; 
+  
+  position: fixed;
+  top: 0; 
+  left: 0;
+  z-index: 999; 
+
+
+   padding-top: 200px; 
+
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2); 
+
+  .navbar-menu {
+    list-style: none; 
+    padding: 0;
+    margin: 0;
+    
+  }
+
+  .navbar-item {
+    margin-bottom: 0.5rem; 
+    position: relative; 
+  
+  }
+
+  .navbar-link {
+    display: block; 
+    color: colors.$color-text-light;
+    text-decoration: none; 
+    padding: 0.8rem 1.5rem; 
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer; 
+
+    &:hover {
+      background-color: colors.$color-secondary-dark; 
+      color: colors.$color-text-light; 
+    }
+
+    &.active {
+      background-color: colors.$color-accent; 
+      color: colors.$color-text-light;
+    }
+  }
+
+ 
+  .submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: lighten(colors.$color-primary-dark, 5%); 
+    overflow: hidden; 
+    max-height: 0; 
+    opacity: 0; 
+    visibility: hidden;
+    transform: translateY(10px); 
+    transition: max-height 0.3s ease-out, opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease; 
+
+    &.open {
+      max-height: 300px; 
+      opacity: 1; 
+      visibility: visible; 
+      transform: translateY(0); 
+    }
+  }
+
+  .submenu-item {
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(colors.$color-text-light, 0.1); 
+    &:last-child {
+      border-bottom: none; 
+    }
+  }
+
+  .submenu-link {
+    display: block;
+    color: colors.$color-text-light; 
+    text-decoration: none;
+    padding: 0.6rem 2.5rem; 
+    font-size: 1rem;
+    white-space: nowrap;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+      background-color: colors.$color-tertiary-dark; 
+      color: colors.$color-text-light; 
+    }
+    &.active {
+      background-color: colors.$color-accent;
+      color: colors.$color-text-light;
+    }
+  }
+
+  
+  .submenu-arrow {
+    float: right; 
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+    &.open {
+      transform: rotate(90deg); 
+    }
+  }
+
+  
+  @media (max-width: 768px) {
+    width: 0; 
+    overflow: hidden;
+    transition: width 0.3s ease;
+    top: 0;
+    padding-top: 60px;
+
+    .submenu {
+      position: static; 
+      width: 100%;
+      box-shadow: none;
+      border-radius: 0;
+      background-color: darken(colors.$color-primary-dark, 50%);
+      transform: translateY(0);
+      transition: max-height 0.3s ease-out, opacity 0.3s ease;
+      max-height: 0;
+      overflow: hidden;
+    }
+
+    .submenu.open {
+      max-height: 200px;
+      opacity: 1;
+    }
+  }
+}
