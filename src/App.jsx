@@ -1,16 +1,19 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom';
+import MentorshipSessionForm from './components/mentorship/MentorshipSessionForm';
 
+const App = () => {
   return (
-    <>
-      
-    </>
-  )
-}
+   // <BrowserRouter> 
+     <Router>
+      <Routes>
+        <Route path="/crearsesion" element={<MentorshipSessionForm />} />
+      </Routes>
+    </Router>
+   // </BrowserRouter>
+  );
+};
 
-export default App
+export default App;
+
