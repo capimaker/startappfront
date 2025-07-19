@@ -1,17 +1,21 @@
 import './App.css';
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MentorshipSessionForm from './components/mentorship/MentorshipSessionForm';
+//import { Header } from './components/common/Header/Header';
+//import { Footer } from './components/common/Footer/Footer';
+
 
 const App = () => {
   return (
-   // <BrowserRouter> 
-     <Router>
+  <BrowserRouter> 
+    {/*<Header/>*/}
       <Routes>
-        <Route path="/crearsesion" element={<MentorshipSessionForm />} />
+        
+        <Route path="/agendarmentoria" element={<MentorshipSessionForm />} />
+        
       </Routes>
-    </Router>
-   // </BrowserRouter>
+    {/*<Footer/>*/}
+   </BrowserRouter>
   );
 };
 
