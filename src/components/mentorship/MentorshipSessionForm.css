@@ -1,20 +1,15 @@
 
-#root {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
 .form-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* altura de la ventana */
+  height: 100vh; 
   padding: 2rem;
 }
 
 .ant-card {
   width: 100%;
+  font-family: var(--font);
   max-width: 800px;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
   border-radius: 12px;
