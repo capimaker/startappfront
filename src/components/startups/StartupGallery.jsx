@@ -1,14 +1,16 @@
+// src/components/startups/StartupGallery.jsx
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllStartups } from '../../features/startups/startupSlice';
-import { Row, Col, Card, Spin, Typography, Modal } from 'antd';
-import './StartupGallery.css'; // asegúrate de tener este CSS
+import { Typography, Modal, Spin } from 'antd';
+import StartupCard from './StartupCard';
+import './StartupGallery.css';
 
 const { Title } = Typography;
 
 const StartupGallery = () => {
   const dispatch = useDispatch();
-  const { startups, isLoading } = useSelector((state) => state.startups);
+  const { startups, isLoading, isError, message } = useSelector((state) => state.startups);
 
   const [selectedStartup, setSelectedStartup] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -17,63 +19,49 @@ const StartupGallery = () => {
     dispatch(getAllStartups());
   }, [dispatch]);
 
-  const handleCardClick = (startup) => {
+  const openModal = (startup) => {
     setSelectedStartup(startup);
     setIsModalVisible(true);
   };
 
-  const handleModalClose = () => {
-    setIsModalVisible(false);
+  const closeModal = () => {
     setSelectedStartup(null);
+    setIsModalVisible(false);
   };
 
   return (
     <div className="startup-gallery-container">
-      <Title level={2}>Participantes</Title>
+      <Title level={2}>Startups Participantes</Title>
 
       {isLoading ? (
         <Spin size="large" />
+      ) : isError ? (
+        <p>Error: {message}</p>
       ) : (
-        <Row gutter={[16, 16]}>
+        <div className="startup-grid">
           {startups.map((startup) => (
-            <Col xs={24} sm={12} md={8} lg={6} key={startup.id_startup}>
-              <Card
-                hoverable
-                className="startup-card"
-                onClick={() => handleCardClick(startup)}
-                cover={
-                  <img
-                    alt={startup.name}
-                    src={startup?.img_url?.trim() || '/placeholder.png'}
-                    className="startup-logo"
-                  />
-                }
-              >
-                <Card.Meta title={startup.name} />
-              </Card>
-            </Col>
+            <StartupCard
+              key={startup.id_startup}
+              startup={startup}
+              onClick={() => openModal(startup)}
+            />
           ))}
-        </Row>
+        </div>
       )}
 
-      {/* MODAL con detalles de la startup */}
-      <Modal
-        open={isModalVisible}
-        onCancel={handleModalClose}
-        footer={null}
-        title={selectedStartup?.name}
-      >
+      {/* Modal */}
+      <Modal open={isModalVisible} onCancel={closeModal} footer={null} title={selectedStartup?.name}>
         {selectedStartup && (
           <>
             {selectedStartup.img_url && (
               <img
                 src={selectedStartup.img_url}
                 alt={selectedStartup.name}
-                style={{ width: '100%', marginBottom: '1rem', borderRadius: '8px' }}
+                style={{ width: '100%', borderRadius: '8px', marginBottom: '1rem' }}
               />
             )}
             <p><strong>Descripción:</strong> {selectedStartup.description || 'Sin descripción'}</p>
-            <p><strong>Sector:</strong> {selectedStartup.sector || 'Sin sector'}</p>
+            <p><strong>Sector:</strong> {selectedStartup.sector || 'No definido'}</p>
             <p><strong>Email:</strong> {selectedStartup.email || 'Sin email'}</p>
             <p><strong>Mentor:</strong> {selectedStartup.mentor || 'No asignado'}</p>
           </>
