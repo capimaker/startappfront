@@ -14,22 +14,35 @@ function App() {
   };
 
   return (
-  
-    <>
-      <BrowserRouter>
-       {user ? <AppLayout /> : <Login onLogin={handleLogin} />}
-        <Routes>
-          <Route
-            path="/addmentorship"
-            element={
+    <BrowserRouter>
+      <Routes>
+        {/* Ruta raíz */}
+        <Route
+          path="/"
+          element={
+            user ? (
+              <AppLayout />
+            ) : (
+              <Login onLogin={handleLogin} />
+            )
+          }
+        />
+
+        {/* Ruta /addmentorship */}
+        <Route
+          path="/addmentorship"
+          element={
+            user ? (
               <AppLayout>
                 <MentorshipSessionForm />
               </AppLayout>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
-    </>
+            ) : (
+              <Login onLogin={handleLogin} />
+            )
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
