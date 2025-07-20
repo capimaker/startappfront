@@ -57,7 +57,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    background-color: lighten(colors.$color-primary-dark, 5%); 
+    background-color: #3e29df;;
     overflow: hidden; 
     max-height: 0; 
     opacity: 0; 
@@ -111,19 +111,26 @@
   }
 
   
-  @media (max-width: 768px) {
+   @media (max-width: 768px) {
     width: 0; 
     overflow: hidden;
-    transition: width 0.3s ease;
+    transition: width 0.3s ease; 
     top: 0;
-    padding-top: 60px;
+    padding-top: 60px; 
+
+   
+    &.navbar--open {
+      width: 230px; 
+    
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2); 
+    }
 
     .submenu {
-      position: static; 
+      position: static;
       width: 100%;
       box-shadow: none;
       border-radius: 0;
-      background-color: darken(colors.$color-primary-dark, 50%);
+      background-color:#262164; // Color hardcodeado
       transform: translateY(0);
       transition: max-height 0.3s ease-out, opacity 0.3s ease;
       max-height: 0;

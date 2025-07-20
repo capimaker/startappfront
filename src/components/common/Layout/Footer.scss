@@ -42,7 +42,9 @@
     transition: color 0.3s ease;
 
     &:hover {
-      color: lighten(colors.$color-text-light, 20%); 
+      
+      color: #534747;
+      background-color: colors.$color-secondary-dark;
     }
   }
 
@@ -53,8 +55,9 @@
   }
 
   
-  @media (max-width: 768px) {
-    padding: 1rem;
+ @media (max-width: 768px) {
+    padding: 1rem; 
+    height: auto; 
     .footer-main-text {
       font-size: 0.9rem;
     }
