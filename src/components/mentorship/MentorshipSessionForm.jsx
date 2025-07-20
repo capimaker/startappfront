@@ -1,26 +1,19 @@
-import React from 'react';
-import {Form,Input,Button, DatePicker,TimePicker,Select,message,Typography, Card, Row, Col,} from 'antd';
+import { Form, Input, Button, DatePicker, TimePicker, Select, message, Typography, Card, Row, Col } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { createSession, reset } from '../../features/sessions/sessionSlice';
-import "./MentorshipSessionForm.css";
+import './MentorshipSessionForm.css';
 
 const { Title } = Typography;
 const { Option } = Select;
 
 const MentorshipSessionForm = () => {
   const dispatch = useDispatch();
-  const { isLoading, isError, message: errorMessage } = useSelector(
-    (state) => state.sessions
-  );
+  const { isLoading, isError, message: errorMessage } = useSelector((state) => state.sessions);
 
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
-    const dateTime = dayjs(values.date)
-      .hour(values.time.hour())
-      .minute(values.time.minute())
-      .second(0)
-      .toISOString();
+    const dateTime = dayjs(values.date).hour(values.time.hour()).minute(values.time.minute()).second(0).toISOString();
 
     const payload = {
       mentor: values.mentor,
@@ -52,11 +45,7 @@ const MentorshipSessionForm = () => {
               </Form.Item>
             </Col>
             <Col xs={24} md={12}>
-              <Form.Item
-                name="mentee"
-                label="Startup"
-                rules={[{ required: true, message: 'Introduce la Startup' }]}
-              >
+              <Form.Item name="mentee" label="Startup" rules={[{ required: true, message: 'Introduce la Startup' }]}>
                 <Input placeholder="Id de la Startup" />
               </Form.Item>
             </Col>
@@ -64,21 +53,13 @@ const MentorshipSessionForm = () => {
 
           <Row gutter={16}>
             <Col xs={24} md={8}>
-              <Form.Item
-                name="date"
-                label="Fecha"
-                rules={[{ required: true, message: 'Selecciona la fecha' }]}
-              >
+              <Form.Item name="date" label="Fecha" rules={[{ required: true, message: 'Selecciona la fecha' }]}>
                 <DatePicker className="full-width" format="YYYY-MM-DD" />
               </Form.Item>
             </Col>
             <Col xs={24} md={8}>
-              <Form.Item
-                name="time"
-                label="Hora"
-                rules={[{ required: true, message: 'Selecciona la hora' }]}
-              >
-                <TimePicker className="full-width" format="HH:mm"/>
+              <Form.Item name="time" label="Hora" rules={[{ required: true, message: 'Selecciona la hora' }]}>
+                <TimePicker className="full-width" format="HH:mm" />
               </Form.Item>
             </Col>
             <Col xs={24} md={8}>
@@ -98,20 +79,16 @@ const MentorshipSessionForm = () => {
             </Col>
           </Row>
 
-          <Form.Item
-            name="topic"
-            label="Tema"
-            rules={[{ required: true, message: 'Introduce el tema' }]}
-          >
+          <Form.Item name="topic" label="Tema" rules={[{ required: true, message: 'Introduce el tema' }]}>
             <Input placeholder="Tema de la mentoría" />
           </Form.Item>
 
           <Form.Item name="notes" label="Notas adicionales">
-            <Input.TextArea rows={4} placeholder="Notas u observaciones" />
+            <Input.TextArea rows={4} placeholder="Notas u observaciones" style={{ resize: 'none' }} maxLength={250} />
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" block loading={isLoading}>
+            <Button className="mentorship__btn" type="primary" htmlType="submit" block loading={isLoading}>
               Crear Mentoría
             </Button>
           </Form.Item>

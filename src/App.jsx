@@ -1,12 +1,22 @@
-import { BrowserRouter } from 'react-router-dom';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AppLayout from './components/common/Layout/AppLayout';
+import MentorshipSessionForm from './components/mentorship/MentorshipSessionForm';
+import './App.css';
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <AppLayout />
+        <Routes>
+          <Route
+            path="/addmentorship"
+            element={
+              <AppLayout>
+                <MentorshipSessionForm />
+              </AppLayout>
+            }
+          />
+        </Routes>
       </BrowserRouter>
     </>
   );

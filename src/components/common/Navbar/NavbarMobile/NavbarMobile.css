@@ -1,7 +1,7 @@
 .navbar__mobile {
   position: fixed;
   bottom: 0;
-  background-color: var(--violetaDark-rgba);
+  background-color: rgba(128, 0, 128, 0.6);
   z-index: 999; /* Asegura que flote sobre el contenido */
   width: 100%;
   border-top: 1px solid black;
