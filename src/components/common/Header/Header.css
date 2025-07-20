@@ -4,6 +4,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: var(--violetaDark-rgba);
+  border-bottom: 1px solid black;
   padding: 0 25px;
 }
 
@@ -44,5 +45,11 @@
 
   .header__logos {
     display: none;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .header__title {
+    font-size: 1.2rem;
   }
 }

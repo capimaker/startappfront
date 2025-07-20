@@ -50,10 +50,6 @@
 }
 
 .active {
-  background-color: var(--blanco);
+  background-color: var(--dark);
   border-radius: 10px;
-}
-
-.active > .navbar__text {
-  color: var(--accent);
 }
