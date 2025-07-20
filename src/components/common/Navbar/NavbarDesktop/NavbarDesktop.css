@@ -18,8 +18,8 @@
 }
 
 .navbar__user-img {
-  width: 58px;
-  border-radius: 50%;
+  width: 80px;
+  border-radius: 10px;
   border: 2px solid var(--accent);
 }
 
@@ -31,7 +31,7 @@
 .navbar__link {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   margin-bottom: 20px;
   text-decoration: none;
   padding: 10px 5px;
@@ -45,7 +45,7 @@
 .navbar__text {
   text-align: center;
   font-size: 1.2rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--blanco);
 }
 
@@ -56,22 +56,4 @@
 
 .active > .navbar__text {
   color: var(--accent);
-}
-
-@media screen and (width < 975px) {
-  .navbar__desktop {
-    align-items: end;
-  }
-
-  .navbar__list {
-    margin-right: 25px;
-  }
-
-  .navbar__link {
-    justify-content: center;
-  }
-
-  .navbar__text {
-    display: none;
-  }
 }
