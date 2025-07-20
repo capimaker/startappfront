@@ -29,8 +29,8 @@ const Login = ({ onLogin }) => {
 
     if (login.fulfilled.match(resultAction)) {
       const userLogged = resultAction.payload.user;
-      onLogin(userLogged);       // 👈 Aquí se actualiza el estado del padre (App.jsx)
-      navigate("/");             // 👈 Redirige a home (si usas rutas)
+      onLogin(userLogged);       
+      navigate("/");             
     } else {
       console.error("Login fallido:", resultAction);
       alert("Login fallido. Verifica tus credenciales.");
