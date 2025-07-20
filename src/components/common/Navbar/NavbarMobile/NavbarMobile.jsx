@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { EditFilled, RobotFilled, SecurityScanFilled, WechatFilled } from '@ant-design/icons';
-import './navbarMobile.css';
+import { RocketFilled, DatabaseFilled, BulbFilled, EditFilled, HomeFilled } from '@ant-design/icons';
+import './NavbarMobile.css';
 
 const NavbarMobile = () => {
   /* const { user } = useSelector((state) => state.auth); */
@@ -16,31 +16,39 @@ const NavbarMobile = () => {
         <li className="navbarm__item">
           <NavLink to="/dashboard" className={({ isActive }) => `navbarm__link ${isActive ? 'active' : ''}`}>
             <span className="navbarm__icon">
-              <WechatFilled style={{ fontSize: '32px', color: '#00a1e0' }} />
+              <HomeFilled style={{ fontSize: '32px', color: '#ffffff' }} />
             </span>
           </NavLink>
         </li>
 
         <li className="navbarm__item">
-          <NavLink to="/search" className={({ isActive }) => `navbarm__link ${isActive ? 'active' : ''}`}>
+          <NavLink to="/startups" className={({ isActive }) => `navbarm__link ${isActive ? 'active' : ''}`}>
             <span className="navbarm__icon">
-              <SecurityScanFilled style={{ fontSize: '32px', color: '#00a1e0' }} />
+              <RocketFilled style={{ fontSize: '32px', color: '#ffffff' }} />
             </span>
           </NavLink>
         </li>
 
         <li className="navbarm__item">
-          <NavLink to="/profile" className={({ isActive }) => `navbarm__link ${isActive ? 'active' : ''}`}>
+          <NavLink to="/mentors" className={({ isActive }) => `navbarm__link ${isActive ? 'active' : ''}`}>
             <span className="navbarm__icon">
-              <RobotFilled style={{ fontSize: '30px', color: '#00a1e0' }} />
+              <BulbFilled style={{ fontSize: '32px', color: '#ffffff' }} />
             </span>
           </NavLink>
         </li>
 
         <li className="navbarm__item">
-          <NavLink to="/newpost" className={({ isActive }) => `navbarm__link ${isActive ? 'active' : ''}`}>
+          <NavLink to="/instructors" className={({ isActive }) => `navbarm__link ${isActive ? 'active' : ''}`}>
             <span className="navbarm__icon">
-              <EditFilled style={{ fontSize: '30px', color: '#00a1e0' }} />
+              <DatabaseFilled style={{ fontSize: '30px', color: '#ffffff' }} />
+            </span>
+          </NavLink>
+        </li>
+
+        <li className="navbarm__item">
+          <NavLink to="/addmentorship" className={({ isActive }) => `navbarm__link ${isActive ? 'active' : ''}`}>
+            <span className="navbarm__icon">
+              <EditFilled style={{ fontSize: '30px', color: '#ffffff' }} />
             </span>
           </NavLink>
         </li>

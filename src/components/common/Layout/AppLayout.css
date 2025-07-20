@@ -21,7 +21,6 @@
 
 .layout__header {
   grid-area: header;
-  border-bottom: 1px solid black;
 }
 
 .sidebar {

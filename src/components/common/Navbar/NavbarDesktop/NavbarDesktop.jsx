@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import './navbarDesktop.css';
+import './NavbarDesktop.css';
 import { RocketFilled, DatabaseFilled, BulbFilled, EditFilled, HomeFilled } from '@ant-design/icons';
 import logoPrueba from '../../../../assets/logoPrueba.webp';
 

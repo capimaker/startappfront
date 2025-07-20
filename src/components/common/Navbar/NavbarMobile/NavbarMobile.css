@@ -1,10 +1,10 @@
 .navbar__mobile {
   position: fixed;
   bottom: 0;
-  background-color: var(--oscuro);
+  background-color: var(--violetaDark-rgba);
   z-index: 999; /* Asegura que flote sobre el contenido */
   width: 100%;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid black;
 }
 
 /* .navbarm__userItem {
