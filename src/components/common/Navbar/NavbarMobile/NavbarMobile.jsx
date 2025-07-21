@@ -85,8 +85,16 @@ const NavbarMobile = () => {
           </NavLink>
         </li>
 
+
+<li className="navbarm__item">
+          
+            <span role="button" className="navbarm__icon">
+              <LogoutOutlined onClick={handleLogout} style={{ fontSize: "30px", color: "#ffffff" }} />
+            </span>
+          
+        </li>
         {/* Logout al final */}
-        <li className="navbarm__item logout-item">
+        {/* <li className="navbarm__item logout-item">
           <button
             onClick={handleLogout}
             className="logout-button"
@@ -94,7 +102,7 @@ const NavbarMobile = () => {
           >
             <LogoutOutlined />
           </button>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );

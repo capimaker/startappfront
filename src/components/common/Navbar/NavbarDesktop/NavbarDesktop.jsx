@@ -104,13 +104,12 @@ const NavbarDesktop = () => {
             <span className="navbar__text">Mentoría</span>
           </NavLink>
         </li>
-         <li className="navbar__item navbar__logout">
-          <button onClick={handleLogout} className="navbar__link logout-button">
-            <span className="navbar__icon">
-              <LogoutOutlined style={{ fontSize: "30px", color: "#ffffff" }} />
+         <li className="navbar__item">
+          <span role="button" className="navbarm__icon">
+              <LogoutOutlined onClick={handleLogout} style={{ fontSize: "30px", color: "#ffffff" }} />
             </span>
             <span className="navbar__text">Salir</span>
-          </button>
+          
         </li>
       </ul>
     </nav>
