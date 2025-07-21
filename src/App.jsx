@@ -4,6 +4,7 @@ import MentorshipSessionForm from './components/mentorship/MentorshipSessionForm
 import './App.css';
 import InfoPage from './pages/InfoPage';
 import ContactPage from './pages/ContactPage';
+import FloatingChatbot from './components/common/FloatingChatbot/FloatingChatbot'; 
 
 function App() {
   return (
@@ -21,7 +22,9 @@ function App() {
           />
            <Route path="/info" element={<AppLayout><InfoPage /></AppLayout>} />
            <Route path="/contact" element={<ContactPage />} />
+           
         </Routes>
+        <FloatingChatbot />
       </BrowserRouter>
     </>
   );
