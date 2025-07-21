@@ -3,7 +3,7 @@ import React from 'react';
 import './StartupCard.css';
 
 const StartupCard = ({ startup, onClick }) => {
-  const { name, img_url, description, stage, email } = startup;
+  const { name, img_url, stage, email } = startup;
 
   return (
     <div className="startup-card" onClick={onClick}>

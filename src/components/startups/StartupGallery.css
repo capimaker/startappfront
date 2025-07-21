@@ -1,13 +1,27 @@
 .startup-gallery-container {
-  padding: 20px;
+  padding: 2rem;
+  text-align: center;
 }
 
-.startup-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 24px;
-  margin-top: 20px;
+.startup-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
 }
+
+.filter-container {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.modal-img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
 
 @media (max-width: 1200px) {
   .startup-grid {

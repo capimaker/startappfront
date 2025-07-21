@@ -2,22 +2,31 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllStartups } from '../../features/startups/startupSlice';
-import { Typography, Modal, Spin } from 'antd';
+import { Typography, Modal, Spin, Select } from 'antd';
 import StartupCard from './StartupCard';
 import './StartupGallery.css';
 
 const { Title } = Typography;
+const { Option } = Select;
 
 const StartupGallery = () => {
   const dispatch = useDispatch();
   const { startups, isLoading, isError, message } = useSelector((state) => state.startups);
 
+  const [selectedCategory, setSelectedCategory] = useState('Todas');
   const [selectedStartup, setSelectedStartup] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   useEffect(() => {
     dispatch(getAllStartups());
   }, [dispatch]);
+
+  const categories = ['Todas', ...new Set(startups.map(s => s.sector).filter(Boolean))];
+
+  const filteredStartups =
+    selectedCategory === 'Todas'
+      ? startups
+      : startups.filter(s => s.sector === selectedCategory);
 
   const openModal = (startup) => {
     setSelectedStartup(startup);
@@ -33,13 +42,29 @@ const StartupGallery = () => {
     <div className="startup-gallery-container">
       <Title level={2}>Startups Participantes</Title>
 
+      {/* Filtro de Categoría */}
+      <div className="filter-container">
+        <Select
+          value={selectedCategory}
+          onChange={setSelectedCategory}
+          style={{ width: 250, marginBottom: 20 }}
+        >
+          {categories.map((cat, idx) => (
+            <Option key={idx} value={cat}>
+              {cat}
+            </Option>
+          ))}
+        </Select>
+      </div>
+
+      {/* Lista de startups */}
       {isLoading ? (
         <Spin size="large" />
       ) : isError ? (
         <p>Error: {message}</p>
       ) : (
-        <div className="startup-grid">
-          {startups.map((startup) => (
+        <div className="startup-list">
+          {filteredStartups.map((startup) => (
             <StartupCard
               key={startup.id_startup}
               startup={startup}
@@ -53,17 +78,16 @@ const StartupGallery = () => {
       <Modal open={isModalVisible} onCancel={closeModal} footer={null} title={selectedStartup?.name}>
         {selectedStartup && (
           <>
-            {selectedStartup.img_url && (
-              <img
-                src={selectedStartup.img_url}
-                alt={selectedStartup.name}
-                style={{ width: '100%', borderRadius: '8px', marginBottom: '1rem' }}
-              />
-            )}
+            <img
+              src={selectedStartup.img_url || '/placeholder.png'}
+              alt={selectedStartup.name}
+              className="modal-img"
+            />
             <p><strong>Descripción:</strong> {selectedStartup.description || 'Sin descripción'}</p>
             <p><strong>Sector:</strong> {selectedStartup.sector || 'No definido'}</p>
             <p><strong>Email:</strong> {selectedStartup.email || 'Sin email'}</p>
             <p><strong>Mentor:</strong> {selectedStartup.mentor || 'No asignado'}</p>
+            <p><strong>Rondas:</strong> {selectedStartup.raised_rounds || 'No asignado'}</p>
           </>
         )}
       </Modal>
