@@ -1,47 +1,49 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AppLayout from './components/common/Layout/AppLayout';
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import AppLayout from "./components/common/Layout/AppLayout";
 import Login from "./components/Login/Login.jsx";
-import { useState } from 'react';
-import MentorshipSessionForm from './components/mentorship/MentorshipSessionForm';
-import './App.css';
+import { useState } from "react";
+import MentorshipSessionForm from "./components/mentorship/MentorshipSessionForm";
+import "./App.css";
 
-function App() {
-  const [user, setUser] = useState(() => JSON.parse(localStorage.getItem('user')));
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../src/features/service/authSlice.js";
 
-  const handleLogin = (loggedUser) => {
-    localStorage.setItem('user', JSON.stringify(loggedUser));
-    setUser(loggedUser);
+function AppRoutes() {
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await dispatch(logout());
+    navigate("/");
   };
 
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* Ruta raíz */}
-        <Route
-          path="/"
-          element={
-            user ? (
-              <AppLayout />
-            ) : (
-              <Login onLogin={handleLogin} />
-            )
-          }
-        />
+    <Routes>
+      <Route
+        path="/"
+        element={user ? <AppLayout onLogout={handleLogout} /> : <Login />}
+      />
+      <Route
+        path="/addmentorship"
+        element={
+          user ? (
+            <AppLayout onLogout={handleLogout}>
+              <MentorshipSessionForm />
+            </AppLayout>
+          ) : (
+            <Login />
+          )
+        }
+      />
+    </Routes>
+  );
+}
 
-        {/* Ruta /addmentorship */}
-        <Route
-          path="/addmentorship"
-          element={
-            user ? (
-              <AppLayout>
-                <MentorshipSessionForm />
-              </AppLayout>
-            ) : (
-              <Login onLogin={handleLogin} />
-            )
-          }
-        />
-      </Routes>
+function App() {
+  return (
+    <BrowserRouter>
+      <AppRoutes />
     </BrowserRouter>
   );
 }

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/users" 
+const API_URL = "http://localhost:8080/users"
 
 const login = async (userData) => {
   const res = await axios.post(`${API_URL}`, userData);
@@ -11,8 +11,26 @@ const login = async (userData) => {
   }
   return res.data;
 };
+const logout = async () => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  const res = await axios.post(
+    `${API_URL}/logout`,
+    {}, // cuerpo vacío
+    {
+      headers: {
+        Authorization: `Bearer ${token}`, // <-- correcto aquí
+      },
+    }
+  );
+  if (res.data) {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+  }
+  return res.data;
+};
 const authService = {
-    login,
+  login,
+  logout,
 };
 
 export default authService;

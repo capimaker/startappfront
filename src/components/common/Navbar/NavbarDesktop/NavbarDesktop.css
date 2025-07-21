@@ -53,3 +53,19 @@
   background-color: var(--dark);
   border-radius: 10px;
 }
+
+/* .logout-button {
+  all: unset;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  padding: 10px 5px;
+  cursor: pointer;
+  width: 100%;
+} */
+
+.logout-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}

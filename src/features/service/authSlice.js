@@ -19,8 +19,16 @@ export const login = createAsyncThunk("auth/login", async (user) => {
     try{
         return await authService.login(user);
     } catch (error){
-    console.error(error);
-    }
+    return thunkAPI.rejectWithValue(error.response?.data?.message || error.message);
+  }
+});
+
+export const logout = createAsyncThunk("auth/logout", async (user) => {
+  try {
+    return await authService.logout(user);
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.response?.data?.message || error.message);
+  }
 });
 
 export const authSlice = createSlice({
@@ -34,12 +42,18 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
-        
-        (state.user = action.payload.user),
-          (state.token = action.payload.token);
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.user = null;
+        state.token = null;
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
       });
   },
 });
+ 
 
 
 export default authSlice.reducer;
