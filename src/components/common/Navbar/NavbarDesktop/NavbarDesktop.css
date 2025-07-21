@@ -50,6 +50,6 @@
 }
 
 .active {
-  background-color: var(--dark);
+  background-color: rgba(24, 216, 216, 0.7);
   border-radius: 10px;
 }

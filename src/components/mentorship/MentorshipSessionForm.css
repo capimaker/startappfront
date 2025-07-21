@@ -12,7 +12,7 @@
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
   border-radius: 12px;
   background-color: var(--violetaDark-rgba);
-  box-shadow: -1px -1px 35px 8px rgba(0, 0, 0, 0.5) !important;
+  box-shadow: -1px -1px 35px 8px rgba(180, 180, 180, 0.4) !important;
 }
 
 .ant-card-head-title {
@@ -38,17 +38,22 @@
   align-self: center;
   padding: 25px 15px;
   margin-top: 20px;
-  background-color: var(--dark);
-  border: 1px solid white;
+  background-color: var(--blanco);
+  /* border: 1px solid white; */
   font-family: var(--font);
   font-size: 1.2rem;
   font-weight: 700;
-  color: var(--blanco);
+  color: var(--dark);
 
   &:hover {
     color: var(--dark) !important;
-    background-color: var(--blanco) !important;
+    background-color: rgba(24, 216, 216, 0.7) !important;
   }
+}
+
+.ant-btn.ant-btn-block {
+  width: 300px;
+  text-align: center;
 }
 
 .full-width {

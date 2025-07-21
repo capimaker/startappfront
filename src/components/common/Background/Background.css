@@ -7,5 +7,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background: #16004a;
+  background: linear-gradient(90deg, rgba(22, 0, 74, 1) 0%, rgba(49, 9, 171, 1) 100%);
   z-index: -1;
 }
