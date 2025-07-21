@@ -41,3 +41,21 @@
   background-color: var(--dark);
   border-radius: 10px;
 }
+
+
+.logout-button {
+   margin-top: 9px;
+  border: none;
+  color: white;
+  font-size: 28px; 
+  padding: 8px 10px;
+  cursor: pointer;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  width: 32px; 
+  height: 32px;
+  z-index: 999;
+}
