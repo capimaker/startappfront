@@ -86,7 +86,7 @@ const StartupGallery = () => {
             />
             <p><strong>Sector:</strong> {selectedStartup.sector || 'No definido'}</p>
             <p><strong>Contacto:</strong> {selectedStartup.contact || 'Sin descripción'}</p>
-            
+
             <p>
   <strong>Web:</strong>{' '}
   {selectedStartup.business_url ? (
@@ -106,7 +106,8 @@ const StartupGallery = () => {
   )}
 </p>
 
-            <p><strong>Rondas:</strong> {selectedStartup.raised_rounds || 'No asignado'}</p>
+            <p><strong>Rondas Levantadas:</strong> {selectedStartup.raised_rounds || 'No asignado'}</p>
+            <p><strong>Reconocimientos:</strong> {selectedStartup.awards || 'No asignado'}</p>
             <p><strong>Descripción:</strong> {selectedStartup.description || 'Sin descripción'}</p>
           </>
         )}
