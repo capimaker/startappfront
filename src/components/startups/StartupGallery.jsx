@@ -1,10 +1,11 @@
-// src/components/startups/StartupGallery.jsx
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllStartups } from '../../features/startups/startupSlice';
 import { Typography, Modal, Spin, Select } from 'antd';
 import StartupCard from './StartupCard';
 import './StartupGallery.css';
+import { Link } from 'react-router';
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -83,11 +84,30 @@ const StartupGallery = () => {
               alt={selectedStartup.name}
               className="modal-img"
             />
-            <p><strong>Descripción:</strong> {selectedStartup.description || 'Sin descripción'}</p>
             <p><strong>Sector:</strong> {selectedStartup.sector || 'No definido'}</p>
-            <p><strong>Email:</strong> {selectedStartup.email || 'Sin email'}</p>
-            <p><strong>Mentor:</strong> {selectedStartup.mentor || 'No asignado'}</p>
+            <p><strong>Contacto:</strong> {selectedStartup.contact || 'Sin descripción'}</p>
+            
+            <p>
+  <strong>Web:</strong>{' '}
+  {selectedStartup.business_url ? (
+    <a
+      href={
+        selectedStartup.business_url.startsWith('http')
+          ? selectedStartup.business_url
+          : `https://${selectedStartup.business_url}`
+      }
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {selectedStartup.business_url}
+    </a>
+  ) : (
+    'Sin web'
+  )}
+</p>
+
             <p><strong>Rondas:</strong> {selectedStartup.raised_rounds || 'No asignado'}</p>
+            <p><strong>Descripción:</strong> {selectedStartup.description || 'Sin descripción'}</p>
           </>
         )}
       </Modal>
