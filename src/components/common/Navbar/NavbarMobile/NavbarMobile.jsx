@@ -1,16 +1,9 @@
-import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import {
-  RocketFilled,
-  DatabaseFilled,
-  BulbFilled,
-  EditFilled,
-  HomeFilled,
-  LogoutOutlined,
-} from "@ant-design/icons";
-import "./NavbarMobile.css";
-import { useNavigate } from "react-router-dom";
-import { logout } from "../../../../features/service/authSlice";
+import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { RocketFilled, DatabaseFilled, BulbFilled, EditFilled, HomeFilled, LogoutOutlined } from '@ant-design/icons';
+import './NavbarMobile.css';
+import { useNavigate } from 'react-router-dom';
+import { logout } from '../../../../features/service/authSlice';
 
 const NavbarMobile = () => {
   const dispatch = useDispatch();
@@ -18,91 +11,53 @@ const NavbarMobile = () => {
 
   const handleLogout = async () => {
     await dispatch(logout());
-    navigate("/");
+    navigate('/');
   };
 
   return (
     <nav className="navbar__mobile">
       <ul className="navbarm__list">
         <li className="navbarm__item">
-          <NavLink
-            to="/dashboard"
-            className={({ isActive }) =>
-              `navbarm__link ${isActive ? "active" : ""}`
-            }
-          >
+          <NavLink to="/dashboard" className={({ isActive }) => `navbarm__link ${isActive ? 'active' : ''}`}>
             <span className="navbarm__icon">
-              <HomeFilled style={{ fontSize: "32px", color: "#ffffff" }} />
+              <HomeFilled style={{ fontSize: '32px', color: '#ffffff' }} />
             </span>
           </NavLink>
         </li>
         <li className="navbarm__item">
-          <NavLink
-            to="/startups"
-            className={({ isActive }) =>
-              `navbarm__link ${isActive ? "active" : ""}`
-            }
-          >
+          <NavLink to="/startups" className={({ isActive }) => `navbarm__link ${isActive ? 'active' : ''}`}>
             <span className="navbarm__icon">
-              <RocketFilled style={{ fontSize: "32px", color: "#ffffff" }} />
+              <RocketFilled style={{ fontSize: '32px', color: '#ffffff' }} />
             </span>
           </NavLink>
         </li>
         <li className="navbarm__item">
-          <NavLink
-            to="/mentors"
-            className={({ isActive }) =>
-              `navbarm__link ${isActive ? "active" : ""}`
-            }
-          >
+          <NavLink to="/mentors" className={({ isActive }) => `navbarm__link ${isActive ? 'active' : ''}`}>
             <span className="navbarm__icon">
-              <BulbFilled style={{ fontSize: "32px", color: "#ffffff" }} />
+              <BulbFilled style={{ fontSize: '32px', color: '#ffffff' }} />
             </span>
           </NavLink>
         </li>
         <li className="navbarm__item">
-          <NavLink
-            to="/instructors"
-            className={({ isActive }) =>
-              `navbarm__link ${isActive ? "active" : ""}`
-            }
-          >
+          <NavLink to="/instructors" className={({ isActive }) => `navbarm__link ${isActive ? 'active' : ''}`}>
             <span className="navbarm__icon">
-              <DatabaseFilled style={{ fontSize: "30px", color: "#ffffff" }} />
+              <DatabaseFilled style={{ fontSize: '30px', color: '#ffffff' }} />
             </span>
           </NavLink>
         </li>
         <li className="navbarm__item">
-          <NavLink
-            to="/addmentorship"
-            className={({ isActive }) =>
-              `navbarm__link ${isActive ? "active" : ""}`
-            }
-          >
+          <NavLink to="/addmentorship" className={({ isActive }) => `navbarm__link ${isActive ? 'active' : ''}`}>
             <span className="navbarm__icon">
-              <EditFilled style={{ fontSize: "30px", color: "#ffffff" }} />
+              <EditFilled style={{ fontSize: '30px', color: '#ffffff' }} />
             </span>
           </NavLink>
         </li>
 
-
-<li className="navbarm__item">
-          
-            <span role="button" className="navbarm__icon">
-              <LogoutOutlined onClick={handleLogout} style={{ fontSize: "30px", color: "#ffffff" }} />
-            </span>
-          
+        <li className="navbar__item">
+          <span className="navbarm__icon logout" onClick={handleLogout}>
+            <LogoutOutlined style={{ fontSize: '30px', color: '#ffffff' }} />
+          </span>
         </li>
-        {/* Logout al final */}
-        {/* <li className="navbarm__item logout-item">
-          <button
-            onClick={handleLogout}
-            className="logout-button"
-            title="Cerrar sesión"
-          >
-            <LogoutOutlined />
-          </button>
-        </li> */}
       </ul>
     </nav>
   );

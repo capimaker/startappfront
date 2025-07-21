@@ -1,18 +1,10 @@
-import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
-import "./NavbarDesktop.css";
-import {
-  RocketFilled,
-  DatabaseFilled,
-  BulbFilled,
-  EditFilled,
-  HomeFilled,
-  LogoutOutlined,
-} from "@ant-design/icons";
-import logoPrueba from "../../../../assets/logoPrueba.webp";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { logout } from "../../../../features/service/authSlice";
+import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import './NavbarDesktop.css';
+import { RocketFilled, DatabaseFilled, BulbFilled, EditFilled, HomeFilled, LogoutOutlined } from '@ant-design/icons';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { logout } from '../../../../features/service/authSlice';
 
 const NavbarDesktop = () => {
   /* const { user } = useSelector((state) => state.auth); */
@@ -21,95 +13,70 @@ const NavbarDesktop = () => {
 
   const handleLogout = async () => {
     await dispatch(logout());
-    navigate("/");
+    navigate('/');
   };
 
   return (
     <nav className="navbar__desktop">
       <ul className="navbar__list">
-        <li className="navbar__userItem">
+        {/* <li className="navbar__userItem">
           <img
             className="navbar__user-img"
-            src={logoPrueba} /* src={user.image} */
+            src={logoPrueba} src={user.image}
           />
-          <span className="navbar__text">Colibí{/* {user.username} */}</span>
-        </li>
+          <span className="navbar__text">Colibí{{user.username}}</span>
+        </li> */}
 
         <li className="navbar__item">
-          <NavLink
-            to="/dashboard"
-            className={({ isActive }) =>
-              `navbar__link ${isActive ? "active" : ""}`
-            }
-          >
+          <NavLink to="/dashboard" className={({ isActive }) => `navbar__link ${isActive ? 'active' : ''}`}>
             <span className="navbar__icon">
-              <HomeFilled style={{ fontSize: "32px", color: "#ffffff" }} />
+              <HomeFilled style={{ fontSize: '32px', color: '#ffffff' }} />
             </span>
             <span className="navbar__text">Inicio</span>
           </NavLink>
         </li>
 
         <li className="navbar__item">
-          <NavLink
-            to="/startups"
-            className={({ isActive }) =>
-              `navbar__link ${isActive ? "active" : ""}`
-            }
-          >
+          <NavLink to="/startups" className={({ isActive }) => `navbar__link ${isActive ? 'active' : ''}`}>
             <span className="navbar__icon">
-              <RocketFilled style={{ fontSize: "32px", color: "#ffffff" }} />
+              <RocketFilled style={{ fontSize: '32px', color: '#ffffff' }} />
             </span>
             <span className="navbar__text">Startups</span>
           </NavLink>
         </li>
 
         <li className="navbar__item">
-          <NavLink
-            to="/mentors"
-            className={({ isActive }) =>
-              `navbar__link ${isActive ? "active" : ""}`
-            }
-          >
+          <NavLink to="/mentors" className={({ isActive }) => `navbar__link ${isActive ? 'active' : ''}`}>
             <span className="navbar__icon">
-              <BulbFilled style={{ fontSize: "32px", color: "#ffffff" }} />
+              <BulbFilled style={{ fontSize: '32px', color: '#ffffff' }} />
             </span>
             <span className="navbar__text">Mentores</span>
           </NavLink>
         </li>
 
         <li className="navbar__item">
-          <NavLink
-            to="/instructors"
-            className={({ isActive }) =>
-              `navbar__link ${isActive ? "active" : ""}`
-            }
-          >
+          <NavLink to="/instructors" className={({ isActive }) => `navbar__link ${isActive ? 'active' : ''}`}>
             <span className="navbar__icon">
-              <DatabaseFilled style={{ fontSize: "30px", color: "#ffffff" }} />
+              <DatabaseFilled style={{ fontSize: '30px', color: '#ffffff' }} />
             </span>
             <span className="navbar__text">Formadores</span>
           </NavLink>
         </li>
 
         <li className="navbar__item">
-          <NavLink
-            to="/addmentorship"
-            className={({ isActive }) =>
-              `navbar__link ${isActive ? "active" : ""}`
-            }
-          >
+          <NavLink to="/addmentorship" className={({ isActive }) => `navbar__link ${isActive ? 'active' : ''}`}>
             <span className="navbar__icon">
-              <EditFilled style={{ fontSize: "30px", color: "#ffffff" }} />
+              <EditFilled style={{ fontSize: '30px', color: '#ffffff' }} />
             </span>
             <span className="navbar__text">Mentoría</span>
           </NavLink>
         </li>
-         <li className="navbar__item">
-          <span role="button" className="navbarm__icon">
-              <LogoutOutlined onClick={handleLogout} style={{ fontSize: "30px", color: "#ffffff" }} />
-            </span>
-            <span className="navbar__text">Salir</span>
-          
+
+        <li className="navbar__item">
+          <span className="navbar__icon logout" onClick={handleLogout}>
+            <LogoutOutlined style={{ fontSize: '30px', color: '#ffffff' }} />
+            Salir
+          </span>
         </li>
       </ul>
     </nav>
