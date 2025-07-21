@@ -27,11 +27,15 @@ const AppLayout = ({ children }) => {
 
             <main className="main__content">{children}</main>
 
-            {isDesktop && <footer className="footer">{/* <Footer /> */}</footer>}
+            {isDesktop && <footer className="footer">{/*<Footer />*/} </footer>}
           </div>
 
           {!isDesktop && <NavbarMobile />}
+          
+        
+         
         </div>
+       
       </Background>
     </>
   );

@@ -1,21 +1,18 @@
-/* src/components/common/Layout/Footer/Footer.css */
-
 .footer {
-  background-color: #0f3460; /* colors.$color-primary-dark */
+  background-color: #0f3460; 
+  color: #ffffff;
+  
   background-size: cover;
-  background-position: center;
-  color: #ffffff; /* colors.$color-text-light */
-  padding: 0;
+ 
+  padding: 0; 
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  display: flex;
-  align-items: center; 
+  display: flex;  
   border-radius: 0;
   justify-content: center;
-  bottom: 0;
-  z-index: 1000; 
-  padding-left: 230px;
-  width: 100%;
-  height: 100px;
+  width: 100%; 
+  height: 100px; 
+
+
 }
 
 .footer-content {
@@ -23,38 +20,41 @@
   flex-direction: column;
   align-items: center;
   gap: 0.2rem; 
-  margin-right: 15%;
+
+  margin: 0 auto;
+  padding: 0 1rem;
+  bottom: 0;
 }
 
 .footer-main-text {
   font-size: 1.2rem;
   font-weight: bold;
   margin: 0; 
+  text-align: center;
 }
 
 .footer-contact-link {
-  color: #ffffff; /* colors.$color-text-light */
+  color: #ffffff;
   text-decoration: none; 
   font-weight: normal;
   font-size: 0.90rem;
   transition: color 0.3s ease;
 }
 
-/* CORRECCIÓN CLAVE: Selector :hover separado y no anidado */
 .footer-contact-link:hover {
   color: #534747;
-  background-color: #2a4d69; /* colors.$color-secondary-dark */
+  background-color: #2a4d69; 
 }
 
 .footer-address {
   font-size: 0.8rem;
   margin: 0;
   line-height: 1.4; 
+  text-align: center;
 }
 
-/* CORRECCIÓN CLAVE: Media query aplicada directamente al selector completo */
 @media (max-width: 768px) {
-  .footer { /* Este selector debe ser completo */
+  .footer {
     padding: 1rem; 
     height: auto; 
   }
@@ -68,5 +68,7 @@
     font-size: 0.8rem;
   }
 }
+
+
 
 

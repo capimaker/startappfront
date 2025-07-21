@@ -1,8 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './NavbarDesktop.css';
-import { RocketFilled, DatabaseFilled, BulbFilled, EditFilled, HomeFilled } from '@ant-design/icons';
+import { RocketFilled, DatabaseFilled, BulbFilled, EditFilled, HomeFilled, InfoCircleFilled } from '@ant-design/icons';
 import logoPrueba from '../../../../assets/logoPrueba.webp';
+
+
 
 const NavbarDesktop = () => {
   /* const { user } = useSelector((state) => state.auth); */
@@ -50,6 +52,14 @@ const NavbarDesktop = () => {
             <span className="navbar__text">Formadores</span>
           </NavLink>
         </li>
+        <li className="navbar__item">
+            <NavLink to="/info" className={({ isActive }) => `navbar__link ${isActive ? 'active' : ''}`}>
+            <span className="navbar__icon">
+              <InfoCircleFilled style={{ fontSize: '30px', color: '#ffffff' }} />
+            </span>
+            <span className="navbar__text">Info</span>
+          </NavLink>
+          </li>
 
         <li className="navbar__item">
           <NavLink to="/addmentorship" className={({ isActive }) => `navbar__link ${isActive ? 'active' : ''}`}>
@@ -58,6 +68,7 @@ const NavbarDesktop = () => {
             </span>
             <span className="navbar__text">Mentoría</span>
           </NavLink>
+      
         </li>
       </ul>
     </nav>
