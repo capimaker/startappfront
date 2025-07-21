@@ -116,16 +116,19 @@ function InfoCard() {
       </Space>
 
      
-      <Card 
+         <Card 
         type="inner" 
         title={<Text strong type="warning"><InfoCircleOutlined style={{ marginRight: '8px' }} /> Importante</Text>}
-        style={{ marginTop: '20px', borderColor: '#faad14', backgroundColor: '#fffbe6' }} 
-         styles={{
+        style={{ marginTop: '20px', borderColor: '#faad14', backgroundColor: '#fffbe6' }}
+        styles={{
           header: { 
             backgroundColor: '#fffbe6', 
             borderBottom: '1px solid #faad14'
+          },
+          body: { 
+            padding: '16px' 
           }
-           }}
+        }}
       >
         <Text>
           Todas las personas que formen parte del programa deben estar registradas en este formulario.
