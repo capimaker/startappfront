@@ -45,9 +45,7 @@ const MentorshipSessionForm = () => {
               </Form.Item>
             </Col>
             <Col xs={24} md={12}>
-              <Form.Item name="mentee" label="Startup" rules={[{ required: true, message: 'Introduce la Startup' }]}>
-                <Input placeholder="Id de la Startup" />
-              </Form.Item>
+              
             </Col>
           </Row>
 
