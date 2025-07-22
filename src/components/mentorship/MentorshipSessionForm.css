@@ -33,6 +33,46 @@
   font-weight: 600;
 }
 
+/* --- ESTILOS REVISADOS PARA DATEPICKER Y TIMEPICKER ESPECÍFICOS --- */
+
+/* Asegura el estilo de input para DatePicker y TimePicker dentro del formulario de mentoría */
+.mentorship-form-wrapper .ant-picker {
+  /* ¡Importante! Aseguramos el fondo y el borde del contenedor principal del picker */
+  background-color: var(--blanco) !important; /* Ahora sí, forzamos el blanco */
+  border: 1px solid #d9d9d9 !important; /* Borde estándar de Ant Design para inputs */
+  border-radius: 6px !important; /* Radio de borde estándar */
+  /* Puedes ajustar la altura si es diferente a tus otros inputs, si no, Ant Design ya maneja un default */
+}
+
+/* Estilo para el texto dentro del input del DatePicker/TimePicker */
+/* Este es crucial para que el texto y el placeholder se vean correctamente */
+.mentorship-form-wrapper .ant-picker-input input {
+  /* Quitamos el > para ser más permisivos */
+  background-color: var(--blanco) !important; /* También forzamos el fondo blanco aquí */
+  color: var(--text-dark) !important; /* Color de texto oscuro para el contenido */
+  /* Aquí puedes añadir font-family y font-weight si quieres que coincida con tus otros inputs */
+  /* font-family: var(--font) !important; */
+  /* font-weight: 400 !important; */
+}
+
+/* Estilo para el placeholder del DatePicker/TimePicker */
+/* Esto asegura que el placeholder se vea bien sobre el fondo blanco */
+.mentorship-form-wrapper .ant-picker-input input::placeholder {
+  color: rgba(0, 0, 0, 0.25) !important; /* Color de placeholder estándar de Ant Design */
+}
+
+/* Estilo para el icono del calendario/reloj dentro del picker */
+.mentorship-form-wrapper .ant-picker-suffix {
+  color: rgba(0, 0, 0, 0.45) !important; /* Color de flecha/icono estándar de Ant Design */
+}
+
+/* Estilos para el estado de foco (cuando el picker está activo) */
+.mentorship-form-wrapper .ant-picker-focused,
+.mentorship-form-wrapper .ant-picker:focus-within {
+  border-color: var(--accent-purple) !important; /* Color de borde al enfocar */
+  box-shadow: 0 0 0 2px rgba(94, 53, 177, 0.2) !important; /* Sombra de foco */
+}
+
 .select-horas {
   font-family: var(--font);
   color: var(--blanco) !important; /* Para el texto del placeholder y seleccionado */
@@ -49,21 +89,30 @@
 
   display: flex !important;
   align-items: center !important;
-  padding-left: 11px; /* Padding izquierdo como los inputs */
+  /* CAMBIOS CLAVE AQUÍ: Ajustes de padding y line-height para forzar la misma altura visual */
+  padding: 0 11px !important; /* Mantenemos padding horizontal, pero gestionamos verticalmente */
+  line-height: 32px !important; /* Asegura el line-height */
+
+  /* NUEVA ADICIÓN: Aseguramos el tamaño de fuente y padding específico si el line-height no es suficiente */
+  /* Ant Design usa un font-size de 14px por defecto para inputs */
+  font-size: 14px !important; /* Coincide con el font-size de los DatePicker/Input */
+  min-height: 32px !important; /* Asegura que la altura mínima sea 32px */
 }
 
-/* Estilo para el texto seleccionado dentro del Select de duración */
+/* También podemos asegurar que el texto seleccionado dentro del select tenga el line-height correcto */
 .select-horas .ant-select-selection-item {
   color: var(--text-dark) !important; /* Texto oscuro como los inputs */
   font-family: var(--font) !important;
   font-weight: 400 !important; /* Peso de fuente normal para el contenido */
+  line-height: 30px !important; /* Ajusta este line-height si el texto no se ve centrado. Podría ser 30px o 32px */
 }
 
-/* Estilo para el placeholder del Select de duración */
+/* Para el placeholder del select, también podemos ajustar el line-height */
 .select-horas .ant-select-selection-placeholder {
   color: rgba(0, 0, 0, 0.25) !important; /* Color de placeholder estándar de Ant Design */
   font-family: var(--font) !important;
   font-weight: 400 !important;
+  line-height: 30px !important; /* Ajusta este line-height si el placeholder no se ve centrado */
 }
 
 /* Estilo para el icono de la flecha del Select de duración */
