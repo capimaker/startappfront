@@ -9,7 +9,7 @@
   cursor: pointer;
   font-family: var(--font);
   color: var(--blanco);
-  width: 100%;
+  
 }
 
 .instructor-card:hover {
@@ -46,9 +46,4 @@
   font-family: var(--font);
   cursor: pointer;
   transition: background-color 0.3s;
-}
-
-.instructor-card-content button:hover {
-  background-color: var(--lavandaLight);
-  color: var(--violetaDark);
 }

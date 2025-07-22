@@ -4,14 +4,16 @@
   font-family: var(--font);
   color: var(--blanco);
 }
-
+/* 
 .filter-container {
   margin-bottom: 2rem;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 12px;
-}
+ 
+ 
+} */
 
 .instructor-list {
   display: grid;
