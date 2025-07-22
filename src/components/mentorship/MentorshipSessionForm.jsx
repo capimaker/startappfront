@@ -2,6 +2,7 @@ import { Form, Input, Button, DatePicker, TimePicker, Select, message, Typograph
 import { useDispatch, useSelector } from 'react-redux';
 import { createSession, reset } from '../../features/sessions/sessionSlice';
 import './MentorshipSessionForm.css';
+import dayjs from 'dayjs';
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -17,7 +18,7 @@ const MentorshipSessionForm = () => {
 
     const payload = {
       mentor: values.mentor,
-      mentee: values.mentee,
+      // mentee: values.mentee, // Si necesitas el mentee aquí, asegúrate de tenerlo en el formulario
       date: dateTime,
       duration: values.duration,
       topic: values.topic,
@@ -25,13 +26,13 @@ const MentorshipSessionForm = () => {
     };
 
     dispatch(createSession(payload));
-    dispatch(reset());
-    form.resetFields();
+    form.resetFields(); // Mueve esto después del mensaje para asegurar que se resetee
     message.success('Sesión creada correctamente');
+    dispatch(reset()); // Resetear el estado de Redux después de mostrar el mensaje
   };
 
   return (
-    <div className="form-container">
+    <div className="mentorship-form-wrapper form-container">
       <Card title="Agendar Mentoría" variant="borderless">
         <Form form={form} layout="vertical" onFinish={onFinish} autoComplete="off">
           <Row gutter={16}>
@@ -44,36 +45,37 @@ const MentorshipSessionForm = () => {
                 <Input placeholder="Id del mentor" />
               </Form.Item>
             </Col>
-            <Col xs={24} md={12}></Col>
+            <Col xs={24} md={12}></Col> {/* Columna vacía, puedes quitarla si no la usas */}
           </Row>
 
           <Row gutter={16}>
             <Col xs={24} md={8}>
               <Form.Item name="date" label="Fecha" rules={[{ required: true, message: 'Selecciona la fecha' }]}>
-                <DatePicker className="full-width" format="YYYY-MM-DD" />
+                {/* Cambiado className para ser específico */}
+                <DatePicker className="mentorship-date-picker full-width" format="YYYY-MM-DD" />
               </Form.Item>
             </Col>
             <Col xs={24} md={8}>
               <Form.Item name="time" label="Hora" rules={[{ required: true, message: 'Selecciona la hora' }]}>
-                <TimePicker className="full-width" format="HH:mm" />
+                {/* Cambiado className para ser específico */}
+                <TimePicker className="mentorship-time-picker full-width" format="HH:mm" />
               </Form.Item>
             </Col>
             <Col xs={24} md={8}>
-              {
-                <Form.Item
-                  name="duration"
-                  label="Duración"
-                  rules={[{ required: true, message: 'Selecciona la duración' }]}
-                >
-                  <Select placeholder="Duración" className="select-horas">
-                    <Option value="30">30 min</Option>
-                    <Option value="45">45 min</Option>
-                    <Option value="60">1 hora</Option>
-                    <Option value="90">1h 30min</Option>
-                    <Option value="90">2h</Option>
-                  </Select>
-                </Form.Item>
-              }
+              <Form.Item
+                name="duration"
+                label="Duración"
+                rules={[{ required: true, message: 'Selecciona la duración' }]}
+              >
+                {/* Aseguramos full-width en el Select */}
+                <Select placeholder="Duración" className="select-horas full-width">
+                  <Option value="30">30 min</Option>
+                  <Option value="45">45 min</Option>
+                  <Option value="60">1 hora</Option>
+                  <Option value="90">1h 30min</Option>
+                  <Option value="120">2h</Option>
+                </Select>
+              </Form.Item>
             </Col>
           </Row>
 
