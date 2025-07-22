@@ -1,11 +1,349 @@
+/* src/components/mentors/MentorsGallery.css */
+
+/* Colores y Tipografía de referencia de tu diseño */
+/* IMPORTANTE: Estas variables deberían estar en un archivo CSS global (ej. :root en index.css)
+   para evitar duplicación y asegurar consistencia en toda tu aplicación.
+   Las incluyo aquí por completitud, pero si ya las tienes globalmente, no las dupliques. */
+:root {
+  --primary-bg-dark: #2e264c; /* Fondo de cards y secciones principales */
+  --secondary-bg-light: #3b335e; /* Fondos de contenedores internos, filtros */
+  --text-light: #e0e0e0; /* Color de texto general claro */
+  --text-lighter: #fff; /* Color de texto más claro (ej. títulos) */
+  --text-dark: #555;
+  --accent-purple: #7a46e1; /* Botones, resaltados */
+  --accent-purple-hover: #8c5ada;
+  --border-color: rgba(255, 255, 255, 0.1); /* Bordes sutiles */
+
+  /* Variables específicas para el fondo y la fuente */
+  --violetaDark-rgba: rgba(30, 24, 60, 0.9); /* Fondo principal de la galería/formulario */
+  --dark: #120e26; /* Color oscuro para botones/elementos (para el botón de contacto) */
+  --blanco: #ffffff; /* Blanco puro (para el botón de contacto y texto) */
+  --font: 'Montserrat', sans-serif; /* REVISA ESTO: Asegúrate que 'Montserrat' es el nombre exacto de tu fuente */
+
+  /* Variables añadidas/ajustadas para coherencia con InfoCard y botones */
+  --fondo-listas: rgba(255, 255, 255, 0.05); /* Fondo para las cards, similar a info-list */
+  --borde-listas: rgba(255, 255, 255, 0.1); /* Borde para las cards */
+  --borde-sutil-list-item: rgba(255, 255, 255, 0.08); /* Borde inferior para simular items */
+}
+
+/* Aplicar la fuente globalmente al body (o al contenedor de toda la app si es más adecuado) */
+body {
+  font-family: var(--font) !important;
+}
+
+/* Asegurar que todos los elementos heredan la fuente, o forzarla si es necesario */
+* {
+  font-family: var(--font) !important;
+}
+
 .mentor-gallery-container {
-  padding: 2rem;
+  padding: 3rem 2rem;
+  background-color: var(--violetaDark-rgba);
+  color: var(--text-light);
+  min-height: calc(100vh - var(--header-height, 0px)); /* Ajusta si tienes un header */
+  box-shadow: -1px -1px 35px 8px rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  margin: 40px auto;
+  max-width: 1200px;
+}
+
+.gallery-main-title {
+  /* Tu Title level 2 necesita esta clase en el JSX */
+  color: var(--blanco) !important;
+  font-size: 2.5rem !important;
+  margin-bottom: 2.5rem !important;
+  font-weight: 300 !important;
   text-align: center;
 }
 
+/* No hay filtro de categoría en MentorsGallery, así que no se necesitan estas reglas */
+/* .filter-container {} */
+/* .category-filter-select {} */
+
+/* Estilos para el componente Select de Ant Design (globalmente o más específico si es necesario)
+   Si no tienes un Select en MentorsGallery, puedes omitir estas reglas. */
+.ant-select-selector,
+.ant-picker-input > input,
+.ant-picker {
+  background-color: var(--secondary-bg-light) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-light) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.ant-select-arrow,
+.ant-picker-suffix {
+  color: var(--text-light) !important;
+}
+
+/* Estilos para el menú desplegable del Select */
+.ant-select-dropdown {
+  background-color: var(--secondary-bg-light) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.ant-select-item-option {
+  color: var(--text-light) !important;
+}
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: var(--accent-purple) !important;
+  color: var(--text-lighter) !important;
+}
+
+.ant-select-item-option-active:not(.ant-select-item-option-selected) {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: var(--text-lighter) !important;
+}
+
+/* Lista de Mentores (adaptado de .startup-list) */
 .mentor-list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Min-width de tus MentorsCard */
+  gap: 2.5rem;
   justify-content: center;
-  gap: 1.5rem;
+}
+
+/* NUEVO: Estilos para cuando hay una sola tarjeta (si aplicara) */
+/* Si tu MentorsGallery tiene una lógica similar, puedes usar una clase condicional */
+/* .mentor-list.single-card-layout {
+  grid-template-columns: minmax(320px, 400px);
+  justify-content: center;
+  padding: 0 20px;
+} */
+
+/* Estilos para el spinner y mensajes de error */
+.loading-spinner-container, /* Esta clase no la tienes en el JSX, considera añadirla */
+.error-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+.ant-spin-dot {
+  color: var(--accent-purple) !important;
+}
+
+/* Estilos del Modal */
+.mentor-detail-modal .ant-modal-content {
+  /* Tu modal necesita la clase 'mentor-detail-modal' */
+  background-color: var(--primary-bg-dark) !important;
+  border-radius: 12px !important;
+  padding: 24px !important;
+  box-shadow: -1px -1px 35px 8px rgba(0, 0, 0, 0.5) !important;
+  color: var(--text-light) !important;
+}
+
+.mentor-detail-modal .ant-modal-header {
+  background-color: var(--primary-bg-dark) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  padding: 16px 24px !important;
+  border-radius: 12px 12px 0 0 !important;
+}
+
+.mentor-detail-modal .ant-modal-title {
+  color: var(--blanco) !important;
+  font-size: 1.8rem !important;
+  font-weight: 600 !important;
+  text-align: center;
+}
+
+.mentor-detail-modal .ant-modal-close-x {
+  color: var(--text-light) !important;
+  font-size: 18px !important;
+}
+
+.modal-content-wrapper {
+  /* Tu contenido del modal necesita ser envuelto en esta clase */
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinea los items de texto a la izquierda */
+}
+
+/* No hay imagen en el modal de Mentores en tu JSX actual, pero si la añades: */
+/*
+.modal-img-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 0;
+  background-color: transparent;
+  border-radius: 0;
+  border: none;
+  max-height: 120px;
+  overflow: hidden;
+}
+
+.modal-img {
+  max-width: 150px;
+  max-height: 100px;
+  object-fit: contain;
+  border-radius: 4px;
+  background-color: transparent;
+  padding: 0;
+}
+*/
+
+.modal-detail-item {
+  /* Envuelve tus <p> en esta clase para aplicar el estilo */
+  margin-bottom: 10px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-light);
+  width: 100%;
+}
+
+.modal-detail-item strong {
+  color: var(--text-lighter);
+  margin-right: 5px;
+}
+
+.modal-web-link {
+  /* Para los enlaces dentro del modal */
+  color: #87ceeb !important;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.modal-web-link:hover {
+  color: #add8e6 !important;
+  text-decoration: underline;
+}
+
+.modal-awards-list {
+  /* Para tu lista de áreas de mentoring */
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-top: 5px;
+  color: var(--text-light);
+}
+
+.modal-awards-list li {
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.modal-description {
+  /* Si agregas una descripción general al mentor en el modal */
+  margin-top: 1.5rem;
+  font-style: italic;
+  color: var(--text-light);
+  line-height: 1.6;
+  text-align: justify;
+  padding-right: 5px;
+  width: 100%;
+}
+
+/* Media Queries para Responsiveness */
+
+/* Tablets grandes y laptops */
+@media (min-width: 993px) and (max-width: 1200px) {
+  .mentor-list {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  /* .mentor-list.single-card-layout {
+    grid-template-columns: minmax(300px, 360px);
+  } */
+  .gallery-main-title {
+    font-size: 2.2rem !important;
+  }
+  .mentor-gallery-container {
+    padding: 2.5rem 1.5rem;
+    margin-top: 30px;
+    max-width: 960px;
+  }
+}
+
+/* Tablets (2 COLUMNAS) */
+@media (max-width: 992px) {
+  .mentor-list {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.75rem;
+  }
+  /* .mentor-list.single-card-layout {
+    grid-template-columns: minmax(300px, 400px);
+  } */
+  .mentor-gallery-container {
+    padding: 2rem 1rem;
+    margin-top: 25px;
+    max-width: 720px;
+  }
+  .gallery-main-title {
+    font-size: 2rem !important;
+  }
+  /* Si agregas Select, ajusta el ancho aquí */
+  /* .category-filter-select {
+    width: 250px !important;
+  } */
+}
+
+/* Móviles grandes (1 COLUMNA) */
+@media (max-width: 768px) {
+  .mentor-list {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+  /* .mentor-list.single-card-layout {
+    grid-template-columns: 1fr;
+  } */
+  /* No hay filtro, omite este */
+  /* .filter-container {
+    justify-content: flex-start;
+    padding: 0 1rem;
+  } */
+  /* Si agregas Select, ajusta el ancho aquí */
+  /* .category-filter-select {
+    width: 100% !important;
+  } */
+  .mentor-gallery-container {
+    padding: 1.5rem 0.5rem;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: -1px -1px 20px 5px rgba(0, 0, 0, 0.4);
+    max-width: 540px;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 576px) {
+  .mentor-list {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    padding: 0 0.5rem;
+  }
+  /* .mentor-list.single-card-layout {
+    grid-template-columns: 1fr;
+  } */
+  .mentor-gallery-container {
+    padding: 1.5rem 0.5rem;
+    margin-top: 15px;
+    max-width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .gallery-main-title {
+    font-size: 1.8rem !important;
+    margin-bottom: 2rem !important;
+  }
+  /* No hay filtro, omite este */
+  /* .filter-container {
+    padding: 0 0.5rem;
+  } */
+  .mentor-detail-modal .ant-modal-title {
+    font-size: 1.5rem !important;
+  }
 }
