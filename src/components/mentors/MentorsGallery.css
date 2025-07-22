@@ -1,0 +1,11 @@
+.mentor-gallery-container {
+  padding: 2rem;
+  text-align: center;
+}
+
+.mentor-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}

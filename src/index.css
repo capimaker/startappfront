@@ -24,7 +24,8 @@
   --violetaLight: #5932c7;
   --lavandaLight: #d6c4ff;
   --purpura: #7c4cdd;
-  --blanco: #ffffff;
+  --blanco: #fff;
+  --violetaDark-rgba: rgba(128, 0, 128, 0.2);
 }
 
 body {

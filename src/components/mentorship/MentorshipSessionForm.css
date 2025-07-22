@@ -1,10 +1,8 @@
-
 .form-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; 
-  padding: 2rem;
+  margin-top: 40px;
 }
 
 .ant-card {
@@ -13,8 +11,51 @@
   max-width: 800px;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
   border-radius: 12px;
-  background-color: rgba(186, 217, 246, 0.2)
-  
+  background-color: var(--violetaDark-rgba);
+  box-shadow: -1px -1px 35px 8px rgba(0, 0, 0, 0.5) !important;
+}
+
+.ant-card-head-title {
+  font-size: 1.4rem;
+  color: var(--blanco);
+  font-weight: 300;
+  text-align: end;
+}
+
+.ant-card-head {
+  border-bottom: 1px solid black !important;
+}
+
+.ant-form-item-required,
+.ant-form-item-label > label {
+  font-family: var(--font);
+  color: var(--blanco) !important;
+  font-weight: 600;
+}
+
+.select-horas,
+.category-filter-select {
+  font-family: var(--font);
+  color: var(--blanco) !important;
+  font-weight: 600;
+}
+
+.mentorship__btn {
+  width: 300px;
+  align-self: center;
+  padding: 25px 15px;
+  margin-top: 20px;
+  background-color: var(--dark);
+  border: 1px solid white;
+  font-family: var(--font);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--blanco);
+
+  &:hover {
+    color: var(--dark) !important;
+    background-color: var(--blanco) !important;
+  }
 }
 
 .full-width {
@@ -23,6 +64,7 @@
 
 .error-text {
   color: red;
+  font-family: var(--font);
   font-weight: 500;
   margin-top: 1rem;
 }

@@ -1,13 +1,14 @@
 import useWindowWidth from '../../../hooks/useWindowWidth';
 import NavbarDesktop from '../Navbar/NavbarDesktop/NavbarDesktop';
 import NavbarMobile from '../Navbar/NavbarMobile/NavbarMobile';
-/* import { Header } from '../Header/Header'; */
-/* import Background from './Background'; */
+import { Header } from '../Header/Header';
+import Footer from '../Footer/Footer';
+import Background from '../Background/Background';
 import './appLayout.css';
 
 const AppLayout = ({ children }) => {
   const width = useWindowWidth();
-  const isDesktop = width >= 800;
+  const isDesktop = width >= 975;
 
   return (
     <>
@@ -26,11 +27,7 @@ const AppLayout = ({ children }) => {
 
             <main className="main__content">{children}</main>
 
-            {isDesktop && (
-              <footer className="extra">
-                <Footer />
-              </footer>
-            )}
+            {isDesktop && <footer className="footer">{/* <Footer /> */}</footer>}
           </div>
 
           {!isDesktop && <NavbarMobile />}
