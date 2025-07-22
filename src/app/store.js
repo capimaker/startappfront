@@ -3,6 +3,7 @@ import authReducer from '../features/service/authSlice';
 import sessionReducer from '../features/sessions/sessionSlice';
 import startupReducer from '../features/startups/startupSlice';
 import mentorsReducer from '../features/mentors/mentorsSlice';
+import hoursReducer from '../features/hours/hoursSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     sessions: sessionReducer,
     startups: startupReducer,
     mentors: mentorsReducer,
+    hours: hoursReducer,
   },
 });

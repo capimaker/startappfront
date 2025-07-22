@@ -7,6 +7,7 @@ import AppLayout from './components/common/Layout/AppLayout';
 import Login from './components/Login/Login.jsx';
 import MentorshipSessionForm from './components/mentorship/MentorshipSessionForm';
 import Details from './components/pages/Details.jsx';
+import DashboardPage from './components/pages/DashboardPage.jsx';
 import StartupGallery from './components/startups/StartupGallery';
 import MentorsGallery from './components/mentors/MentorsGallery';
 
@@ -45,6 +46,44 @@ function MainRouterContent() {
 
   return (
     <Routes>
+      <Route path="/" element={user ? <AppLayout onLogout={handleLogout} /> : <Login />} />
+      <Route
+        path="/dashboard"
+        element={
+          user ? (
+            <AppLayout onLogout={handleLogout}>
+              <DashboardPage />
+            </AppLayout>
+          ) : (
+            <Login />
+          )
+        }
+      />
+
+      <Route
+        path="/addmentorship"
+        element={
+          user ? (
+            <AppLayout onLogout={handleLogout}>
+              <MentorshipSessionForm />
+            </AppLayout>
+          ) : (
+            <Login />
+          )
+        }
+      />
+      <Route
+        path="/details"
+        element={
+          user ? (
+            <AppLayout onLogout={handleLogout}>
+              <Details />
+            </AppLayout>
+          ) : (
+            <Login />
+          )
+        }
+      />
       {/* Ruta de inicio: Si el usuario está autenticado, muestra un mensaje de bienvenida
           dentro de AppLayout, de lo contrario, muestra Login.
           Puedes reemplazar <div>Bienvenido</div> con tu componente de Dashboard o Home. */}
