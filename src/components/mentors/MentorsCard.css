@@ -11,7 +11,12 @@
 .mentor-card:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-
+.mentors-card-image {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
 .mentor-card-content h3 {
   margin-bottom: 0.5rem;
 }
