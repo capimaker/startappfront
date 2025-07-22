@@ -77,24 +77,21 @@
 
 /* Estilo para las etiquetas (strong text) */
 .info-label {
-  /* Eliminamos flex-basis y min-width aquí para que el ancho sea el intrínseco de su contenido */
-  margin-right: 8px; /* Espacio entre la etiqueta y el valor */
+  margin-right: 8px;
   color: var(--blanco) !important;
   font-family: var(--font) !important;
-  white-space: normal; /* Permite que el texto se envuelva */
-  display: inline-flex; /* Para que el icono y el texto se comporten como una unidad flexible */
-  align-items: flex-start; /* Alinea el icono y el texto de la etiqueta */
+  white-space: normal;
+  display: inline-flex;
+  align-items: flex-start;
 }
 
 /* Estilo para los valores (texto normal) */
 .info-value {
-  flex-grow: 1; /* Permite que el valor ocupe el espacio restante */
-  color: var(--blanco) !important; /* ¡Asegura el color blanco para todos los info-value! */
+  flex-grow: 1;
+  color: var(--blanco) !important;
   font-family: var(--font) !important;
   text-align: left;
-  /* Añadimos un min-width para que el texto tenga espacio y no colapse completamente.
-     Ajusta 0px si quieres que se adapte libremente, o un valor específico si lo necesitas. */
-  min-width: 0px; /* Permite que el texto se encoja si es necesario antes de envolver */
+  min-width: 0px;
 }
 
 /* Estilos para iconos dentro de los items de lista */
@@ -112,7 +109,7 @@
 
 .info-link:hover {
   text-decoration: underline;
-  color: var(--blanco) !important; /* Cambia a blanco al pasar el ratón */
+  color: var(--blanco) !important;
 }
 
 /* Estilos específicos para la sección de URLs de apoyo */
@@ -123,16 +120,16 @@
 
 /* Estilo para el password WiFi */
 .wifi-password {
-  background-color: rgba(255, 255, 255, 0.1) !important; /* Un poco más oscuro */
+  background-color: rgba(255, 255, 255, 0.1) !important;
   color: var(--blanco) !important;
   padding: 2px 6px !important;
   border-radius: 4px !important;
-  font-family: 'Courier New', monospace !important; /* Para que el código se vea como código */
+  font-family: 'Courier New', monospace !important;
 }
 
 /* Estilos para items con disposición horizontal (etiqueta y valor en la misma línea) */
 .horizontal-item {
-  justify-content: space-between !important; /* Distribuye espacio entre elementos */
+  justify-content: space-between !important;
   align-items: center !important;
 }
 
@@ -143,7 +140,7 @@
 }
 
 .column-item .info-label {
-  margin-bottom: 5px; /* Espacio entre la etiqueta y el valor en columna */
+  margin-bottom: 5px;
   margin-right: 0;
 }
 
@@ -152,9 +149,8 @@
   color: var(--blanco) !important;
 }
 
-/* **NUEVO/MODIFICADO** Centrar el contenido de contact-details */
+/* Centrar el contenido de contact-details */
 .contact-details {
-  /* Si los elementos son flex items, align-items: center los centra horizontalmente */
   align-items: center !important; /* Centra los Text items horizontalmente dentro de Space */
   width: 100%; /* Asegura que el Space ocupe todo el ancho para que el centrado funcione */
 }
@@ -166,27 +162,36 @@
 
 /* Estilos para el divisor */
 .info-divider.ant-divider-horizontal {
-  border-color: rgba(255, 255, 255, 0.15) !important; /* Divisor más visible */
+  border-color: rgba(255, 255, 255, 0.15) !important;
   margin: 24px 0 !important;
 }
 
 /* Estilos para la tarjeta "Importante" */
 .important-card {
   margin-top: 20px !important;
-  border-color: rgba(255, 204, 0, 0.7) !important; /* Un amarillo ámbar más suave */
-  background-color: rgba(255, 240, 150, 0.08) !important; /* Fondo sutilmente amarillo */
-  color: var(--blanco) !important; /* Asegura el color blanco para el texto importante */
+  border-color: rgba(255, 204, 0, 0.7) !important;
+  background-color: rgba(255, 240, 150, 0.08) !important;
+  color: var(--blanco) !important;
   font-family: var(--font) !important;
 }
 
 .important-card .ant-card-head {
-  background-color: rgba(255, 204, 0, 0.1) !important; /* Fondo para el header de la tarjeta importante */
+  background-color: rgba(255, 204, 0, 0.1) !important;
   border-bottom: 1px solid rgba(255, 204, 0, 0.4) !important;
   font-family: var(--font) !important;
 }
 
+/* **NUEVO/MODIFICADO** Alineación del título de la tarjeta importante */
+.important-card .ant-card-head-title {
+  text-align: left !important; /* Alinea el texto a la izquierda */
+  justify-content: flex-start !important; /* Alinea los elementos (icono y texto) a la izquierda si es un flex container */
+  display: flex; /* Asegura que sea un flex container para que justify-content funcione */
+  align-items: center; /* Alinea verticalmente icono y texto */
+  gap: 8px; /* Espacio entre el icono y el texto */
+}
+
 .important-title {
-  color: #ffc107 !important; /* Amarillo más brillante para el título de importante */
+  color: #ffc107 !important;
   font-family: var(--font) !important;
 }
 
@@ -195,7 +200,7 @@
 }
 
 .important-text {
-  color: var(--blanco) !important; /* Asegura el color blanco para el texto importante */
+  color: var(--blanco) !important;
   font-family: var(--font) !important;
 }
 
@@ -206,23 +211,23 @@
 }
 
 .qa-question {
-  margin-bottom: 8px !important; /* Espacio debajo de la pregunta */
-  color: var(--blanco) !important; /* Asegura el color blanco */
+  margin-bottom: 8px !important;
+  color: var(--blanco) !important;
   font-family: var(--font) !important;
-  width: 100%; /* Ocupa todo el ancho disponible */
+  width: 100%;
 }
 
 .qa-answer {
-  color: var(--blanco) !important; /* Asegura el color blanco */
+  color: var(--blanco) !important;
   font-family: var(--font) !important;
-  width: 100%; /* Ocupa todo el ancho disponible */
+  width: 100%;
 }
 
 /* Responsividad */
 @media (max-width: 768px) {
   .info-card-container {
     margin: 10px auto;
-    border-radius: 4px; /* Bordes menos pronunciados en móviles */
+    border-radius: 4px;
   }
 
   .ant-card-head {
@@ -234,45 +239,45 @@
     padding: 16px !important;
   }
 
-  /* Asegurarse de que en móvil, todos los items se apilen. */
   .info-list-item {
-    flex-direction: column !important; /* En móviles, siempre en columna para todos los items */
+    flex-direction: column !important;
     align-items: flex-start !important;
     padding: 6px 0 !important;
   }
 
-  /* Ajustes para label y value en móvil */
   .info-label {
     margin-right: 0;
-    margin-bottom: 4px; /* Espacio entre la etiqueta y el valor cuando están en columna */
-    width: 100%; /* Ocupa todo el ancho disponible */
+    margin-bottom: 4px;
+    width: 100%;
   }
 
   .info-value {
-    width: 100%; /* Ocupa todo el ancho disponible */
-    text-align: left; /* Asegura alineación izquierda en móvil */
+    width: 100%;
+    text-align: left;
   }
 
-  /* Las siguientes reglas para .horizontal-item y .column-item dentro del media query
-     podrían no ser estrictamente necesarias si .info-list-item ya fuerza column-direction,
-     pero las mantengo por si hay interacciones inesperadas o si decides revertir la
-     estrategia de flex-direction en .info-list-item. */
   .horizontal-item {
     flex-direction: column !important;
     align-items: flex-start !important;
   }
 
   .links-item .info-links-group {
-    width: 100%; /* Los enlaces ocupan todo el ancho */
+    width: 100%;
   }
 
   .contact-item .contact-details {
-    width: 100%; /* Detalles de contacto ocupan todo el ancho */
-    align-items: center !important; /* Centrar también en móvil si se desea */
-    text-align: center !important; /* Centrar el texto en móvil */
+    width: 100%;
+    align-items: center !important;
+    text-align: center !important;
   }
 
   .info-divider.ant-divider-horizontal {
     margin: 16px 0 !important;
+  }
+
+  /* Ajuste para el título importante en móvil si es necesario */
+  .important-card .ant-card-head-title {
+    text-align: left !important;
+    justify-content: flex-start !important;
   }
 }

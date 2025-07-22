@@ -131,8 +131,7 @@ function InfoCard() {
         <List size="small" bordered={false} className="info-list">
           <List.Item className="info-list-item">
             <Text className="info-value">
-              En la Planta Baja están disponibles las dos salas acristaladas (Sala de Reuniones 1 y Sala de Reuniones
-              2).
+              En Planta Baja están disponibles las dos salas acristaladas (Sala de Reuniones 1 y Sala de Reuniones 2)
             </Text>
           </List.Item>
           <List.Item className="info-list-item column-item">
@@ -192,7 +191,7 @@ function InfoCard() {
             <Text className="info-value">
               Pueden unirse todos los integrantes que lo deseen de cada startup participante.{' '}
               <AntLink href="https://chat.whatsapp.com/Iv6Ep2IPd4Y9O2mtqyEAoc" target="_blank" className="info-link">
-                (enlace)
+                WhatsApp
               </AntLink>
             </Text>
           </List.Item>
@@ -242,7 +241,7 @@ function InfoCard() {
               La sala de formación tiene 35 puestos disponibles por lo que podéis venir una o dos personas a cada
               sesión. Podéis venir 3 personas o más siempre que se dé prioridad de sentarse a un integrante de cada
               equipo. (Tenéis total libertad de subir más sillas a la sala si al terminar la sesión si las dejáis de
-              nuevo en donde corresponde 😉 ).
+              nuevo en donde corresponde 😉 )
             </Text>
           </List.Item>
 
