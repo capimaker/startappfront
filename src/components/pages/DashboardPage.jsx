@@ -1,18 +1,31 @@
-import React from 'react';
+
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectTotals, selectTasks, setTotals } from '../../features/hours/hoursSlice';
+import { getAllMentors } from '../../features/mentors/mentorsSlice';
+import { getAllStartups } from '../../features/startups/startupSlice';
+
 import { Row, Col, Card, InputNumber, Typography, Divider } from 'antd';
-import GaugeChart from '../dashboard/GaugeChart'
+import GaugeChart from '../dashboard/GaugeChart';
 import PieChart from '../dashboard/PieChart';
 import BarChart from '../dashboard/BarChart';
 import TaskTable from '../dashboard/TaskTable';
+import MentorshipBigCalendar from '../calendar/MentorshipBigCalendar';
 
 const { Title } = Typography;
 
 const DashboardPage = () => {
   const dispatch = useDispatch();
+
   const totals = useSelector(selectTotals);
   const tasks = useSelector(selectTasks);
+  const mentors = useSelector((state) => state.mentors.mentors);
+  const startups = useSelector((state) => state.startups.startups);
+
+  useEffect(() => {
+    if (!mentors.length) dispatch(getAllMentors());
+    if (!startups.length) dispatch(getAllStartups());
+  }, [dispatch, mentors.length, startups.length]);
 
   const onChangeTotals = (field) => (value) => {
     dispatch(setTotals({ ...totals, [field]: value }));
@@ -51,6 +64,11 @@ const DashboardPage = () => {
         <TaskTable tasks={tasks} />
         <Divider />
         <BarChart data={tasks} />
+      </Card>
+
+      <Card style={{ marginTop: 32 }}>
+        <Title level={4}>📅 Calendario de mentorías</Title>
+        <MentorshipBigCalendar mentors={mentors} startups={startups} />
       </Card>
     </div>
   );

@@ -48,6 +48,8 @@ function AppRoutes() {
           )
         }
       />
+      <Route path="/startups" element={<StartupGallery />} />
+        <Route path="/mentors" element={<MentorsGallery />} />
     </Routes>
   );
 }
