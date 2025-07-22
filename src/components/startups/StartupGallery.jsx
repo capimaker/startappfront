@@ -5,7 +5,7 @@ import { getAllStartups } from '../../features/startups/startupSlice';
 import { Typography, Modal, Spin, Select } from 'antd';
 import StartupCard from './StartupCard';
 import './StartupGallery.css';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; // Asegúrate de que esta importación sea correcta si usas react-router-dom
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -71,7 +71,6 @@ const StartupGallery = () => {
         <p className="error-message">Error: {message}</p>
       ) : (
         <div className={startupListClasses}>
-          {' '}
           {/* Usamos la clase condicional aquí */}
           {filteredStartups.map((startup) => (
             <StartupCard key={startup.id_startup} startup={startup} onClick={() => openModal(startup)} />
@@ -86,15 +85,19 @@ const StartupGallery = () => {
         footer={null}
         title={selectedStartup?.name}
         className="startup-detail-modal"
-        // CAMBIO CLAVE: Eliminar 'centered' y añadir 'style' con 'top'
-        // centered // Eliminar esta prop
         style={{ top: 80 }} // Esto establecerá un margen superior fijo de 80px
-        // Opcional: Para controlar el scroll interno del cuerpo del modal
-        // bodyStyle={{ maxHeight: 'calc(100vh - 200px)', overflowY: 'auto' }}
       >
         {selectedStartup && (
           <div className="modal-content-wrapper">
-            <img src={selectedStartup.img_url || '/placeholder.png'} alt={selectedStartup.name} className="modal-img" />
+            {/* Contenedor para centrar la imagen */}
+            <div className="modal-img-container">
+              <img
+                src={selectedStartup.img_url || '/placeholder.png'}
+                alt={selectedStartup.name}
+                className="modal-img"
+              />
+            </div>
+
             <p className="modal-detail-item">
               <strong>Sector:</strong> {selectedStartup.sector || 'No definido'}
             </p>
@@ -108,7 +111,7 @@ const StartupGallery = () => {
                 <a
                   href={
                     selectedStartup.business_url.startsWith('http')
-                      ? selectedCategory.business_url
+                      ? selectedStartup.business_url // <--- CORRECCIÓN IMPORTANTE AQUÍ
                       : `https://${selectedStartup.business_url}`
                   }
                   target="_blank"

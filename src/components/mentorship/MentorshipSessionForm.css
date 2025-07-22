@@ -33,11 +33,70 @@
   font-weight: 600;
 }
 
-.select-horas,
-.category-filter-select {
+.select-horas {
   font-family: var(--font);
-  color: var(--blanco) !important;
+  color: var(--blanco) !important; /* Para el texto del placeholder y seleccionado */
   font-weight: 600;
+}
+
+/* Estilos para el campo de entrada del Select de duración (donde se ve el valor) */
+.select-horas .ant-select-selector {
+  background-color: var(--blanco) !important; /* Fondo blanco como los Date/TimePicker */
+  border: 1px solid #d9d9d9 !important; /* Borde estándar de Ant Design para inputs */
+  border-radius: 6px !important; /* Radio de borde estándar de Ant Design para inputs */
+  box-shadow: none !important; /* Sin sombra */
+  height: 32px !important; /* Altura estándar de Ant Design para inputs */
+
+  display: flex !important;
+  align-items: center !important;
+  padding-left: 11px; /* Padding izquierdo como los inputs */
+}
+
+/* Estilo para el texto seleccionado dentro del Select de duración */
+.select-horas .ant-select-selection-item {
+  color: var(--text-dark) !important; /* Texto oscuro como los inputs */
+  font-family: var(--font) !important;
+  font-weight: 400 !important; /* Peso de fuente normal para el contenido */
+}
+
+/* Estilo para el placeholder del Select de duración */
+.select-horas .ant-select-selection-placeholder {
+  color: rgba(0, 0, 0, 0.25) !important; /* Color de placeholder estándar de Ant Design */
+  font-family: var(--font) !important;
+  font-weight: 400 !important;
+}
+
+/* Estilo para el icono de la flecha del Select de duración */
+.select-horas .ant-select-arrow {
+  color: rgba(0, 0, 0, 0.45) !important; /* Color de flecha estándar de Ant Design */
+}
+
+/* Estilos para el menú desplegable del Select de duración (las opciones) */
+.select-horas .ant-select-dropdown {
+  /* Puedes mantener los estilos que ya tienes para los dropdowns oscuros si lo prefieres,
+     o cambiarlos para que coincidan con el tema claro del Select en sí. */
+  background-color: var(--secondary-bg-light) !important; /* O #fff para un dropdown claro */
+  border-radius: 8px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid var(--border-color) !important; /* O #d9d9d9 para un borde claro */
+}
+
+/* Estilos para los ítems de opción del Select de duración */
+.select-horas .ant-select-item-option {
+  color: var(--text-light) !important; /* O #000 para texto oscuro en opciones claras */
+  font-family: var(--font) !important;
+}
+
+/* Estilos para la opción seleccionada en el menú desplegable de duración */
+.select-horas .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: var(--accent-purple) !important; /* O un azul estándar de Ant Design */
+  color: var(--text-lighter) !important;
+}
+
+/* Estilos para la opción activa/hover en el menú desplegable de duración */
+.select-horas .ant-select-item-option-active:not(.ant-select-item-option-selected) {
+  background-color: rgba(255, 255, 255, 0.08) !important; /* O un gris claro para hover en opciones claras */
+  color: var(--text-lighter) !important;
 }
 
 .mentorship__btn {

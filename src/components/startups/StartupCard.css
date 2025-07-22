@@ -26,8 +26,8 @@
   border-radius: 6px;
   box-shadow: none;
   border: 1px solid var(--borde-listas);
-  overflow: hidden;
-  padding: 18px;
+  overflow: hidden; /* Importante para que la imagen no se salga de la tarjeta */
+  padding: 18px; /* Mantener este padding para el contenido inferior y los lados del contenedor de la imagen */
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
   cursor: pointer;
   color: var(--text-light);
@@ -44,22 +44,32 @@
 }
 
 .startup-card-image-container {
-  width: 100%;
-  height: 120px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 15px;
-  background-color: var(--secondary-bg-light);
-  border-radius: 4px;
-  padding: 10px;
+  width: 100%; /* Ocupa el 100% del ancho disponible *dentro* del padding de la card */
+  height: 120px; /* Mantener la altura deseada para el área de la imagen */
+  margin-bottom: 15px; /* Margen inferior para separar del contenido */
+  background-color: transparent; /* ¡Eliminar el color de fondo! */
+  border-radius: 4px; /* Mantener bordes redondeados si lo deseas para el contenedor */
+  overflow: hidden; /* Asegura que la imagen se recorte si es necesario */
+  /* No necesitamos display: flex, justify-content, align-items si la imagen va a cubrir todo */
+  padding: 0; /* Asegurarse de que el contenedor no tenga padding interno */
 }
 
 .startup-card-image {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  border-radius: 4px;
+  width: 100%; /* La imagen ocupará todo el ancho de su contenedor */
+  height: 100%; /* La imagen ocupará toda la altura de su contenedor */
+  object-fit: cover; /* ¡CLAVE! La imagen cubrirá todo el espacio, recortando si es necesario */
+  object-position: center; /* Centra la imagen si se recorta */
+  border-radius: 4px; /* Mantener bordes redondeados si la imagen los tuviera */
+  /* Si la imagen en sí tiene un fondo blanco que quieres ocultar, podrías intentar: */
+  /* background-color: transparent; */
+}
+
+/* Consideraciones para un placeholder más estilizado */
+.startup-card-image[src*='placeholder.png'] {
+  object-fit: contain; /* Para el placeholder, queremos que quepa completo y no se recorte */
+  background-color: #4a416b; /* Un fondo sólido para el placeholder */
+  border: 1px dashed #6b628d; /* Un borde punteado para el placeholder */
+  /* Asegúrate de que si el placeholder tiene un fondo blanco, este background-color lo sobrescriba */
 }
 
 .startup-card-content {
@@ -88,39 +98,31 @@
 
 .startup-card-contact-button {
   margin-top: auto;
-  /* ANTES: background-color: var(--accent-purple); */
-  /* ANTES: border: none; */
-  /* ANTES: padding: 8px 16px; */
-
-  /* N U E V O S   E S T I L O S   B A S A D O S   E N   .mentorship__btn */
-  background-color: var(--dark) !important; /* Usamos --dark del ejemplo, forzamos con !important */
-  border: 1px solid var(--blanco) !important; /* Borde blanco, forzamos con !important */
-  color: var(--blanco) !important; /* Texto blanco, forzamos con !important */
-  font-weight: 700 !important; /* Más negrita */
-  font-size: 1rem !important; /* Ligeramente más grande que antes, pero no 1.2rem como mentorship */
-
-  /* Ajuste de padding: Queremos más que 8px 16px, pero menos que 25px 15px */
-  padding: 12px 20px !important; /* Un padding más generoso y visualmente equilibrado */
-
-  border-radius: 6px; /* Mantener tu redondeo actual */
+  background-color: var(--dark) !important;
+  border: 1px solid var(--blanco) !important;
+  color: var(--blanco) !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  padding: 12px 20px !important;
+  border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, transform 0.1s ease-in-out;
-  align-self: center; /* Aseguramos que esté centrado (ya lo estaba por el padre, pero por si acaso) */
-  font-family: var(--font) !important; /* Asegurar la fuente */
-  /* NOTA: No necesitamos 'width: 300px;' para mantener el tamaño existente.
-           El botón se ajustará a su contenido con el padding. */
+  align-self: center;
+  font-family: var(--font) !important;
 }
 
 .startup-card-contact-button:hover {
-  /* N U E V O S   E S T I L O S   D E L   H O V E R */
-  background-color: var(--blanco) !important; /* Fondo blanco en hover */
-  color: var(--dark) !important; /* Texto oscuro en hover */
+  background-color: var(--blanco) !important;
+  color: var(--dark) !important;
   transform: translateY(-2px);
 }
 
 .startup-card-contact-button:active {
   transform: translateY(0);
 }
+
+/* Media Queries (Mantener las existentes) */
+/* ... tus media queries existentes ... */
 
 /* Consideraciones para un placeholder más estilizado */
 .startup-card-image[src*='placeholder.png'] {

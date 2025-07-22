@@ -22,9 +22,6 @@
 }
 
 /* Aplicar la fuente globalmente al body (o al contenedor de toda la app si es más adecuado) */
-/* ESTO ES CRÍTICO: Asegúrate que esta importación de fuente esté activa y funcione en tu proyecto */
-/* Si usas Google Fonts, esto debería estar en un archivo CSS global o en tu index.html */
-/* Por ejemplo: @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap'); */
 body {
   font-family: var(--font) !important;
 }
@@ -42,7 +39,6 @@ body {
   box-shadow: -1px -1px 35px 8px rgba(0, 0, 0, 0.5);
   border-radius: 12px;
   margin: 40px auto;
-  /* Reducido de 1400px a 1200px para más margen lateral */
   max-width: 1200px;
 }
 
@@ -63,14 +59,18 @@ body {
   gap: 1rem;
 }
 
-/* Estilos para el Select de Ant Design */
+/* Estilos para el Select de Ant Design (filtro de categoría) */
 .category-filter-select {
   width: 280px !important;
   min-width: 180px;
 }
 
 /* Estilos para el componente Select de Ant Design (globalmente o más específico si es necesario) */
-.ant-select-selector {
+/* Estos estilos aplicarán a cualquier Ant Select si no se sobrescriben con más especificidad */
+.ant-select-selector,
+/* Añadir clases de DatePicker y TimePicker si usas sus selectores */
+.ant-picker-input > input,
+.ant-picker {
   background-color: var(--secondary-bg-light) !important;
   border-color: var(--border-color) !important;
   color: var(--text-light) !important;
@@ -81,7 +81,8 @@ body {
   align-items: center !important;
 }
 
-.ant-select-arrow {
+.ant-select-arrow,
+.ant-picker-suffix {
   color: var(--text-light) !important;
 }
 
@@ -110,17 +111,16 @@ body {
 /* Lista de startups */
 .startup-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Por defecto 3 columnas */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2.5rem;
   justify-content: center;
 }
 
 /* NUEVO: Estilos para cuando hay una sola tarjeta */
 .startup-list.single-card-layout {
-  /* Forzamos que la columna sea de un tamaño fijo para evitar que se estire */
-  grid-template-columns: minmax(320px, 400px); /* Un buen ancho para una sola tarjeta */
-  justify-content: center; /* Asegura que la tarjeta se centre horizontalmente */
-  padding: 0 20px; /* Padding opcional para el contenedor cuando hay una sola tarjeta */
+  grid-template-columns: minmax(320px, 400px);
+  justify-content: center;
+  padding: 0 20px;
 }
 
 /* Estilos para el spinner y mensajes de error */
@@ -168,23 +168,44 @@ body {
 
 .modal-content-wrapper {
   padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinea los items de texto a la izquierda */
+}
+
+/* INICIO: CORRECCIONES PARA CENTRAR IMAGEN Y ELIMINAR FONDO */
+.modal-img-container {
+  width: 100%; /* Ocupa todo el ancho del modal */
+  display: flex;
+  justify-content: center; /* Centra el contenido (la imagen) horizontalmente */
+  align-items: center; /* Centra el contenido (la imagen) verticalmente */
+  margin-bottom: 1.5rem;
+  padding: 0; /* Eliminar padding para que el fondo no se vea */
+  background-color: transparent; /* Eliminar el fondo */
+  border-radius: 0; /* Eliminar bordes redondeados del contenedor si los tuviera */
+  border: none; /* Asegurarse de que no tenga bordes */
+  max-height: 120px; /* Ajusta esta altura para dar espacio al logo sin ser excesiva */
+  overflow: hidden;
 }
 
 .modal-img {
-  width: 100%;
-  max-height: 250px;
-  object-fit: contain;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-  background-color: var(--secondary-bg-light);
-  padding: 10px;
+  /* Controla el tamaño real del logo */
+  max-width: 150px; /* Haz el logo un poco más grande, ajusta según necesidad */
+  max-height: 100px; /* Altura máxima del logo, ajusta según necesidad */
+  object-fit: contain; /* Asegura que el logo se ajuste sin distorsionarse */
+  border-radius: 4px; /* Mantener bordes redondeados si deseas */
+  /* Eliminar cualquier fondo o padding que la imagen pudiera traer directamente */
+  background-color: transparent;
+  padding: 0;
 }
+/* FIN: CORRECCIONES PARA CENTRAR IMAGEN Y ELIMINAR FONDO */
 
 .modal-detail-item {
   margin-bottom: 10px;
   font-size: 1rem;
   line-height: 1.5;
   color: var(--text-light);
+  width: 100%;
 }
 
 .modal-detail-item strong {
@@ -203,11 +224,28 @@ body {
   text-decoration: underline;
 }
 
+/* Estos estilos para .modal-awards-list no se usarán si no se renderiza como ul/li,
+   pero los mantengo por si decides volver a esa implementación. */
+.modal-awards-list {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-top: 5px;
+  color: var(--text-light);
+}
+
+.modal-awards-list li {
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
 .modal-description {
   margin-top: 1.5rem;
   font-style: italic;
   color: var(--text-light);
   line-height: 1.6;
+  text-align: justify;
+  padding-right: 5px;
+  width: 100%;
 }
 
 /* Media Queries para Responsiveness */
@@ -219,7 +257,7 @@ body {
     gap: 2rem;
   }
   .startup-list.single-card-layout {
-    grid-template-columns: minmax(300px, 360px); /* Ajuste para estas resoluciones */
+    grid-template-columns: minmax(300px, 360px);
   }
   .gallery-main-title {
     font-size: 2.2rem !important;
@@ -227,7 +265,7 @@ body {
   .startup-gallery-container {
     padding: 2.5rem 1.5rem;
     margin-top: 30px;
-    max-width: 960px; /* Ajustar el max-width del contenedor para estas resoluciones */
+    max-width: 960px;
   }
 }
 
@@ -238,18 +276,26 @@ body {
     gap: 1.75rem;
   }
   .startup-list.single-card-layout {
-    grid-template-columns: minmax(300px, 400px); /* Para asegurar que la única tarjeta no sea demasiado pequeña */
+    grid-template-columns: minmax(300px, 400px);
   }
   .startup-gallery-container {
     padding: 2rem 1rem;
     margin-top: 25px;
-    max-width: 720px; /* Ajustar el max-width del contenedor para tablets */
+    max-width: 720px;
   }
   .gallery-main-title {
     font-size: 2rem !important;
   }
   .category-filter-select {
     width: 250px !important;
+  }
+  /* Ajuste para el tamaño de la imagen en tablets si es necesario */
+  .modal-img-container {
+    max-height: 100px;
+  }
+  .modal-img {
+    max-width: 120px;
+    max-height: 80px;
   }
 }
 
@@ -261,7 +307,7 @@ body {
     padding: 0 1rem;
   }
   .startup-list.single-card-layout {
-    grid-template-columns: 1fr; /* Mantenemos 1fr en móvil */
+    grid-template-columns: 1fr;
   }
   .filter-container {
     justify-content: flex-start;
@@ -270,8 +316,13 @@ body {
   .category-filter-select {
     width: 100% !important;
   }
+  /* Ajuste para el tamaño de la imagen en móviles */
+  .modal-img-container {
+    max-height: 80px;
+  }
   .modal-img {
-    max-height: 200px;
+    max-width: 100px;
+    max-height: 60px;
   }
   .startup-gallery-container {
     padding: 1.5rem 0.5rem;
@@ -290,7 +341,7 @@ body {
     padding: 0 0.5rem;
   }
   .startup-list.single-card-layout {
-    grid-template-columns: 1fr; /* Mantenemos 1fr en móvil */
+    grid-template-columns: 1fr;
   }
   .startup-gallery-container {
     padding: 1.5rem 0.5rem;
