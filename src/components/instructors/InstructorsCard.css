@@ -1,49 +1,56 @@
 .instructor-card {
-  background-color: var(--violetaDark);
+  background-color: rgba(255, 255, 255, 0.05); /* fondo translúcido estilo startup */
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   text-align: center;
   padding: 16px;
   transition: transform 0.2s ease-in-out;
   cursor: pointer;
   font-family: var(--font);
-  color: var(--blanco);
-  
+  color: #fff;
+  max-width: 250px;
+  width: 100%;
 }
 
 .instructor-card:hover {
-  transform: translateY(-6px);
-  background-color: var(--violetaLight);
+  transform: translateY(-5px);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .instructor-card-image {
   width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 8px;
+  height: 150px;
+  object-fit: contain;
   margin-bottom: 12px;
+  background-color: #fff;
+  border-radius: 8px;
 }
 
 .instructor-card-content h3 {
-  margin: 0 0 10px;
+  margin-bottom: 8px;
   font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
 }
 
 .instructor-card-content p {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  color: #cfcfcf;
   margin: 4px 0;
-  color: var(--lavandaLight);
 }
 
 .instructor-card-content button {
-  margin-top: 12px;
-  background-color: var(--purpura);
-  color: var(--blanco);
+  margin-top: 10px;
+  background-color: #1890ff;
+  color: white;
   border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-family: var(--font);
+  padding: 6px 12px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s;
+}
+
+.instructor-card-content button:hover {
+  background-color: #40a9ff;
 }

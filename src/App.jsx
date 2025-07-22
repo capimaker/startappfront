@@ -60,7 +60,7 @@ function MainRouterContent() {
       <Route path="/agendarmentoria" element={renderAuthenticatedRoute(<MentorshipSessionForm />)} />
       <Route path="/startups" element={renderAuthenticatedRoute(<StartupGallery />)} />
       <Route path="/mentors" element={renderAuthenticatedRoute(<MentorsGallery />)} />
-          <Route path="/instructors" element={<InstructorsGallery />} />
+      <Route path="/instructors" element={renderAuthenticatedRoute(<InstructorsGallery />)} />
 
       {/* Puedes añadir una ruta para manejar páginas no encontradas (404) si lo deseas */}
       {/* <Route path="*" element={<NotFoundPage />} /> */}
