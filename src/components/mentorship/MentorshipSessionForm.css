@@ -33,6 +33,13 @@
   font-weight: 600;
 }
 
+.select-horas,
+.category-filter-select {
+  font-family: var(--font);
+  color: var(--blanco) !important;
+  font-weight: 600;
+}
+
 .mentorship__btn {
   width: 300px;
   align-self: center;

@@ -44,9 +44,7 @@ const MentorshipSessionForm = () => {
                 <Input placeholder="Id del mentor" />
               </Form.Item>
             </Col>
-            <Col xs={24} md={12}>
-              
-            </Col>
+            <Col xs={24} md={12}></Col>
           </Row>
 
           <Row gutter={16}>
@@ -61,19 +59,21 @@ const MentorshipSessionForm = () => {
               </Form.Item>
             </Col>
             <Col xs={24} md={8}>
-              <Form.Item
-                name="duration"
-                label="Duración"
-                rules={[{ required: true, message: 'Selecciona la duración' }]}
-              >
-                <Select placeholder="Duración">
-                  <Option value="30">30 min</Option>
-                  <Option value="45">45 min</Option>
-                  <Option value="60">1 hora</Option>
-                  <Option value="90">1h 30min</Option>
-                  <Option value="90">2h</Option>
-                </Select>
-              </Form.Item>
+              {
+                <Form.Item
+                  name="duration"
+                  label="Duración"
+                  rules={[{ required: true, message: 'Selecciona la duración' }]}
+                >
+                  <Select placeholder="Duración" className="select-horas">
+                    <Option value="30">30 min</Option>
+                    <Option value="45">45 min</Option>
+                    <Option value="60">1 hora</Option>
+                    <Option value="90">1h 30min</Option>
+                    <Option value="90">2h</Option>
+                  </Select>
+                </Form.Item>
+              }
             </Col>
           </Row>
 

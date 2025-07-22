@@ -1,11 +1,11 @@
-
+// src/components/startups/StartupGallery.jsx
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllStartups } from '../../features/startups/startupSlice';
 import { Typography, Modal, Spin, Select } from 'antd';
 import StartupCard from './StartupCard';
 import './StartupGallery.css';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -22,12 +22,11 @@ const StartupGallery = () => {
     dispatch(getAllStartups());
   }, [dispatch]);
 
-  const categories = ['Todas', ...new Set(startups.map(s => s.sector).filter(Boolean))];
+  // Asegurarse de que las categorías sean únicas y no incluyan valores nulos/undefined
+  const categories = ['Todas', ...new Set(startups.map((s) => s.sector).filter(Boolean))].sort();
 
   const filteredStartups =
-    selectedCategory === 'Todas'
-      ? startups
-      : startups.filter(s => s.sector === selectedCategory);
+    selectedCategory === 'Todas' ? startups : startups.filter((s) => s.sector === selectedCategory);
 
   const openModal = (startup) => {
     setSelectedStartup(startup);
@@ -39,16 +38,21 @@ const StartupGallery = () => {
     setIsModalVisible(false);
   };
 
+  // Determinar la clase para la lista de startups basada en el número de elementos
+  const startupListClasses = `startup-list ${filteredStartups.length === 1 ? 'single-card-layout' : ''}`;
+
   return (
     <div className="startup-gallery-container">
-      <Title level={2}>Startups Participantes</Title>
+      <Title level={2} className="gallery-main-title">
+        Startups Participantes
+      </Title>
 
       {/* Filtro de Categoría */}
       <div className="filter-container">
         <Select
+          className="category-filter-select" // Nueva clase para estilizar el Select de Ant Design
           value={selectedCategory}
           onChange={setSelectedCategory}
-          style={{ width: 250, marginBottom: 20 }}
         >
           {categories.map((cat, idx) => (
             <Option key={idx} value={cat}>
@@ -60,56 +64,70 @@ const StartupGallery = () => {
 
       {/* Lista de startups */}
       {isLoading ? (
-        <Spin size="large" />
+        <div className="loading-spinner-container">
+          <Spin size="large" />
+        </div>
       ) : isError ? (
-        <p>Error: {message}</p>
+        <p className="error-message">Error: {message}</p>
       ) : (
-        <div className="startup-list">
+        <div className={startupListClasses}>
+          {' '}
+          {/* Usamos la clase condicional aquí */}
           {filteredStartups.map((startup) => (
-            <StartupCard
-              key={startup.id_startup}
-              startup={startup}
-              onClick={() => openModal(startup)}
-            />
+            <StartupCard key={startup.id_startup} startup={startup} onClick={() => openModal(startup)} />
           ))}
         </div>
       )}
 
-      {/* Modal */}
-      <Modal open={isModalVisible} onCancel={closeModal} footer={null} title={selectedStartup?.name}>
+      {/* Modal de Detalle */}
+      <Modal
+        open={isModalVisible}
+        onCancel={closeModal}
+        footer={null}
+        title={selectedStartup?.name}
+        className="startup-detail-modal"
+        centered
+      >
         {selectedStartup && (
-          <>
-            <img
-              src={selectedStartup.img_url || '/placeholder.png'}
-              alt={selectedStartup.name}
-              className="modal-img"
-            />
-            <p><strong>Sector:</strong> {selectedStartup.sector || 'No definido'}</p>
-            <p><strong>Contacto:</strong> {selectedStartup.contact || 'Sin descripción'}</p>
+          <div className="modal-content-wrapper">
+            <img src={selectedStartup.img_url || '/placeholder.png'} alt={selectedStartup.name} className="modal-img" />
+            <p className="modal-detail-item">
+              <strong>Sector:</strong> {selectedStartup.sector || 'No definido'}
+            </p>
+            <p className="modal-detail-item">
+              <strong>Contacto:</strong> {selectedStartup.contact || 'Sin descripción'}
+            </p>
 
-            <p>
-  <strong>Web:</strong>{' '}
-  {selectedStartup.business_url ? (
-    <a
-      href={
-        selectedStartup.business_url.startsWith('http')
-          ? selectedStartup.business_url
-          : `https://${selectedStartup.business_url}`
-      }
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {selectedStartup.business_url}
-    </a>
-  ) : (
-    'Sin web'
-  )}
-</p>
+            <p className="modal-detail-item">
+              <strong>Web:</strong>{' '}
+              {selectedStartup.business_url ? (
+                <a
+                  href={
+                    selectedStartup.business_url.startsWith('http')
+                      ? selectedStartup.business_url
+                      : `https://${selectedStartup.business_url}`
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="modal-web-link"
+                >
+                  {selectedStartup.business_url}
+                </a>
+              ) : (
+                'Sin web'
+              )}
+            </p>
 
-            <p><strong>Rondas Levantadas:</strong> {selectedStartup.raised_rounds || 'No asignado'}</p>
-            <p><strong>Reconocimientos:</strong> {selectedStartup.awards || 'No asignado'}</p>
-            <p><strong>Descripción:</strong> {selectedStartup.description || 'Sin descripción'}</p>
-          </>
+            <p className="modal-detail-item">
+              <strong>Rondas Levantadas:</strong> {selectedStartup.raised_rounds || 'No asignado'}
+            </p>
+            <p className="modal-detail-item">
+              <strong>Reconocimientos:</strong> {selectedStartup.awards || 'No asignado'}
+            </p>
+            <p className="modal-detail-item modal-description">
+              <strong>Descripción:</strong> {selectedStartup.description || 'Sin descripción'}
+            </p>
+          </div>
         )}
       </Modal>
     </div>
