@@ -1,12 +1,11 @@
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-import AppLayout from "./components/common/Layout/AppLayout";
-import Login from "./components/Login/Login.jsx";
-import { useState } from "react";
-import MentorshipSessionForm from "./components/mentorship/MentorshipSessionForm";
-import "./App.css";
-
-import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../src/features/service/authSlice.js";
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import AppLayout from './components/common/Layout/AppLayout';
+import Login from './components/Login/Login.jsx';
+import MentorshipSessionForm from './components/mentorship/MentorshipSessionForm';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../src/features/service/authSlice.js';
+import Details from './components/pages/Details.jsx';
+import './App.css';
 
 function AppRoutes() {
   const user = useSelector((state) => state.auth.user);
@@ -15,21 +14,30 @@ function AppRoutes() {
 
   const handleLogout = async () => {
     await dispatch(logout());
-    navigate("/");
+    navigate('/');
   };
 
   return (
     <Routes>
-      <Route
-        path="/"
-        element={user ? <AppLayout onLogout={handleLogout} /> : <Login />}
-      />
+      <Route path="/" element={user ? <AppLayout onLogout={handleLogout} /> : <Login />} />
       <Route
         path="/addmentorship"
         element={
           user ? (
             <AppLayout onLogout={handleLogout}>
               <MentorshipSessionForm />
+            </AppLayout>
+          ) : (
+            <Login />
+          )
+        }
+      />
+      <Route
+        path="/details"
+        element={
+          user ? (
+            <AppLayout onLogout={handleLogout}>
+              <Details />
             </AppLayout>
           ) : (
             <Login />

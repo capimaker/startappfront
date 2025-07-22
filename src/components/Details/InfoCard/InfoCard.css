@@ -1,0 +1,278 @@
+:root {
+  --font: 'Montserrat', sans-serif;
+  --violetaDark-rgba: rgba(30, 0, 60, 0.9);
+  --blanco: #ffffff;
+  --morado-claro: #a064ff;
+  --fondo-listas: rgba(255, 255, 255, 0.05);
+  --borde-listas: rgba(255, 255, 255, 0.1);
+}
+
+/* Estilos para el contenedor principal de la tarjeta */
+.info-card-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  background-color: var(--violetaDark-rgba) !important; /* Fondo oscuro */
+  color: var(--blanco) !important;
+  font-family: var(--font) !important; /* Asegurar Montserrat */
+  border: none;
+}
+
+/* Estilos para el encabezado de la tarjeta */
+.ant-card-head {
+  background-color: rgba(45, 0, 90, 0.95) !important; /* Un poco más oscuro que el fondo general */
+  color: var(--blanco) !important;
+  border-top-left-radius: 8px !important;
+  border-top-right-radius: 8px !important;
+  font-size: 1.8em !important;
+  padding: 16px 24px !important;
+  font-family: var(--font) !important;
+  border-bottom: 1px solid var(--dark) !important;
+}
+
+/* Estilos para el cuerpo de la tarjeta */
+.ant-card-body {
+  padding: 24px !important;
+  color: var(--blanco) !important; /* Asegura que el color de texto por defecto sea blanco */
+  font-family: var(--font) !important;
+}
+
+/* Estilos para los títulos de sección (Información General, Horario, etc.) */
+.section-title {
+  font-size: 1.5em !important;
+  color: var(--blanco) !important;
+  display: flex;
+  align-items: center;
+  font-family: var(--font) !important;
+}
+
+.section-title .anticon {
+  color: var(--morado-claro) !important;
+  margin-right: 20px !important;
+}
+
+/* Estilos para las listas de información */
+.info-list {
+  background-color: var(--fondo-listas) !important;
+  border-radius: 6px !important;
+  padding: 18px !important;
+  border: 1px solid var(--borde-listas) !important;
+}
+
+/* Estilos para cada item de la lista (general) */
+.info-list-item {
+  display: flex !important; /* Mantenemos flex para el contenedor */
+  flex-wrap: wrap; /* Permitimos que los elementos se envuelvan */
+  align-items: flex-start; /* Alinea los elementos al inicio verticalmente para texto largo */
+  padding: 8px 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important; /* Separador más sutil */
+  font-family: var(--font) !important;
+}
+
+.info-list-item:last-child {
+  border-bottom: none !important; /* No border for the last item */
+}
+
+/* Estilo para las etiquetas (strong text) */
+.info-label {
+  /* Eliminamos flex-basis y min-width aquí para que el ancho sea el intrínseco de su contenido */
+  margin-right: 8px; /* Espacio entre la etiqueta y el valor */
+  color: var(--blanco) !important;
+  font-family: var(--font) !important;
+  white-space: normal; /* Permite que el texto se envuelva */
+  display: inline-flex; /* Para que el icono y el texto se comporten como una unidad flexible */
+  align-items: flex-start; /* Alinea el icono y el texto de la etiqueta */
+}
+
+/* Estilo para los valores (texto normal) */
+.info-value {
+  flex-grow: 1; /* Permite que el valor ocupe el espacio restante */
+  color: var(--blanco) !important; /* ¡Asegura el color blanco para todos los info-value! */
+  font-family: var(--font) !important;
+  text-align: left;
+  /* Añadimos un min-width para que el texto tenga espacio y no colapse completamente.
+     Ajusta 0px si quieres que se adapte libremente, o un valor específico si lo necesitas. */
+  min-width: 0px; /* Permite que el texto se encoja si es necesario antes de envolver */
+}
+
+/* Estilos para iconos dentro de los items de lista */
+.info-icon {
+  color: var(--morado-claro) !important;
+  margin-right: 8px;
+}
+
+/* Estilos para enlaces */
+.info-link {
+  color: var(--morado-claro) !important;
+  text-decoration: none;
+  font-family: var(--font) !important;
+}
+
+.info-link:hover {
+  text-decoration: underline;
+  color: var(--blanco) !important; /* Cambia a blanco al pasar el ratón */
+}
+
+/* Estilos específicos para la sección de URLs de apoyo */
+.links-item .info-links-group {
+  flex-grow: 1;
+  gap: 4px;
+}
+
+/* Estilo para el password WiFi */
+.wifi-password {
+  background-color: rgba(255, 255, 255, 0.1) !important; /* Un poco más oscuro */
+  color: var(--blanco) !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  font-family: 'Courier New', monospace !important; /* Para que el código se vea como código */
+}
+
+/* Estilos para items con disposición horizontal (etiqueta y valor en la misma línea) */
+.horizontal-item {
+  justify-content: space-between !important; /* Distribuye espacio entre elementos */
+  align-items: center !important;
+}
+
+/* Estilos para items con disposición de columna (etiqueta arriba, valor abajo) */
+.column-item {
+  flex-direction: column !important;
+  align-items: flex-start !important;
+}
+
+.column-item .info-label {
+  margin-bottom: 5px; /* Espacio entre la etiqueta y el valor en columna */
+  margin-right: 0;
+}
+
+/* Estilos para asegurar que el texto de contacto sea blanco */
+.contact-details .ant-typography {
+  color: var(--blanco) !important;
+}
+
+/* **NUEVO/MODIFICADO** Centrar el contenido de contact-details */
+.contact-details {
+  /* Si los elementos son flex items, align-items: center los centra horizontalmente */
+  align-items: center !important; /* Centra los Text items horizontalmente dentro de Space */
+  width: 100%; /* Asegura que el Space ocupe todo el ancho para que el centrado funcione */
+}
+
+/* Asegura que el texto dentro de los Text se centre si es necesario */
+.contact-details .ant-typography {
+  text-align: center !important; /* Centra el texto dentro de cada Typography.Text */
+}
+
+/* Estilos para el divisor */
+.info-divider.ant-divider-horizontal {
+  border-color: rgba(255, 255, 255, 0.15) !important; /* Divisor más visible */
+  margin: 24px 0 !important;
+}
+
+/* Estilos para la tarjeta "Importante" */
+.important-card {
+  margin-top: 20px !important;
+  border-color: rgba(255, 204, 0, 0.7) !important; /* Un amarillo ámbar más suave */
+  background-color: rgba(255, 240, 150, 0.08) !important; /* Fondo sutilmente amarillo */
+  color: var(--blanco) !important; /* Asegura el color blanco para el texto importante */
+  font-family: var(--font) !important;
+}
+
+.important-card .ant-card-head {
+  background-color: rgba(255, 204, 0, 0.1) !important; /* Fondo para el header de la tarjeta importante */
+  border-bottom: 1px solid rgba(255, 204, 0, 0.4) !important;
+  font-family: var(--font) !important;
+}
+
+.important-title {
+  color: #ffc107 !important; /* Amarillo más brillante para el título de importante */
+  font-family: var(--font) !important;
+}
+
+.important-title .anticon {
+  color: #ffc107 !important;
+}
+
+.important-text {
+  color: var(--blanco) !important; /* Asegura el color blanco para el texto importante */
+  font-family: var(--font) !important;
+}
+
+/* Estilos para los items de Q&A */
+.qa-item {
+  flex-direction: column !important;
+  align-items: flex-start !important;
+}
+
+.qa-question {
+  margin-bottom: 8px !important; /* Espacio debajo de la pregunta */
+  color: var(--blanco) !important; /* Asegura el color blanco */
+  font-family: var(--font) !important;
+  width: 100%; /* Ocupa todo el ancho disponible */
+}
+
+.qa-answer {
+  color: var(--blanco) !important; /* Asegura el color blanco */
+  font-family: var(--font) !important;
+  width: 100%; /* Ocupa todo el ancho disponible */
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .info-card-container {
+    margin: 10px auto;
+    border-radius: 4px; /* Bordes menos pronunciados en móviles */
+  }
+
+  .ant-card-head {
+    font-size: 1.2em !important;
+    padding: 12px 16px !important;
+  }
+
+  .ant-card-body {
+    padding: 16px !important;
+  }
+
+  /* Asegurarse de que en móvil, todos los items se apilen. */
+  .info-list-item {
+    flex-direction: column !important; /* En móviles, siempre en columna para todos los items */
+    align-items: flex-start !important;
+    padding: 6px 0 !important;
+  }
+
+  /* Ajustes para label y value en móvil */
+  .info-label {
+    margin-right: 0;
+    margin-bottom: 4px; /* Espacio entre la etiqueta y el valor cuando están en columna */
+    width: 100%; /* Ocupa todo el ancho disponible */
+  }
+
+  .info-value {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    text-align: left; /* Asegura alineación izquierda en móvil */
+  }
+
+  /* Las siguientes reglas para .horizontal-item y .column-item dentro del media query
+     podrían no ser estrictamente necesarias si .info-list-item ya fuerza column-direction,
+     pero las mantengo por si hay interacciones inesperadas o si decides revertir la
+     estrategia de flex-direction en .info-list-item. */
+  .horizontal-item {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .links-item .info-links-group {
+    width: 100%; /* Los enlaces ocupan todo el ancho */
+  }
+
+  .contact-item .contact-details {
+    width: 100%; /* Detalles de contacto ocupan todo el ancho */
+    align-items: center !important; /* Centrar también en móvil si se desea */
+    text-align: center !important; /* Centrar el texto en móvil */
+  }
+
+  .info-divider.ant-divider-horizontal {
+    margin: 16px 0 !important;
+  }
+}

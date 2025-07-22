@@ -1,7 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './NavbarDesktop.css';
-import { RocketFilled, DatabaseFilled, BulbFilled, EditFilled, HomeFilled, LogoutOutlined } from '@ant-design/icons';
+import {
+  RocketFilled,
+  DatabaseFilled,
+  BulbFilled,
+  EditFilled,
+  HomeFilled,
+  LogoutOutlined,
+  PushpinFilled,
+} from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../../../features/service/authSlice';
@@ -60,6 +68,15 @@ const NavbarDesktop = () => {
               <DatabaseFilled style={{ fontSize: '30px', color: '#ffffff' }} />
             </span>
             <span className="navbar__text">Formadores</span>
+          </NavLink>
+        </li>
+
+        <li className="navbar__item">
+          <NavLink to="/details" className={({ isActive }) => `navbar__link ${isActive ? 'active' : ''}`}>
+            <span className="navbar__icon">
+              <PushpinFilled style={{ fontSize: '30px', color: '#ffffff' }} />
+            </span>
+            <span className="navbar__text">Detalles</span>
           </NavLink>
         </li>
 
