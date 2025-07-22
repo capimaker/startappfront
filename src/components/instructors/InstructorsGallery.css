@@ -2,7 +2,7 @@
   padding: 3rem 2rem; /* igual que startup-gallery-container */
   text-align: center;
   font-family: var(--font);
-  color: var(--blanco);
+  color: var(--blanco) !important;
   background-color: var(--violetaDark-rgba); /* para tener mismo fondo */
   max-width: 1200px;
   margin: 40px auto;
