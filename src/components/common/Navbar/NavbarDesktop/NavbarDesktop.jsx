@@ -38,7 +38,7 @@ const NavbarDesktop = () => {
         <li className="navbar__item">
           <NavLink to="/dashboard" className={({ isActive }) => `navbar__link ${isActive ? 'active' : ''}`}>
             <span className="navbar__icon">
-              <HomeFilled style={{ fontSize: '32px', color: '#ffffff' }} />
+              <HomeFilled />
             </span>
             <span className="navbar__text">Inicio</span>
           </NavLink>
@@ -47,7 +47,7 @@ const NavbarDesktop = () => {
         <li className="navbar__item">
           <NavLink to="/startups" className={({ isActive }) => `navbar__link ${isActive ? 'active' : ''}`}>
             <span className="navbar__icon">
-              <RocketFilled style={{ fontSize: '32px', color: '#ffffff' }} />
+              <RocketFilled />
             </span>
             <span className="navbar__text">Startups</span>
           </NavLink>
@@ -56,7 +56,7 @@ const NavbarDesktop = () => {
         <li className="navbar__item">
           <NavLink to="/mentors" className={({ isActive }) => `navbar__link ${isActive ? 'active' : ''}`}>
             <span className="navbar__icon">
-              <BulbFilled style={{ fontSize: '32px', color: '#ffffff' }} />
+              <BulbFilled />
             </span>
             <span className="navbar__text">Mentores</span>
           </NavLink>
@@ -65,7 +65,7 @@ const NavbarDesktop = () => {
         <li className="navbar__item">
           <NavLink to="/instructors" className={({ isActive }) => `navbar__link ${isActive ? 'active' : ''}`}>
             <span className="navbar__icon">
-              <DatabaseFilled style={{ fontSize: '30px', color: '#ffffff' }} />
+              <DatabaseFilled />
             </span>
             <span className="navbar__text">Formadores</span>
           </NavLink>
@@ -74,7 +74,7 @@ const NavbarDesktop = () => {
         <li className="navbar__item">
           <NavLink to="/details" className={({ isActive }) => `navbar__link ${isActive ? 'active' : ''}`}>
             <span className="navbar__icon">
-              <PushpinFilled style={{ fontSize: '30px', color: '#ffffff' }} />
+              <PushpinFilled />
             </span>
             <span className="navbar__text">Detalles</span>
           </NavLink>
@@ -83,16 +83,22 @@ const NavbarDesktop = () => {
         <li className="navbar__item">
           <NavLink to="/addmentorship" className={({ isActive }) => `navbar__link ${isActive ? 'active' : ''}`}>
             <span className="navbar__icon">
-              <EditFilled style={{ fontSize: '30px', color: '#ffffff' }} />
+              <EditFilled />
             </span>
             <span className="navbar__text">Mentoría</span>
           </NavLink>
         </li>
 
-        <li className="navbar__item">
-          <span className="navbar__icon logout" onClick={handleLogout}>
-            <LogoutOutlined style={{ fontSize: '30px', color: '#ffffff' }} />
-            Salir
+        <li className="navbar__item logout-item">
+          {' '}
+          {/* Clase para posicionamiento */}
+          <span className="navbar__link logout" onClick={handleLogout}>
+            {' '}
+            {/* Usamos navbar__link aquí también */}
+            <span className="navbar__icon">
+              <LogoutOutlined />
+            </span>
+            <span className="navbar__text">Salir</span>
           </span>
         </li>
       </ul>
