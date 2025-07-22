@@ -105,9 +105,11 @@ body {
 /* Lista de Mentores (adaptado de .startup-list) */
 .mentor-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Min-width de tus MentorsCard */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Te recomiendo bajar a 280px como mínimo */
   gap: 2.5rem;
-  justify-content: center;
+  justify-content: center; /* Centra el conjunto de columnas si hay espacio extra */
+  justify-items: center; /* ¡CLAVE! Centra cada tarjeta dentro de su propia celda del grid */
+  padding: 0; /* Asegúrate de que no haya padding que lo desvíe */
 }
 
 /* NUEVO: Estilos para cuando hay una sola tarjeta (si aplicara) */
