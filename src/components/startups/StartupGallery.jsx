@@ -86,7 +86,11 @@ const StartupGallery = () => {
         footer={null}
         title={selectedStartup?.name}
         className="startup-detail-modal"
-        centered
+        // CAMBIO CLAVE: Eliminar 'centered' y añadir 'style' con 'top'
+        // centered // Eliminar esta prop
+        style={{ top: 80 }} // Esto establecerá un margen superior fijo de 80px
+        // Opcional: Para controlar el scroll interno del cuerpo del modal
+        // bodyStyle={{ maxHeight: 'calc(100vh - 200px)', overflowY: 'auto' }}
       >
         {selectedStartup && (
           <div className="modal-content-wrapper">
@@ -104,7 +108,7 @@ const StartupGallery = () => {
                 <a
                   href={
                     selectedStartup.business_url.startsWith('http')
-                      ? selectedStartup.business_url
+                      ? selectedCategory.business_url
                       : `https://${selectedStartup.business_url}`
                   }
                   target="_blank"
