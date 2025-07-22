@@ -4,6 +4,7 @@ import MentorshipSessionForm from './components/mentorship/MentorshipSessionForm
 import StartupGallery from './components/startups/StartupGallery';
 //import { Header } from './components/common/Header/Header';
 //import { Footer } from './components/common/Footer/Footer';
+import InstructorsGallery from './components/instructors/InstructorsGallery';
 
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
         
         <Route path="/agendarmentoria" element={<MentorshipSessionForm />} />
         <Route path="/startups" element={<StartupGallery />} />
+        <Route path="/instructors" element={<InstructorsGallery />} />
         
       </Routes>
     {/*<Footer/>*/}
