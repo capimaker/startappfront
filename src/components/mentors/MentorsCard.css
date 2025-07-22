@@ -1,24 +1,125 @@
+/* src/components/mentors/MentorsCard.css */
+
+/* IMPORTANTE: Asegúrate de que estas variables estén definidas en un archivo accesible,
+   idealmente en tu archivo global de variables CSS o en el :root */
+:root {
+  --primary-bg-dark: #2e264c; /* Este ya lo tienes, es el fondo general de cards */
+  --secondary-bg-light: #3b335e; /* Fondo para elementos internos como el contenedor de imagen */
+  --text-light: #e0e0e0; /* Color de texto claro */
+  --text-lighter: #fff; /* Color de texto más claro (ej. títulos) */
+  --accent-purple: #7a46e1; /* Color de botones */
+  --accent-purple-hover: #8c5ada; /* Hover de botones */
+
+  /* Nuevas/Ajustadas variables para coherencia con InfoCard y botones */
+  --fondo-listas: rgba(255, 255, 255, 0.05); /* Fondo para las cards, similar a info-list */
+  --borde-listas: rgba(255, 255, 255, 0.1); /* Borde para las cards */
+  --borde-sutil-list-item: rgba(255, 255, 255, 0.08); /* Borde inferior para simular items */
+  --font: 'Montserrat', sans-serif; /* Tu fuente principal */
+
+  /* Variables añadidas/ajustadas para el estilo del botón, si no las tienes ya */
+  --dark: #120e26; /* Color oscuro para botones/elementos (del Mentorship botón) */
+  --blanco: #ffffff; /* Blanco puro (del Mentorship botón) */
+}
+
 .mentor-card {
-  width: 250px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 1rem;
+  background-color: var(--fondo-listas);
+  border-radius: 6px;
+  box-shadow: none;
+  border: 1px solid var(--borde-listas);
+  overflow: hidden; /* Importante para que la imagen no se salga de la tarjeta */
+  padding: 18px; /* Mantener este padding para el contenido inferior y los lados del contenedor de la imagen */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
   cursor: pointer;
-  transition: box-shadow 0.2s ease;
-  background-color: #fff;
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: var(--font) !important;
+  width: 250px; /* Mantener tu ancho original o ajustar según necesites */
 }
 
 .mentor-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
-.mentor-card-content h3 {
-  margin-bottom: 0.5rem;
+.mentor-card-image-container {
+  width: 100%; /* Ocupa el 100% del ancho disponible *dentro* del padding de la card */
+  height: 120px; /* Mantener la altura deseada para el área de la imagen */
+  margin-bottom: 15px; /* Margen inferior para separar del contenido */
+  background-color: transparent; /* ¡Eliminar el color de fondo! */
+  border-radius: 4px; /* Mantener bordes redondeados si lo deseas para el contenedor */
+  overflow: hidden; /* Asegura que la imagen se recorte si es necesario */
+  padding: 0; /* Asegurarse de que el contenedor no tenga padding interno */
 }
 
-.mentor-link {
-  display: inline-block;
-  margin-top: 0.5rem;
-  color: #1890ff;
-  text-decoration: underline;
+.mentor-card-image {
+  width: 100%; /* La imagen ocupará todo el ancho de su contenedor */
+  height: 100%; /* La imagen ocupará toda la altura de su contenedor */
+  object-fit: cover; /* ¡CLAVE! La imagen cubrirá todo el espacio, recortando si es necesario */
+  object-position: center; /* Centra la imagen si se recorta */
+  border-radius: 4px; /* Mantener bordes redondeados si la imagen los tuviera */
 }
+
+/* Consideraciones para un placeholder más estilizado */
+.mentor-card-image[src*='placeholder.png'] {
+  object-fit: contain; /* Para el placeholder, queremos que quepa completo y no se recorte */
+  background-color: #4a416b; /* Un fondo sólido para el placeholder */
+  border: 1px dashed #6b628d; /* Un borde punteado para el placeholder */
+}
+
+.mentor-card-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: center;
+  align-items: center;
+}
+
+.mentor-card-title {
+  /* Clase para el título (h3) */
+  margin-bottom: 8px;
+  font-size: 1.3rem;
+  color: var(--text-lighter);
+  font-weight: 600;
+  font-family: var(--font) !important;
+}
+
+.mentor-card-category {
+  /* Clase para el párrafo de categorías */
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-bottom: 15px;
+  font-family: var(--font) !important;
+}
+
+.mentor-card-contact-button {
+  /* Clase para el botón */
+  margin-top: auto;
+  background-color: var(--dark) !important;
+  border: 1px solid var(--blanco) !important;
+  color: var(--blanco) !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  padding: 12px 20px !important;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, transform 0.1s ease-in-out;
+  align-self: center;
+  font-family: var(--font) !important;
+}
+
+.mentor-card-contact-button:hover {
+  background-color: var(--blanco) !important;
+  color: var(--dark) !important;
+  transform: translateY(-2px);
+}
+
+.mentor-card-contact-button:active {
+  transform: translateY(0);
+}
+
+/* Media Queries (Mantener las existentes si las tienes) */
+/* ... tus media queries existentes ... */
