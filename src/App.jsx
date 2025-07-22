@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import AppLayout from './components/common/Layout/AppLayout';
 import Login from './components/Login/Login.jsx';
 import MentorshipSessionForm from './components/mentorship/MentorshipSessionForm';
+import StartupGallery from './components/startups/StartupGallery';
+import MentorsGallery from './components/mentors/MentorsGallery'
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../src/features/service/authSlice.js';
 import Details from './components/pages/Details.jsx';
