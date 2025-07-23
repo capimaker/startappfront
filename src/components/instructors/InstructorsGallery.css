@@ -18,6 +18,19 @@
   justify-content: center;
 }
 
+.modal-content-wrapper {
+  background-color: #282246 !important;
+  color: #fff !important;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.instructor-detail-modal {
+   background-color: #282246 !important;
+  color:  #fff !important;
+}
+
 /* Media Queries para responsividad, basado en startup-gallery */
 @media (min-width: 993px) and (max-width: 1200px) {
   .instructor-list {

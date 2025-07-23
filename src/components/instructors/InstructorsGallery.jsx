@@ -103,27 +103,28 @@ const InstructorsGallery = () => {
         onCancel={closeModal}
         footer={null}
         title={selectedInstructor?.name}
+        className="modal-content-wrapper"
       >
         {selectedInstructor && (
-          <>
-            {selectedInstructor.img_url && (
-              <img
-                src={selectedInstructor.img_url}
-                alt={selectedInstructor.name}
-                className="modal-img"
-              />
-            )}
+          <div className="instructor-detail-modal">
+            <img
+              src={selectedInstructor.img_url || '/placeholder.png'}
+              alt={selectedInstructor.name}
+              className="modal-img"
+            />
+            <p><strong>Cargo:</strong> {selectedInstructor.position}</p>
+            <p><strong>Tema:</strong> {selectedInstructor.topic}</p>
             <p><strong>Categoría:</strong> {selectedInstructor.topic_category || 'No definido'}</p>
-            {selectedInstructor.linkedin && (
-              <p>
-                <strong>LinkedIn:</strong>{' '}
+            <p>
+              <strong>LinkedIn:</strong>{' '}
+              {selectedInstructor.linkedin ? (
                 <a href={selectedInstructor.linkedin} target="_blank" rel="noopener noreferrer">
                   {selectedInstructor.linkedin}
                 </a>
-              </p>
-            )}
+              ) : 'No disponible'}
+            </p>
             <p><strong>Email:</strong> {selectedInstructor.email || 'No disponible'}</p>
-          </>
+          </div>
         )}
       </Modal>
     </div>
