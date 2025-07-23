@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllInstructors } from '../../features/instructors/instructorsSlice';
 import { Typography, Modal, Spin, Select, Input } from 'antd';
-import InstructorsCard from './InstructorsCard'; 
+import InstructorsCard from './InstructorsCard';
 import './InstructorsGallery.css';
 
 const { Title } = Typography;
@@ -22,13 +22,10 @@ const InstructorsGallery = () => {
     dispatch(getAllInstructors());
   }, [dispatch]);
 
-  const topicOptions = ['Todos', ...new Set(instructors.map(i => i.topic).filter(Boolean))];
-  const categoryOptions = [
-    'Todas',
-    ...new Set(instructors.flatMap(i => i.topic_category || []).filter(Boolean))
-  ];
+  const topicOptions = ['Todos', ...new Set(instructors.map((i) => i.topic).filter(Boolean))];
+  const categoryOptions = ['Todas', ...new Set(instructors.flatMap((i) => i.topic_category || []).filter(Boolean))];
 
-  const filteredInstructors = instructors.filter(i => {
+  const filteredInstructors = instructors.filter((i) => {
     const matchName = i.name?.toLowerCase().includes(searchTerm.toLowerCase());
     const matchTopic = selectedTopic === 'Todos' || i.topic === selectedTopic;
     const matchCategory = selectedCategory === 'Todas' || (i.topic_category || []).includes(selectedCategory);
@@ -54,14 +51,10 @@ const InstructorsGallery = () => {
           placeholder="Buscar por nombre"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          style={{ width: 200, /* marginRight: 10 */ }}
+          style={{ width: 200 /* marginRight: 10 */ }}
         />
 
-        <Select
-          value={selectedTopic}
-          onChange={setSelectedTopic}
-          style={{ width: 200, /* marginRight: 10 */ }}
-        >
+        <Select value={selectedTopic} onChange={setSelectedTopic} style={{ width: 200 /* marginRight: 10 */ }}>
           {topicOptions.map((topic, idx) => (
             <Option key={idx} value={topic}>
               {topic}
@@ -69,11 +62,7 @@ const InstructorsGallery = () => {
           ))}
         </Select>
 
-        <Select
-          value={selectedCategory}
-          onChange={setSelectedCategory}
-          style={{ width: 200 }}
-        >
+        <Select value={selectedCategory} onChange={setSelectedCategory} style={{ width: 200 }}>
           {categoryOptions.map((cat, idx) => (
             <Option key={idx} value={cat}>
               {cat}
@@ -106,23 +95,33 @@ const InstructorsGallery = () => {
       >
         {selectedInstructor && (
           <div className="instructor-detail-modal">
-            <img
+            {/* <img
               src={selectedInstructor.img_url || '/placeholder.png'}
               alt={selectedInstructor.name}
               className="modal-img"
-            />
-            <p><strong>Cargo:</strong> {selectedInstructor.position}</p>
-            <p><strong>Tema:</strong> {selectedInstructor.topic}</p>
-            <p><strong>Categoría:</strong> {selectedInstructor.topic_category || 'No definido'}</p>
+            /> */}
+            <p>
+              <strong>Cargo:</strong> {selectedInstructor.position}
+            </p>
+            <p>
+              <strong>Tema:</strong> {selectedInstructor.topic}
+            </p>
+            <p>
+              <strong>Categoría:</strong> {selectedInstructor.topic_category || 'No definido'}
+            </p>
             <p>
               <strong>LinkedIn:</strong>{' '}
               {selectedInstructor.linkedin ? (
                 <a href={selectedInstructor.linkedin} target="_blank" rel="noopener noreferrer">
                   {selectedInstructor.linkedin}
                 </a>
-              ) : 'No disponible'}
+              ) : (
+                'No disponible'
+              )}
             </p>
-            <p><strong>Email:</strong> {selectedInstructor.email || 'No disponible'}</p>
+            <p>
+              <strong>Email:</strong> {selectedInstructor.email || 'No disponible'}
+            </p>
           </div>
         )}
       </Modal>

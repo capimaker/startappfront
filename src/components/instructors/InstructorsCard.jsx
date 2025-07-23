@@ -6,15 +6,19 @@ const InstructorsCard = ({ instructor, onClick }) => {
 
   return (
     <div className="instructor-card" onClick={onClick}>
-      <img
+      {/* <img
         src={img_url || '/placeholder.png'}
         alt={name}
         className="instructor-card-image"
-      />
+      /> */}
       <div className="instructor-card-content">
         <h3 className="instructor-name">{name}</h3>
-        <p className="instructor-role"><strong>Cargo:</strong> {position}</p>
-        <p className="instructor-topic"><strong>Tema:</strong> {topic}</p>
+        <p className="instructor-role">
+          <strong>Cargo:</strong> {position}
+        </p>
+        <p className="instructor-topic">
+          <strong>Tema:</strong> {topic}
+        </p>
 
         {email && (
           <button

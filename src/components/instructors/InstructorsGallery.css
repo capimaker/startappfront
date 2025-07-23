@@ -27,16 +27,16 @@
 }
 
 .instructor-detail-modal {
-   background-color: #282246 !important;
-  color:  #fff !important;
+  background-color: #282246 !important;
+  color: #fff !important;
 }
 
 .filter-container {
-    padding: 20px; /* Ajusta según tu diseño */
-    /* background-color: #5B2C6F; Color de fondo similar al de la imagen */
-    border-radius: 8px; /* Bordes redondeados */
-    color: white; /* Color de texto */
-    margin: auto;
+  padding: 20px; /* Ajusta según tu diseño */
+  /* background-color: #5B2C6F; Color de fondo similar al de la imagen */
+  border-radius: 8px; /* Bordes redondeados */
+  color: white; /* Color de texto */
+  margin: auto;
 }
 
 /* Media Queries para responsividad, basado en startup-gallery */
@@ -71,31 +71,31 @@
     grid-template-columns: 1fr;
     gap: 1.2rem;
     padding: 0 0.5rem;
-    display:flex;
-    flex-direction:column;
+    display: flex;
+    flex-direction: column;
     align-items: center;
   }
-    .filter-container {
-      display: flex;
-      flex-direction: column;
+  .filter-container {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
 }
 
 .ant-modal .ant-modal-content {
-  background: none; 
+  background: none;
 }
 
- .ant-modal .ant-modal-header {
+.ant-modal .ant-modal-header {
   background: none;
   color: #fff;
 }
 
- .ant-modal-title .ant-modal-header {
+.ant-modal-title .ant-modal-header {
   color: #fff;
   background-color: #fff;
-} 
+}
 
 /* Modal img styling igual que startup */
 .modal-img {
