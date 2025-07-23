@@ -35,7 +35,7 @@ const Login = ({ onLogin }) => {
         onLogin(userLogged);
       }
 
-      navigate('/');
+      navigate('/dashboard');
     } else {
       console.error('Login fallido:', resultAction);
       alert('Login fallido. Verifica tus credenciales.');

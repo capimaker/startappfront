@@ -13,7 +13,7 @@ import PieChart from '../dashboard/PieChart';
 //import BarChart from '../dashboard/BarChart';
 //import TaskTable from '../dashboard/TaskTable';
 import MentorshipBigCalendar from '../calendar/MentorshipBigCalendar';
-
+import './DashboardPage.css';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 import './dashboard.css';
@@ -124,8 +124,8 @@ const DashboardPage = () => {
   ), [mentors, startups]);
 
   return (
-    <div style={{ padding: 24 }}>
-      <Title level={2}>⏱️ Seguimiento de Horas del Proyecto</Title>
+    <div style={{ padding: 24,}}>
+      <Title level={2} style={{ color: '#fff' }}>⏱️ Seguimiento de Horas del Proyecto</Title>
 
       <ResponsiveGridLayout
         className="layout"

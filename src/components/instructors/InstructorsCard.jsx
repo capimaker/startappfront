@@ -6,11 +6,11 @@ const InstructorsCard = ({ instructor, onClick }) => {
 
   return (
     <div className="instructor-card" onClick={onClick}>
-      <img
-        src={img_url || '/placeholder.png'}
+     {/* <img
+       src={img_url || '/placeholder.png'}
         alt={name}
         className="instructor-card-image"
-      />
+      />*/}
       <div className="instructor-card-content">
         <h3 className="instructor-name">{name}</h3>
         <p className="instructor-role"><strong>Cargo:</strong> {position}</p>
