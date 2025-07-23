@@ -31,9 +31,9 @@
 }
 
 /* Estilos para la columna que contiene los gráficos (Gauge y Pie) */
-.dashboard-page-container .dashboard-chart-col {
-  /* No se requieren estilos específicos aquí a menos que quieras ajustar padding o margin */
-}
+/* .dashboard-page-container .dashboard-chart-col {
+  
+} */
 
 /* Estilos específicos para la tarjeta del GaugeChart */
 .dashboard-page-container .dashboard-gauge-chart-card {
@@ -50,10 +50,11 @@
 .dashboard-page-container .dashboard-pie-chart-card {
   background-color: rgba(255, 255, 255, 0.1);
   border: none;
-  height: 350px; /* Mantén esta altura para el PieChart si lo deseas así */
-  display: flex; /* Para centrar el contenido del pie chart si es necesario */
-  justify-content: center;
-  align-items: center;
+  /* La altura se controla directamente en el componente JSX en este caso para coincidir con el gráfico */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  /* align-items: center; */
 }
 
 /* Estilos para la tarjeta de tareas y gráficos de barras */

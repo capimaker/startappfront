@@ -65,7 +65,7 @@ const DashboardPage = () => {
           <Card
             className="dashboard-gauge-chart-card"
             style={{
-              height: '300px', // ¡Ajustada a la nueva altura del GaugeChart! (antes 350px)
+              height: '300px', // Altura ajustada para el GaugeChart
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
@@ -76,7 +76,16 @@ const DashboardPage = () => {
           </Card>
         </Col>
         <Col xs={24} sm={24} md={12} lg={12} className="dashboard-chart-col">
-          <Card className="dashboard-pie-chart-card">
+          <Card
+            className="dashboard-pie-chart-card"
+            style={{
+              height: '300px', // ¡Ajustada a la misma altura que el GaugeChart!
+              display: 'flex',
+              flexDirection: 'column', // Añadido para consistencia con el GaugeChart
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
             <PieChart worked={totals.worked} remaining={totals.remaining} />
           </Card>
         </Col>
