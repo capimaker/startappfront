@@ -91,19 +91,18 @@ const DashboardPage = () => {
         </Col>
       </Row>
 
-      <Card className="dashboard-task-card">
+      {/* <Card className="dashboard-task-card">
         <Title level={4} className="dashboard-task-title">
           📋 Desglose de tareas
         </Title>
         <TaskTable tasks={tasks} />
         <Divider />
         <BarChart data={tasks} />
-      </Card>
+      </Card> */}
 
-      {/* Aquí se añade la nueva tabla de lecciones como un componente más */}
-      <Card className="dashboard-task-card" style={{ marginTop: '24px' }}>
+      {/* <Card className="dashboard-task-card" style={{ marginTop: '24px' }}>
         <LessonTable />
-      </Card>
+      </Card> */}
     </div>
   );
 };
