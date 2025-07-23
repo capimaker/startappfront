@@ -1,56 +1,51 @@
 /* src/components/calendar/MentorshipBigCalendar.css */
 
-/* COLORES (directos) */
+/* COLORES (directos, para asegurar que sean accesibles en este archivo) */
 :root {
+  /* Aunque estos se definan en :root, solo serán accesibles para este archivo CSS */
   --dark: #0c0a20;
   --violetaDark: #2b1c68;
   --violetaLight: #5932c7;
   --lavandaLight: #d6c4ff;
   --purpura: #7c4cdd;
   --blanco: #fff;
-  /* Usamos el RGBA que me pasaste para los fondos */
-  --violetaDark-rgba-panel: rgba(128, 0, 128, 0.2); /* Tu color del .ant-card */
-  --calendar-background-transparent: rgba(
-    255,
-    255,
-    255,
-    0.05
-  ); /* Un poco más transparente para el fondo general del calendario */
+  --violetaDark-rgba: rgba(128, 0, 128, 0.2);
 
-  /* COLORES ADICIONALES PARA EL CALENDARIO */
-  --calendar-background: var(--calendar-background-transparent); /* Fondo principal del calendario */
-  --calendar-header-bg: #2b1c68; /* Violeta oscuro para el encabezado */
-  --calendar-text-color: #fff;
-  --calendar-border-color: rgba(255, 255, 255, 0.03); /* Bordes de cuadrícula casi invisibles */
-  --calendar-today-bg: rgba(128, 0, 128, 0.2);
-  --calendar-selected-bg: #7c4cdd;
-  --calendar-button-bg: #5932c7;
-  --calendar-button-hover-bg: #6a40e1;
-  --calendar-event-bg: #7c4cdd;
-  --calendar-active-link: #d6c4ff;
+  /* COLORES ADICIONALES PARA EL CALENDARIO (directos) */
+  --calendar-background: #0c0a20; /* --dark */
+  --calendar-header-bg: #2b1c68; /* --violetaDark */
+  --calendar-text-color: #fff; /* --blanco */
+  --calendar-border-color: rgba(255, 255, 255, 0.05); /* Ligeramente más transparente */
+  --calendar-today-bg: rgba(128, 0, 128, 0.2); /* --violetaDark-rgba */
+  --calendar-selected-bg: #7c4cdd; /* --purpura */
+  --calendar-button-bg: #5932c7; /* --violetaLight */
+  --calendar-button-hover-bg: #6a40e1; /* Un poco más oscuro que violetaLight */
+  --calendar-event-bg: #7c4cdd; /* --purpura */
+  --calendar-active-link: #d6c4ff; /* --lavandaLight */
 
-  /* TIPOGRAFÍA */
+  /* TIPOGRAFÍA (copiada para que sea accesible) */
   --font: 'Montserrat', sans-serif;
   --italic: 'SpaceGrotesk', sans-serif;
 }
 
 /* Estilos específicos para el contenedor del calendario */
+/* NOTA: Estos estilos se aplicarán al div .mentorship-calendar-container */
+/* dentro de la Card de Ant Design en DashboardPage.jsx */
 .mentorship-calendar-container {
-  padding: 20px; /* Padding interno para el contenido del calendario */
-  background: var(--violetaDark-rgba-panel); /* El fondo principal con transparencia */
-  border-radius: 10px; /* Coincide con el border-radius de la Card */
-  /* box-shadow y el background principal (degradado) son manejados por la Card en DashboardPage.jsx */
-  font-family: var(--font);
-  height: 100%; /* Asegura que ocupe la altura de la Card si es necesario */
+  padding: 20px;
+  background: var(--dark); /* Fondo del diseño general del calendario */
+  border-radius: 10px; /* Asegura que el contenido interno tenga el mismo radio */
+  /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); */ /* La Card padre ya maneja la sombra */
+  font-family: var(--font); /* Asegura la fuente en todo el contenedor */
 }
 
 /* Estilos generales de React Big Calendar dentro de nuestro contenedor */
 .mentorship-calendar-container .rbc-calendar {
-  height: 600px; /* Mantén la altura para el calendario interno */
+  height: 600px;
   color: var(--calendar-text-color);
-  background-color: transparent; /* El fondo general del calendario es transparente, la transparencia la da el .mentorship-calendar-container */
-  border-radius: 8px;
-  overflow: hidden;
+  background-color: var(--calendar-background);
+  border-radius: 8px; /* Bordes redondeados para el calendario */
+  overflow: hidden; /* Para que los bordes redondeados se apliquen bien */
 }
 
 /* Encabezado del calendario (toolbar) */
@@ -59,9 +54,9 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  background-color: var(--calendar-header-bg); /* Sigue siendo oscuro y sólido */
+  background-color: var(--calendar-header-bg); /* Color de fondo del encabezado */
   padding: 15px 20px;
-  border-radius: 8px; /* Bordes redondeados para el toolbar */
+  border-radius: 8px 8px 0 0; /* Bordes redondeados solo arriba */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -95,19 +90,24 @@
   box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
+/* Navegación (prev, next, today) */
+.mentorship-calendar-container .rbc-btn-group {
+  display: flex;
+}
+
 /* Títulos de los días de la semana */
 .mentorship-calendar-container .rbc-header {
   background-color: var(--violetaDark); /* Color de fondo para los encabezados de los días */
   color: var(--lavandaLight); /* Color de texto para los días */
   padding: 10px 0;
   font-weight: 600;
-  border-bottom: 1px solid var(--calendar-border-color); /* Borde sutil */
+  border-bottom: 1px solid var(--calendar-border-color);
 }
 
 /* Celda de fecha individual (días del mes/semana) */
 .mentorship-calendar-container .rbc-day-bg {
-  background-color: transparent; /* Transparente para ver el fondo del .mentorship-calendar-container */
-  border: 1px solid var(--calendar-border-color); /* Borde muy sutil */
+  background-color: var(--dark); /* Fondo oscuro para las celdas de los días */
+  border: 1px solid var(--calendar-border-color); /* Borde más sutil */
   border-top: none;
 }
 
@@ -118,7 +118,8 @@
 /* Estilo para el día actual */
 .mentorship-calendar-container .rbc-today {
   background-color: var(--calendar-today-bg);
-  /* border: 1px solid var(--purpura); */ /* Puedes agregar un borde si quieres un resaltado más fuerte */
+  /* Puedes añadir un borde para resaltarlo más si quieres: */
+  /* border: 1px solid var(--purpura); */
 }
 
 /* Números de los días */
