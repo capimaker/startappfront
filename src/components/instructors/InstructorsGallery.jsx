@@ -23,10 +23,10 @@ const InstructorsGallery = () => {
   }, [dispatch]);
 
   const topicOptions = ['Todos', ...new Set(instructors.map(i => i.topic).filter(Boolean))];
-const categoryOptions = [
-  'Todas',
-  ...new Set(instructors.flatMap(i => i.topic_category || []).filter(Boolean))
-]
+  const categoryOptions = [
+    'Todas',
+    ...new Set(instructors.flatMap(i => i.topic_category || []).filter(Boolean))
+  ];
 
   const filteredInstructors = instructors.filter(i => {
     const matchName = i.name?.toLowerCase().includes(searchTerm.toLowerCase());
@@ -106,22 +106,22 @@ const categoryOptions = [
       >
         {selectedInstructor && (
           <>
-            <img
-              src={selectedInstructor.img_url || '/placeholder.png'}
-              alt={selectedInstructor.name}
-              className="modal-img"
-            />
-            <p><strong>Cargo:</strong> {selectedInstructor.position}</p>
-            <p><strong>Tema:</strong> {selectedInstructor.topic}</p>
+            {selectedInstructor.img_url && (
+              <img
+                src={selectedInstructor.img_url}
+                alt={selectedInstructor.name}
+                className="modal-img"
+              />
+            )}
             <p><strong>Categoría:</strong> {selectedInstructor.topic_category || 'No definido'}</p>
-            <p>
-              <strong>LinkedIn:</strong>{' '}
-              {selectedInstructor.linkedin ? (
+            {selectedInstructor.linkedin && (
+              <p>
+                <strong>LinkedIn:</strong>{' '}
                 <a href={selectedInstructor.linkedin} target="_blank" rel="noopener noreferrer">
                   {selectedInstructor.linkedin}
                 </a>
-              ) : 'No disponible'}
-            </p>
+              </p>
+            )}
             <p><strong>Email:</strong> {selectedInstructor.email || 'No disponible'}</p>
           </>
         )}

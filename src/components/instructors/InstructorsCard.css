@@ -29,28 +29,33 @@
 
 .instructor-card-content h3 {
   margin-bottom: 8px;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: bold;
-  color: #fff;
+  color: #ffffff;
 }
 
 .instructor-card-content p {
-  font-size: 0.9rem;
-  color: #cfcfcf;
-  margin: 4px 0;
+  font-size: 0.95rem;
+  color: #d4d4d4;
+  margin: 6px 0;
+}
+
+.instructor-card-content p strong {
+  color: #ffffff;
 }
 
 .instructor-card-content button {
-  margin-top: 10px;
-  background-color: #1890ff;
-  color: white;
+  margin-top: 12px;
+  background-color: #f59e0b; /* botón naranja (visibilidad y contraste) */
+  color: black;
+  font-weight: 600;
   border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
+  padding: 8px 14px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s ease;
 }
 
 .instructor-card-content button:hover {
-  background-color: #40a9ff;
+  background-color: #d97706;
 }
