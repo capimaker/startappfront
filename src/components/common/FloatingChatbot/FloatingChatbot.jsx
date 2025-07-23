@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Input, Button, Space, Typography, Card, Spin, Avatar } from 'antd';
 import { SendOutlined, RobotOutlined, UserOutlined, MessageOutlined, CloseOutlined } from '@ant-design/icons';
+import logo_morado from '../../../assets/logo_morado.png';
 
 const { Text } = Typography;
 const { TextArea } = Input;
@@ -109,16 +110,29 @@ function FloatingChatbot() {
      
       {isOpen && (
         <Card
-          title="Asistente Virtual"
+            title={
+            <div style={{ 
+              textAlign: 'center', 
+              flexGrow: 1, 
+              color: '#ffffff', 
+              fontSize: '1.2em' 
+            }}>
+              Asistente Virtual
+            </div>
+            }
           extra={<Button type="text" icon={<CloseOutlined />} onClick={() => setIsOpen(false)} style={{ color: '#ffffff' }} />}
           styles={{
             header: {
-              backgroundColor: '#0f3460', 
+               backgroundColor: '#0f3460', 
               color: '#ffffff',
               fontSize: '1.2em',
               padding: '10px 15px',
               borderBottom: 'none',
-              borderRadius: '8px 8px 0 0'
+              borderRadius: '8px 8px 0 0',
+              display: 'flex', 
+              justifyContent: 'space-between', 
+              alignItems: 'center', 
+              
             },
             body: {
               padding: '0', 
@@ -149,8 +163,8 @@ function FloatingChatbot() {
           }}>
             {messages.length === 0 && !isLoading && (
               <div style={{ textAlign: 'center', color: '#888', marginTop: '20px' }}>
-                <RobotOutlined style={{ fontSize: '2em', marginBottom: '5px' }} />
-                <Text>¡Hola! Soy tu asistente virtual. ¿En qué puedo ayudarte hoy?</Text>
+               <Avatar src={logo_morado} size={50} style={{ marginBottom: '5px' }} /> 
+                <Text>¡Hola! Soy tu asistente virtual. ¿En qué puedo ayudarte?</Text>
               </div>
             )}
 
@@ -185,7 +199,7 @@ function FloatingChatbot() {
             ))}
             {isLoading && (
               <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-                <Avatar icon={<RobotOutlined />} style={{ backgroundColor: '#00BFFF', marginRight: '8px' }} />
+                 <Avatar src={logo_morado} style={{ marginRight: '8px' }} />
                 <Card style={{ maxWidth: '80%', borderRadius: '15px', backgroundColor: '#ffffff', borderColor: '#d9d9d9' }} bodyStyle={{ padding: '8px 12px' }}>
                   <Spin size="small" />
                 </Card>
