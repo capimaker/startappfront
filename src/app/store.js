@@ -4,6 +4,7 @@ import sessionReducer from '../features/sessions/sessionSlice';
 import startupReducer from '../features/startups/startupSlice';
 import instructorsReducer from '../features/instructors/instructorsSlice';
 import mentorsReducer from '../features/mentors/mentorsSlice';
+import hoursReducer from '../features/hours/hoursSlice';
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     startups: startupReducer,
     instructors: instructorsReducer,
     mentors: mentorsReducer,
+    hours: hoursReducer,
   },
 });

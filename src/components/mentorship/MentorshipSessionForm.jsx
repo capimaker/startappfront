@@ -40,9 +40,9 @@ const MentorshipSessionForm = () => {
               <Form.Item
                 name="mentor"
                 label="Mentor"
-                rules={[{ required: true, message: 'Introduce el ID del mentor' }]}
+                rules={[{ required: true, message: 'Introduce el Nombre del mentor' }]}
               >
-                <Input placeholder="Id del mentor" />
+                <Input placeholder="Mentor" />
               </Form.Item>
             </Col>
             <Col xs={24} md={12}></Col> {/* Columna vacía, puedes quitarla si no la usas */}
