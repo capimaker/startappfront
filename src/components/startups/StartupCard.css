@@ -1,27 +1,13 @@
-/* src/components/startups/StartupCard.css */
-
-/* IMPORTANTE: Asegúrate de que estas variables estén definidas en un archivo accesible,
-   idealmente en tu archivo global de variables CSS o en el :root */
-:root {
-  --primary-bg-dark: #2e264c; /* Este ya lo tienes, es el fondo general de cards */
-  --secondary-bg-light: #3b335e; /* Fondo para elementos internos como el contenedor de imagen */
-  --text-light: #e0e0e0; /* Color de texto claro */
-  --text-lighter: #fff; /* Color de texto más claro (ej. títulos) */
-  --accent-purple: #7a46e1; /* Color de botones */
-  --accent-purple-hover: #8c5ada; /* Hover de botones */
-
-  /* Nuevas/Ajustadas variables para coherencia con InfoCard y botones */
-  --fondo-listas: rgba(255, 255, 255, 0.05); /* Fondo para las cards, similar a info-list */
-  --borde-listas: rgba(255, 255, 255, 0.1); /* Borde para las cards */
-  --borde-sutil-list-item: rgba(255, 255, 255, 0.08); /* Borde inferior para simular items */
-  --font: 'Montserrat', sans-serif; /* Tu fuente principal */
-
-  /* Variables añadidas/ajustadas para el estilo del botón, si no las tienes ya */
-  --dark: #120e26; /* Color oscuro para botones/elementos (del Mentorship botón) */
-  --blanco: #ffffff; /* Blanco puro (del Mentorship botón) */
-}
-
 .startup-card {
+<<<<<<< HEAD
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  text-align: center;
+  padding: 12px;
+  transition: transform 0.2s ease-in-out;
+=======
   background-color: var(--fondo-listas);
   border-radius: 6px;
   box-shadow: none;
@@ -29,15 +15,21 @@
   overflow: hidden; /* Importante para que la imagen no se salga de la tarjeta */
   padding: 18px; /* Mantener este padding para el contenido inferior y los lados del contenedor de la imagen */
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+>>>>>>> develop
   cursor: pointer;
-  color: var(--text-light);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  font-family: var(--font) !important;
 }
 
 .startup-card:hover {
+<<<<<<< HEAD
+  transform: translateY(-5px);
+}
+
+.startup-card-image {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  margin-bottom: 12px;
+=======
   transform: translateY(-4px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
   background-color: rgba(255, 255, 255, 0.08);
@@ -70,32 +62,34 @@
   background-color: #4a416b; /* Un fondo sólido para el placeholder */
   border: 1px dashed #6b628d; /* Un borde punteado para el placeholder */
   /* Asegúrate de que si el placeholder tiene un fondo blanco, este background-color lo sobrescriba */
+>>>>>>> develop
 }
 
-.startup-card-content {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  text-align: center;
-  align-items: center;
-}
-
-.startup-card-title {
+.startup-card-content h3 {
   margin-bottom: 8px;
-  font-size: 1.3rem;
-  color: var(--text-lighter);
-  font-weight: 600;
-  font-family: var(--font) !important;
 }
 
-.startup-card-stage {
-  font-size: 0.95rem;
-  color: var(--text-light);
-  margin-bottom: 15px;
-  font-family: var(--font) !important;
+.startup-card-content .description {
+  font-size: 0.9rem;
+  color: #555;
+  min-height: 40px;
 }
 
+<<<<<<< HEAD
+.startup-card-content button {
+  margin-top: 10px;
+  background-color: #1890ff;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.startup-card-content button:hover {
+  background-color: #40a9ff;
+=======
 .startup-card-contact-button {
   margin-top: auto;
   background-color: var(--dark) !important;
@@ -128,4 +122,5 @@
 .startup-card-image[src*='placeholder.png'] {
   background-color: #4a416b;
   border: 1px dashed #6b628d;
+>>>>>>> develop
 }

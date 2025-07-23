@@ -9,6 +9,9 @@ import MentorshipSessionForm from './components/mentorship/MentorshipSessionForm
 import Details from './components/pages/Details.jsx';
 import DashboardPage from './components/pages/DashboardPage.jsx';
 import StartupGallery from './components/startups/StartupGallery';
+//import { Header } from './components/common/Header/Header';
+//import { Footer } from './components/common/Footer/Footer';
+import InstructorsGallery from './components/instructors/InstructorsGallery';
 import MentorsGallery from './components/mentors/MentorsGallery';
 
 import './App.css'; // Tu archivo CSS global
@@ -45,6 +48,7 @@ function MainRouterContent() {
   };
 
   return (
+
     <Routes>
       <Route path="/" element={user ? <AppLayout onLogout={handleLogout} /> : <Login />} />
       <Route
@@ -95,6 +99,7 @@ function MainRouterContent() {
       <Route path="/agendarmentoria" element={renderAuthenticatedRoute(<MentorshipSessionForm />)} />
       <Route path="/startups" element={renderAuthenticatedRoute(<StartupGallery />)} />
       <Route path="/mentors" element={renderAuthenticatedRoute(<MentorsGallery />)} />
+      <Route path="/instructors" element={renderAuthenticatedRoute(<InstructorsGallery />)} />
 
       {/* Puedes añadir una ruta para manejar páginas no encontradas (404) si lo deseas */}
       {/* <Route path="*" element={<NotFoundPage />} /> */}
