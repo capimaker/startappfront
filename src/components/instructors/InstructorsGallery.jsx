@@ -97,7 +97,6 @@ const InstructorsGallery = () => {
           ))}
         </div>
       )}
-
       <Modal
         open={isModalVisible}
         onCancel={closeModal}

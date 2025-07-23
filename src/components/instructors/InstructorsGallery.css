@@ -83,6 +83,20 @@
   }
 }
 
+.ant-modal .ant-modal-content {
+  background: none; 
+}
+
+ .ant-modal .ant-modal-header {
+  background: none;
+  color: #fff;
+}
+
+ .ant-modal-title .ant-modal-header {
+  color: #fff;
+  background-color: #fff;
+} 
+
 /* Modal img styling igual que startup */
 .modal-img {
   width: 100%;
