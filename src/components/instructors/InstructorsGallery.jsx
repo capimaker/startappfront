@@ -54,13 +54,13 @@ const InstructorsGallery = () => {
           placeholder="Buscar por nombre"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          style={{ width: 200, marginRight: 10 }}
+          style={{ width: 200, /* marginRight: 10 */ }}
         />
 
         <Select
           value={selectedTopic}
           onChange={setSelectedTopic}
-          style={{ width: 200, marginRight: 10 }}
+          style={{ width: 200, /* marginRight: 10 */ }}
         >
           {topicOptions.map((topic, idx) => (
             <Option key={idx} value={topic}>
