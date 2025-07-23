@@ -9,12 +9,8 @@ import { localizer } from '../../utils/calendarLocalizer';
 import { Modal, Form, DatePicker, TimePicker, Select, Input, Button, Space } from 'antd';
 import dayjs from 'dayjs';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  addLocalEvent,
-  updateLocalEvent,
-  deleteLocalEvent,
-  selectEvents,
-} from '../../features/sessions/sessionSlice';
+import { addLocalEvent, updateLocalEvent, deleteLocalEvent, selectEvents } from '../../features/sessions/sessionSlice';
+import './MentorshipBigCalendar.css';
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -24,11 +20,10 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
   const dispatch = useDispatch();
   const events = useSelector(selectEvents);
 
-  // Añadir estado para la vista y la fecha
   const [view, setView] = useState(Views.WEEK);
   const [date, setDate] = useState(new Date());
 
-  const rbcEvents = events.map(e => ({
+  const rbcEvents = events.map((e) => ({
     id: e.id,
     title: e.title,
     start: new Date(e.start),
@@ -42,7 +37,6 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
   const [editForm] = Form.useForm();
   const [currentEvent, setCurrentEvent] = useState(null);
 
-  /* Crear nuevo  */
   const onSelectSlot = ({ start, end }) => {
     setModalOpen(true);
     form.setFieldsValue({
@@ -61,7 +55,7 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
       const endDateTime = startDateTime.add(duration, 'minute');
 
       const payload = {
-        title: `${mentors.find(m => m.id_mentor === mentorId)?.name || 'Mentoría'} - ${start.format('HH:mm')}`,
+        title: `${mentors.find((m) => m.id_mentor === mentorId)?.name || 'Mentoría'} - ${start.format('HH:mm')}`,
         mentor: mentorId,
         mentee: startupId,
         date: startDateTime.toISOString(),
@@ -77,7 +71,6 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
     } catch {}
   };
 
-  /* Editar existente */
   const onSelectEvent = (event) => {
     const res = event.resource;
     setCurrentEvent(res);
@@ -103,7 +96,7 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
 
       const updated = {
         id: currentEvent.id,
-        title: `${mentors.find(m => m.id_mentor === mentorId)?.name || 'Mentoría'} - ${start.format('HH:mm')}`,
+        title: `${mentors.find((m) => m.id_mentor === mentorId)?.name || 'Mentoría'} - ${start.format('HH:mm')}`,
         mentor: mentorId,
         mentee: startupId,
         date: startDateTime.toISOString(),
@@ -126,60 +119,61 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
     setCurrentEvent(null);
   };
 
-  /*  Drag & Drop  */
   const handleEventDrop = ({ event, start, end }) => {
     const original = event.resource;
     const duration = dayjs(end).diff(dayjs(start), 'minute');
 
-    dispatch(updateLocalEvent({
-      id: original.id,
-      start: start.toISOString(),
-      end: end.toISOString(),
-      duration,
-      date: start.toISOString(), 
-      title: original.title,
-      mentor: original.mentor,
-      mentee: original.mentee,
-      notes: original.notes,
-    }));
+    dispatch(
+      updateLocalEvent({
+        id: original.id,
+        start: start.toISOString(),
+        end: end.toISOString(),
+        duration,
+        date: start.toISOString(),
+        title: original.title,
+        mentor: original.mentor,
+        mentee: original.mentee,
+        notes: original.notes,
+      })
+    );
   };
 
   const handleEventResize = ({ event, start, end }) => {
     const original = event.resource;
     const duration = dayjs(end).diff(dayjs(start), 'minute');
 
-    dispatch(updateLocalEvent({
-      id: original.id,
-      start: start.toISOString(),
-      end: end.toISOString(),
-      duration,
-      date: start.toISOString(),
-      title: original.title,
-      mentor: original.mentor,
-      mentee: original.mentee,
-      notes: original.notes,
-    }));
+    dispatch(
+      updateLocalEvent({
+        id: original.id,
+        start: start.toISOString(),
+        end: end.toISOString(),
+        duration,
+        date: start.toISOString(),
+        title: original.title,
+        mentor: original.mentor,
+        mentee: original.mentee,
+        notes: original.notes,
+      })
+    );
   };
 
   return (
-    <>
+    <div className="mentorship-calendar-container">
+      {' '}
+      {/* <-- AÑADE ESTE CONTENEDOR */}
       <DnDCalendar
         selectable
         resizable
         localizer={localizer}
         events={rbcEvents}
-        // defaultView={Views.WEEK} // --> Se elimina `defaultView` porque ahora lo controla el estado
         views={[Views.MONTH, Views.WEEK, Views.DAY, Views.AGENDA]}
         startAccessor="start"
         endAccessor="end"
         style={{ height: 600 }}
-        
-        
         view={view}
         date={date}
-        onView={setView} 
-        onNavigate={setDate} 
-
+        onView={setView}
+        onNavigate={setDate}
         onSelectSlot={onSelectSlot}
         onSelectEvent={onSelectEvent}
         onEventDrop={handleEventDrop}
@@ -187,17 +181,17 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
         draggableAccessor={() => true}
         resizableAccessor={() => true}
         eventPropGetter={(event) => {
-         const id = event.resource?.mentor || 'default';
-         const bg = stringToColor(id);
-         const color = getContrastColor(bg);
-        return {
-           style: {
-             backgroundColor: bg,
-             color,
-            border: 'none',
-          },
-        };
-      }}
+          const id = event.resource?.mentor || 'default';
+          const bg = stringToColor(id);
+          const color = getContrastColor(bg);
+          return {
+            style: {
+              backgroundColor: bg,
+              color,
+              border: 'none',
+            },
+          };
+        }}
         messages={{
           today: 'Hoy',
           previous: 'Anterior',
@@ -212,8 +206,7 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
           noEventsInRange: 'No hay eventos en este rango.',
         }}
       />
-
-      
+      {/* Los modales de Ant Design no necesitan cambios en su estructura para los estilos del calendario */}
       <Modal
         open={modalOpen}
         onCancel={() => setModalOpen(false)}
@@ -230,19 +223,29 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
           </Form.Item>
           <Form.Item name="duration" label="Duración (min)" rules={[{ required: true }]}>
             <Select>
-              {[30,45,60,90,120].map(min=>(
-                <Option key={min} value={min}>{min} min</Option>
+              {[30, 45, 60, 90, 120].map((min) => (
+                <Option key={min} value={min}>
+                  {min} min
+                </Option>
               ))}
             </Select>
           </Form.Item>
           <Form.Item name="mentorId" label="Mentor" rules={[{ required: true }]}>
             <Select showSearch optionFilterProp="children" placeholder="Selecciona mentor">
-              {mentors.map(m => <Option key={m.id_mentor} value={m.id_mentor}>{m.name}</Option>)}
+              {mentors.map((m) => (
+                <Option key={m.id_mentor} value={m.id_mentor}>
+                  {m.name}
+                </Option>
+              ))}
             </Select>
           </Form.Item>
           <Form.Item name="startupId" label="Startup" rules={[{ required: true }]}>
             <Select showSearch optionFilterProp="children" placeholder="Selecciona startup">
-              {startups.map(s => <Option key={s.id_startup} value={s.id_startup}>{s.name}</Option>)}
+              {startups.map((s) => (
+                <Option key={s.id_startup} value={s.id_startup}>
+                  {s.name}
+                </Option>
+              ))}
             </Select>
           </Form.Item>
           <Form.Item name="notes" label="Notas">
@@ -250,10 +253,12 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
           </Form.Item>
         </Form>
       </Modal>
-
       <Modal
         open={editModalOpen}
-        onCancel={() => { setEditModalOpen(false); setCurrentEvent(null); }}
+        onCancel={() => {
+          setEditModalOpen(false);
+          setCurrentEvent(null);
+        }}
         footer={null}
         title="Editar mentoría"
       >
@@ -266,19 +271,29 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
           </Form.Item>
           <Form.Item name="duration" label="Duración (min)" rules={[{ required: true }]}>
             <Select>
-              {[30,45,60,90,120].map(min=>(
-                <Option key={min} value={min}>{min} min</Option>
+              {[30, 45, 60, 90, 120].map((min) => (
+                <Option key={min} value={min}>
+                  {min} min
+                </Option>
               ))}
             </Select>
           </Form.Item>
           <Form.Item name="mentorId" label="Mentor" rules={[{ required: true }]}>
             <Select showSearch optionFilterProp="children" placeholder="Selecciona mentor">
-              {mentors.map(m => <Option key={m.id_mentor} value={m.id_mentor}>{m.name}</Option>)}
+              {mentors.map((m) => (
+                <Option key={m.id_mentor} value={m.id_mentor}>
+                  {m.name}
+                </Option>
+              ))}
             </Select>
           </Form.Item>
           <Form.Item name="startupId" label="Startup" rules={[{ required: true }]}>
             <Select showSearch optionFilterProp="children" placeholder="Selecciona startup">
-              {startups.map(s => <Option key={s.id_startup} value={s.id_startup}>{s.name}</Option>)}
+              {startups.map((s) => (
+                <Option key={s.id_startup} value={s.id_startup}>
+                  {s.name}
+                </Option>
+              ))}
             </Select>
           </Form.Item>
           <Form.Item name="notes" label="Notas">
@@ -286,12 +301,16 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
           </Form.Item>
 
           <Space style={{ width: '100%', justifyContent: 'space-between' }}>
-            <Button danger onClick={onDelete}>Eliminar</Button>
-            <Button type="primary" onClick={onUpdate}>Guardar cambios</Button>
+            <Button danger onClick={onDelete}>
+              Eliminar
+            </Button>
+            <Button type="primary" onClick={onUpdate}>
+              Guardar cambios
+            </Button>
           </Space>
         </Form>
       </Modal>
-    </>
+    </div> // <-- CIERRA EL CONTENEDOR AQUÍ
   );
 };
 
