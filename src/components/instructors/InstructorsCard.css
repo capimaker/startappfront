@@ -46,10 +46,11 @@
 
 .instructor-card-content button {
   margin-top: 12px;
-  background-color: #f59e0b; /* botón naranja (visibilidad y contraste) */
-  color: black;
+  background-color: black; /* botón naranja (visibilidad y contraste) */
+  color: #fff;
+  font-size: 1rem;
   font-weight: 600;
-  border: none;
+  border: 2px solid #fff;
   padding: 8px 14px;
   border-radius: 5px;
   cursor: pointer;
@@ -57,5 +58,6 @@
 }
 
 .instructor-card-content button:hover {
-  background-color: #d97706;
+  background-color: #fff;
+  color: black;
 }
