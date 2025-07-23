@@ -6,8 +6,8 @@ import GaugeChart from '../dashboard/GaugeChart';
 import PieChart from '../dashboard/PieChart';
 import BarChart from '../dashboard/BarChart';
 import TaskTable from '../dashboard/TaskTable';
+import LessonTable from '../dashboard/TaskTable';
 
-// Importa tu archivo CSS
 import './DashboardPage.css';
 
 const { Title } = Typography;
@@ -25,10 +25,10 @@ const DashboardPage = () => {
     // Añadimos una clase específica al contenedor principal
     <div className="dashboard-page-container">
       <Title level={2} className="dashboard-page-title">
-        Seguimiento de Horas del Proyecto
+        Seguimiento de Horas de Formación
       </Title>
 
-      <Card className="dashboard-card-inputs">
+      {/* <Card className="dashboard-card-inputs">
         <Row gutter={24}>
           <Col>
             <span>Horas totales: </span>
@@ -39,7 +39,7 @@ const DashboardPage = () => {
             <InputNumber min={0} value={totals.worked} onChange={onChangeTotals('worked')} />
           </Col>
         </Row>
-      </Card>
+      </Card> */}
 
       <Row gutter={16} style={{ marginBottom: 24 }}>
         <Col span={8}>
@@ -81,7 +81,7 @@ const DashboardPage = () => {
             style={{
               height: '300px', // ¡Ajustada a la misma altura que el GaugeChart!
               display: 'flex',
-              flexDirection: 'column', // Añadido para consistencia con el GaugeChart
+              flexDirection: 'column',
               justifyContent: 'center',
               alignItems: 'center',
             }}
@@ -98,6 +98,11 @@ const DashboardPage = () => {
         <TaskTable tasks={tasks} />
         <Divider />
         <BarChart data={tasks} />
+      </Card>
+
+      {/* Aquí se añade la nueva tabla de lecciones como un componente más */}
+      <Card className="dashboard-task-card" style={{ marginTop: '24px' }}>
+        <LessonTable />
       </Card>
     </div>
   );
