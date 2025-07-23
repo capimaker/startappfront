@@ -8,6 +8,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../src/features/service/authSlice.js';
 import Details from './components/pages/Details.jsx';
 import DashboardPage from './components/pages/DashboardPage.jsx';
+import 'react-grid-layout/css/styles.css';
+import 'react-resizable/css/styles.css';
 import './App.css';
 
 function AppRoutes() {

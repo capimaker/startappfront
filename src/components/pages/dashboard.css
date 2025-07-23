@@ -1,0 +1,54 @@
+.drag-handle {
+  cursor: move;
+  user-select: none;
+}
+
+/* Elementos donde NO queremos iniciar drag del grid */
+.no-drag {
+  cursor: auto;
+}
+
+/* Contenedor específico del calendario */
+.calendar-box {
+  height: 100%;
+}
+
+/* Helpers */
+.flex-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.wrap { flex-wrap: wrap; }
+
+.mini-card {
+  flex: 1;
+  min-width: 120px;
+}
+
+.chart-wrapper {
+  flex: 1;
+  min-width: 280px;
+}
+
+/* Scroll interno, no crecer la card */
+.scroll-card .ant-card-body {
+  height: 100%;
+  overflow: auto;
+}
+
+/* Animación suave al mover/redimensionar */
+.react-grid-item {
+  transition: all 200ms ease;
+}
+.react-grid-placeholder {
+  background: rgba(255, 255, 255, 0.08);
+  z-index: 0 !important;
+}
+.calendar-box {
+  position: relative;
+  z-index: 1;
+}
+.no-drag { cursor: auto; }
+
