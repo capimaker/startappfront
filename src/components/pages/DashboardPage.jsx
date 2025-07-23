@@ -4,8 +4,9 @@ import { selectTotals, selectTasks, setTotals } from '../../features/hours/hours
 import { Row, Col, Card, InputNumber, Typography, Divider } from 'antd';
 import GaugeChart from '../dashboard/GaugeChart';
 import PieChart from '../dashboard/PieChart';
+import CalendarStartup from '../calendar/MentorshipBigCalendar'; // Tu componente de calendario
 
-import './DashboardPage.css';
+import './DashboardPage.css'; // Estilos específicos de tu dashboard
 
 const { Title } = Typography;
 
@@ -13,6 +14,22 @@ const DashboardPage = () => {
   const dispatch = useDispatch();
   const totals = useSelector(selectTotals);
   const tasks = useSelector(selectTasks);
+
+  // --- MOCK DATA PARA MENTORS Y STARTUPS ---
+  // IMPORTANTE: DEBES REEMPLAZAR ESTO CON TUS DATOS REALES DE REDUX O DE DONDE LOS OBTENGAS.
+  // Esto es solo para que el calendario no de error si no tienes los selectores de mentores/startups aún.
+  const mockMentors = [
+    { id_mentor: 'mentor1', name: 'Dr. Innovador' },
+    { id_mentor: 'mentor2', name: 'Ing. Emprendedor' },
+    { id_mentor: 'mentor3', name: 'Lic. Estratega' },
+  ];
+
+  const mockStartups = [
+    { id_startup: 'startupA', name: 'Tech Solutions' },
+    { id_startup: 'startupB', name: 'Green Ventures' },
+    { id_startup: 'startupC', name: 'Creative Hub' },
+  ];
+  // --- FIN MOCK DATA ---
 
   const onChangeTotals = (field) => (value) => {
     dispatch(setTotals({ ...totals, [field]: value }));
@@ -84,6 +101,30 @@ const DashboardPage = () => {
             }}
           >
             <PieChart worked={totals.worked} remaining={totals.remaining} />
+          </Card>
+        </Col>
+      </Row>
+
+      {/* Aquí se añade el componente de calendario */}
+      <Row gutter={16} style={{ marginTop: '24px', marginBottom: '24px' }}>
+        <Col span={24}>
+          {' '}
+          {/* El calendario ocupa todo el ancho de la fila */}
+          <Card
+            className="dashboard-calendar-card"
+            style={{
+              // Estos estilos replican el look de las "tarjetas" del diseño
+              background:
+                'linear-gradient(135deg, #2b1c68, #0c0a20)' /* Degradado de tus variables violetaDark a dark */,
+              borderRadius: '10px',
+              padding: '0' /* El padding lo gestiona el propio calendario con MentorshipBigCalendar.css */,
+              border: 'none',
+              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.3)',
+              overflow: 'hidden' /* Asegura que los bordes redondeados se vean bien */,
+            }}
+          >
+            <CalendarStartup mentors={mockMentors} startups={mockStartups} />
+            {/* Recuerda reemplazar mockMentors y mockStartups con tus datos reales */}
           </Card>
         </Col>
       </Row>

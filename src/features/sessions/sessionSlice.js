@@ -1,28 +1,23 @@
-
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, nanoid } from '@reduxjs/toolkit';
 import sessionService from './sessionService';
 
 const initialState = {
-  sessions: [],
+  sessions: [], // nuestros eventos/mentorías
   isLoading: false,
   isSuccess: false,
   isError: false,
   message: '',
 };
 
-
-export const createSession = createAsyncThunk(
-  'sessions/create',
-  async (sessionData, thunkAPI) => {
-    try {
-      return await sessionService.createSession(sessionData);
-    } catch (error) {
-      const message =
-        error.response?.data?.message || error.message || 'Error al crear sesión';
-      return thunkAPI.rejectWithValue(message);
-    }
+// --- Guardar en backend (opcional)
+export const createSession = createAsyncThunk('sessions/create', async (sessionData, thunkAPI) => {
+  try {
+    return await sessionService.createSession(sessionData);
+  } catch (error) {
+    const message = error.response?.data?.message || error.message || 'Error al crear sesión';
+    return thunkAPI.rejectWithValue(message);
   }
-);
+});
 
 const sessionSlice = createSlice({
   name: 'sessions',
@@ -33,6 +28,22 @@ const sessionSlice = createSlice({
       state.isSuccess = false;
       state.isError = false;
       state.message = '';
+    },
+    // --- NUEVO: añadir evento local (para el calendario)
+    addLocalEvent: {
+      reducer(state, action) {
+        state.sessions.push(action.payload);
+      },
+      prepare(event) {
+        return { payload: { id: nanoid(), ...event } };
+      },
+    },
+    updateLocalEvent: (state, action) => {
+      const idx = state.sessions.findIndex((e) => e.id === action.payload.id);
+      if (idx !== -1) state.sessions[idx] = { ...state.sessions[idx], ...action.payload };
+    },
+    deleteLocalEvent: (state, action) => {
+      state.sessions = state.sessions.filter((e) => e.id !== action.payload);
     },
   },
   extraReducers: (builder) => {
@@ -53,5 +64,6 @@ const sessionSlice = createSlice({
   },
 });
 
-export const { reset } = sessionSlice.actions;
+export const { reset, addLocalEvent, updateLocalEvent, deleteLocalEvent } = sessionSlice.actions;
+export const selectEvents = (state) => state.sessions.sessions;
 export default sessionSlice.reducer;
