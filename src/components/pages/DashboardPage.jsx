@@ -4,9 +4,6 @@ import { selectTotals, selectTasks, setTotals } from '../../features/hours/hours
 import { Row, Col, Card, InputNumber, Typography, Divider } from 'antd';
 import GaugeChart from '../dashboard/GaugeChart';
 import PieChart from '../dashboard/PieChart';
-import BarChart from '../dashboard/BarChart';
-import TaskTable from '../dashboard/TaskTable';
-import LessonTable from '../dashboard/TaskTable';
 
 import './DashboardPage.css';
 
