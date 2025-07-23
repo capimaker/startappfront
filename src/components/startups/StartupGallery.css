@@ -1,363 +1,203 @@
-/* Colores y Tipografía de referencia de tu diseño */
-:root {
-  --primary-bg-dark: #2e264c; /* Fondo de cards y secciones principales */
-  --secondary-bg-light: #3b335e; /* Fondos de contenedores internos, filtros */
-  --text-light: #e0e0e0; /* Color de texto general claro */
-  --text-lighter: #fff; /* Color de texto más claro (ej. títulos) */
-  --text-dark: #555;
-  --accent-purple: #7a46e1; /* Botones, resaltados */
-  --accent-purple-hover: #8c5ada;
-  --border-color: rgba(255, 255, 255, 0.1); /* Bordes sutiles */
-
-  /* Variables específicas para el fondo y la fuente */
-  --violetaDark-rgba: rgba(30, 24, 60, 0.9); /* Fondo principal de la galería/formulario */
-  --dark: #120e26; /* Color oscuro para botones/elementos (para el botón de contacto) */
-  --blanco: #ffffff; /* Blanco puro (para el botón de contacto y texto) */
-  --font: 'Montserrat', sans-serif; /* REVISA ESTO: Asegúrate que 'Montserrat' es el nombre exacto de tu fuente */
-
-  /* Variables añadidas/ajustadas para coherencia con InfoCard y botones */
-  --fondo-listas: rgba(255, 255, 255, 0.05); /* Fondo para las cards, similar a info-list */
-  --borde-listas: rgba(255, 255, 255, 0.1); /* Borde para las cards */
-  --borde-sutil-list-item: rgba(255, 255, 255, 0.08); /* Borde inferior para simular items */
-}
-
-/* Aplicar la fuente globalmente al body (o al contenedor de toda la app si es más adecuado) */
-body {
-  font-family: var(--font) !important;
-}
-
-/* Asegurar que todos los elementos heredan la fuente, o forzarla si es necesario */
-* {
-  font-family: var(--font) !important;
-}
+/* src/components/startups/StartupGallery.css */
 
 .startup-gallery-container {
-  padding: 3rem 2rem;
-  background-color: var(--violetaDark-rgba);
-  color: var(--text-light);
-  min-height: calc(100vh - var(--header-height, 0px));
-  box-shadow: -1px -1px 35px 8px rgba(0, 0, 0, 0.5);
-  border-radius: 12px;
-  margin: 40px auto;
-  max-width: 1200px;
+  padding: 20px;
+  max-width: 1200px; /* O el ancho máximo que desees para tu galería */
+  margin: 0 auto;
 }
 
 .gallery-main-title {
-  color: var(--blanco) !important;
-  font-size: 2.5rem !important;
-  margin-bottom: 2.5rem !important;
-  font-weight: 300 !important;
   text-align: center;
+  margin-bottom: 30px;
+  color: #333;
 }
 
-/* Estilos del Contenedor de Filtro */
+/* Estilos para el filtro de categoría */
 .filter-container {
-  margin-bottom: 2.5rem;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
+  margin-bottom: 30px;
 }
 
-/* Estilos para el Select de Ant Design (filtro de categoría) */
 .category-filter-select {
-  width: 280px !important;
-  min-width: 180px;
+  width: 200px; /* Ajusta el ancho del select según tu diseño */
 }
 
-/* Estilos para el componente Select de Ant Design (globalmente o más específico si es necesario) */
-/* Estos estilos aplicarán a cualquier Ant Select si no se sobrescriben con más especificidad */
-.ant-select-selector,
-/* Añadir clases de DatePicker y TimePicker si usas sus selectores */
-.ant-picker-input > input,
-.ant-picker {
-  background-color: var(--secondary-bg-light) !important;
-  border-color: var(--border-color) !important;
-  color: var(--text-light) !important;
-  border-radius: 8px !important;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  height: 44px !important;
-  display: flex !important;
-  align-items: center !important;
-}
-
-.ant-select-arrow,
-.ant-picker-suffix {
-  color: var(--text-light) !important;
-}
-
-/* Estilos para el menú desplegable del Select */
-.ant-select-dropdown {
-  background-color: var(--secondary-bg-light) !important;
-  border-radius: 8px !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
-  border: 1px solid var(--border-color) !important;
-}
-
-.ant-select-item-option {
-  color: var(--text-light) !important;
-}
-
-.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
-  background-color: var(--accent-purple) !important;
-  color: var(--text-lighter) !important;
-}
-
-.ant-select-item-option-active:not(.ant-select-item-option-selected) {
-  background-color: rgba(255, 255, 255, 0.08) !important;
-  color: var(--text-lighter) !important;
-}
-
-/* Lista de startups */
+/* Contenedor de las tarjetas de startups */
 .startup-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
-  justify-content: center;
+  display: grid; /* Usamos CSS Grid para un diseño de columnas flexible */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Columnas que se ajustan automáticamente */
+  gap: 20px; /* Espacio entre las tarjetas */
+  justify-items: center; /* Centra las tarjetas horizontalmente */
+  padding: 0 10px; /* Pequeño padding a los lados si es necesario */
 }
 
-/* NUEVO: Estilos para cuando hay una sola tarjeta */
+/* Clase para cuando hay solo una tarjeta */
 .startup-list.single-card-layout {
-  grid-template-columns: minmax(320px, 400px);
-  justify-content: center;
-  padding: 0 20px;
+  grid-template-columns: 1fr; /* Una sola columna para centrar la tarjeta */
+  max-width: 320px; /* Ancho máximo para la tarjeta única */
+  margin: 0 auto; /* Centrar el contenedor de la tarjeta única */
 }
 
-/* Estilos para el spinner y mensajes de error */
-.loading-spinner-container,
-.error-message {
+/* Estilos para las StartupCard (asumo que tienes un componente StartupCard.jsx con sus propios estilos) */
+/* Si tu StartupCard tiene su propio archivo CSS (por ejemplo, StartupCard.css), los estilos de la tarjeta deberían ir allí. */
+/* Si no, puedes definirlos aquí, pero es mejor encapsularlos. */
+
+/* Ejemplo de cómo podría ser StartupCard.css (si lo tienes) */
+/*
+.startup-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%; // Asegura que las tarjetas en la misma fila tengan la misma altura si el contenido varía
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  width: 100%; // Ocupa el 100% de la columna del grid
+  max-width: 300px; // Limita el ancho máximo de la tarjeta
+}
+
+.startup-card:hover {
+  transform: translateY(-5px);
+}
+
+.startup-card-image-container {
+  width: 100%;
+  height: 180px; // Altura fija para las imágenes de las tarjetas
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 200px;
-  color: var(--text-light);
-  font-size: 1.1rem;
+  background-color: #f0f0f0;
 }
 
-.ant-spin-dot {
-  color: var(--accent-purple) !important;
+.startup-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; // Ajusta la imagen para cubrir el contenedor
 }
 
-/* Estilos del Modal */
-.startup-detail-modal .ant-modal-content {
-  background-color: var(--primary-bg-dark) !important;
-  border-radius: 12px !important;
-  padding: 24px !important;
-  box-shadow: -1px -1px 35px 8px rgba(0, 0, 0, 0.5) !important;
-  color: var(--text-light) !important;
+.startup-card-info {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
-.startup-detail-modal .ant-modal-header {
-  background-color: var(--primary-bg-dark) !important;
-  border-bottom: 1px solid var(--border-color) !important;
-  padding: 16px 24px !important;
-  border-radius: 12px 12px 0 0 !important;
+.startup-card-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
 }
 
-.startup-detail-modal .ant-modal-title {
-  color: var(--blanco) !important;
-  font-size: 1.8rem !important;
-  font-weight: 600 !important;
+.startup-card-sector {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 10px;
+}
+*/
+
+/* Estilos para el spinner de carga */
+.loading-spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px; /* Asegura que el spinner tenga un espacio visible */
+}
+
+/* Estilos para mensajes de error */
+.error-message {
   text-align: center;
+  color: red;
+  font-size: 1.1em;
+  margin-top: 20px;
 }
 
-.startup-detail-modal .ant-modal-close-x {
-  color: var(--text-light) !important;
-  font-size: 18px !important;
+/* Estilos del Modal de Detalle (pueden ser similares a los de MentorsGallery) */
+.startup-detail-modal .ant-modal-title {
+  text-align: center;
+  font-size: 1.8em;
+  margin-bottom: 15px;
 }
 
 .modal-content-wrapper {
-  padding-top: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Alinea los items de texto a la izquierda */
+  padding: 10px 20px;
 }
 
-/* INICIO: CORRECCIONES PARA CENTRAR IMAGEN Y ELIMINAR FONDO */
 .modal-img-container {
-  width: 100%; /* Ocupa todo el ancho del modal */
   display: flex;
-  justify-content: center; /* Centra el contenido (la imagen) horizontalmente */
-  align-items: center; /* Centra el contenido (la imagen) verticalmente */
-  margin-bottom: 1.5rem;
-  padding: 0; /* Eliminar padding para que el fondo no se vea */
-  background-color: transparent; /* Eliminar el fondo */
-  border-radius: 0; /* Eliminar bordes redondeados del contenedor si los tuviera */
-  border: none; /* Asegurarse de que no tenga bordes */
-  max-height: 120px; /* Ajusta esta altura para dar espacio al logo sin ser excesiva */
-  overflow: hidden;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .modal-img {
-  /* Controla el tamaño real del logo */
-  max-width: 150px; /* Haz el logo un poco más grande, ajusta según necesidad */
-  max-height: 100px; /* Altura máxima del logo, ajusta según necesidad */
-  object-fit: contain; /* Asegura que el logo se ajuste sin distorsionarse */
-  border-radius: 4px; /* Mantener bordes redondeados si deseas */
-  /* Eliminar cualquier fondo o padding que la imagen pudiera traer directamente */
-  background-color: transparent;
-  padding: 0;
+  max-width: 250px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-/* FIN: CORRECCIONES PARA CENTRAR IMAGEN Y ELIMINAR FONDO */
 
 .modal-detail-item {
   margin-bottom: 10px;
-  font-size: 1rem;
+  font-size: 1.1em;
   line-height: 1.5;
-  color: var(--text-light);
-  width: 100%;
 }
 
 .modal-detail-item strong {
-  color: var(--text-lighter);
-  margin-right: 5px;
-}
-
-.modal-web-link {
-  color: #87ceeb !important;
-  text-decoration: none;
-  transition: color 0.2s ease-in-out;
-}
-
-.modal-web-link:hover {
-  color: #add8e6 !important;
-  text-decoration: underline;
-}
-
-/* Estos estilos para .modal-awards-list no se usarán si no se renderiza como ul/li,
-   pero los mantengo por si decides volver a esa implementación. */
-.modal-awards-list {
-  list-style-type: disc;
-  padding-left: 20px;
-  margin-top: 5px;
-  color: var(--text-light);
-}
-
-.modal-awards-list li {
-  margin-bottom: 4px;
-  line-height: 1.4;
+  color: #555;
 }
 
 .modal-description {
-  margin-top: 1.5rem;
-  font-style: italic;
-  color: var(--text-light);
-  line-height: 1.6;
-  text-align: justify;
-  padding-right: 5px;
-  width: 100%;
+  margin-top: 20px;
+  background-color: #f9f9f9;
+  border-left: 4px solid #007bff;
+  padding: 15px;
+  border-radius: 4px;
 }
 
-/* Media Queries para Responsiveness */
-
-/* Tablets grandes y laptops */
-@media (min-width: 993px) and (max-width: 1200px) {
-  .startup-list {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-  }
-  .startup-list.single-card-layout {
-    grid-template-columns: minmax(300px, 360px);
-  }
-  .gallery-main-title {
-    font-size: 2.2rem !important;
-  }
-  .startup-gallery-container {
-    padding: 2.5rem 1.5rem;
-    margin-top: 30px;
-    max-width: 960px;
-  }
+.modal-web-link {
+  color: #007bff;
+  text-decoration: none;
 }
 
-/* Tablets (2 COLUMNAS) */
-@media (max-width: 992px) {
-  .startup-list {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.75rem;
-  }
-  .startup-list.single-card-layout {
-    grid-template-columns: minmax(300px, 400px);
-  }
-  .startup-gallery-container {
-    padding: 2rem 1rem;
-    margin-top: 25px;
-    max-width: 720px;
-  }
-  .gallery-main-title {
-    font-size: 2rem !important;
-  }
-  .category-filter-select {
-    width: 250px !important;
-  }
-  /* Ajuste para el tamaño de la imagen en tablets si es necesario */
-  .modal-img-container {
-    max-height: 100px;
-  }
-  .modal-img {
-    max-width: 120px;
-    max-height: 80px;
-  }
+.modal-web-link:hover {
+  text-decoration: underline;
 }
 
-/* Móviles grandes (1 COLUMNA) */
+/* Media Queries para responsividad */
 @media (max-width: 768px) {
   .startup-list {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 0 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Más pequeñas en pantallas pequeñas */
   }
-  .startup-list.single-card-layout {
-    grid-template-columns: 1fr;
+
+  .gallery-main-title {
+    font-size: 1.8em;
   }
-  .filter-container {
-    justify-content: flex-start;
-    padding: 0 1rem;
-  }
-  .category-filter-select {
-    width: 100% !important;
-  }
-  /* Ajuste para el tamaño de la imagen en móviles */
-  .modal-img-container {
-    max-height: 80px;
-  }
+
   .modal-img {
-    max-width: 100px;
-    max-height: 60px;
-  }
-  .startup-gallery-container {
-    padding: 1.5rem 0.5rem;
-    margin-top: 20px;
-    border-radius: 8px;
-    box-shadow: -1px -1px 20px 5px rgba(0, 0, 0, 0.4);
-    max-width: 540px;
+    max-width: 200px;
   }
 }
 
-/* Móviles pequeños */
-@media (max-width: 576px) {
+@media (max-width: 480px) {
   .startup-list {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-    padding: 0 0.5rem;
+    grid-template-columns: 1fr; /* Una columna en móviles */
+    padding: 0;
   }
-  .startup-list.single-card-layout {
-    grid-template-columns: 1fr;
+
+  .startup-card {
+    margin: 0 auto; /* Centra la tarjeta si está en una sola columna */
   }
-  .startup-gallery-container {
-    padding: 1.5rem 0.5rem;
-    margin-top: 15px;
-    max-width: 100%;
-    margin-left: 10px;
-    margin-right: 10px;
-  }
-  .gallery-main-title {
-    font-size: 1.8rem !important;
-    margin-bottom: 2rem !important;
-  }
+
   .filter-container {
-    padding: 0 0.5rem;
+    flex-direction: column;
+    align-items: center;
   }
-  .startup-detail-modal .ant-modal-title {
-    font-size: 1.5rem !important;
+
+  .category-filter-select {
+    width: 90%;
   }
 }
