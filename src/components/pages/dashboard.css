@@ -1,0 +1,50 @@
+/* src/components/pages/dashboard.css */
+.flex-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.mini-card {
+  flex: 1;
+  min-width: 120px;
+}
+
+.chart-wrapper {
+  flex: 1;
+  min-width: 280px;
+}
+
+.scroll-card {
+  height: 100%;
+  overflow: auto;
+}
+
+/* Handle para mover las cards */
+.drag-handle {
+  cursor: move;
+  user-select: none;
+}
+
+/* Evita iniciar drag dentro de inputs/calendario/etc. */
+.no-drag {
+  cursor: auto;
+}
+
+/* Caja del calendario para evitar que el grid capture eventos */
+.calendar-box {
+  height: 100%;
+}
+
+/* Opcional: asegura que el contenido no se solape cuando la card es pequeña */
+.layout .react-grid-item > div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+

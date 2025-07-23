@@ -1,26 +1,38 @@
 // src/components/calendar/MentorshipBigCalendar.jsx
 import React, { useState } from 'react';
 import { Calendar as RBCalendar, Views } from 'react-big-calendar';
+import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import { stringToColor, getContrastColor } from '../../utils/colors';
-import { localizer } from '../../utils/calendarLocalizer';
+import 'react-big-calendar/lib/addons/dragAndDrop/styles.css';
+
 import { Modal, Form, DatePicker, TimePicker, Select, Input, Button, Space } from 'antd';
 import dayjs from 'dayjs';
 import { useDispatch, useSelector } from 'react-redux';
-import { addLocalEvent, updateLocalEvent, deleteLocalEvent, selectEvents } from '../../features/sessions/sessionSlice';
-import './MentorshipBigCalendar.css'; // Asegúrate de que este archivo exista y esté importado
+
+import { localizer } from '../../utils/calendarLocalizer';
+import { stringToColor, getContrastColor } from '../../utils/colors';
+import {
+  addLocalEvent,
+  updateLocalEvent,
+  deleteLocalEvent,
+  selectEvents,
+} from '../../features/sessions/sessionSlice';
+
+import './MentorshipBigCalendar.css';
 
 const { Option } = Select;
 const { TextArea } = Input;
-const NormalCalendar = RBCalendar;
+const DnDCalendar = withDragAndDrop(RBCalendar);
 
 const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
   const dispatch = useDispatch();
   const events = useSelector(selectEvents);
 
+  // ---- CONTROLAMOS vista y fecha para que la toolbar funcione tras refrescos ----
   const [view, setView] = useState(Views.WEEK);
   const [date, setDate] = useState(new Date());
 
+  // Adaptamos eventos al formato RBC
   const rbcEvents = events.map((e) => ({
     id: e.id,
     title: e.title,
@@ -29,12 +41,15 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
     resource: e,
   }));
 
+  // ---- State modales ----
   const [modalOpen, setModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
-  const [form] = Form.useForm();
-  const [editForm] = Form.useForm();
   const [currentEvent, setCurrentEvent] = useState(null);
 
+  const [form] = Form.useForm();
+  const [editForm] = Form.useForm();
+
+  /* ===================== CREAR ===================== */
   const onSelectSlot = ({ start, end }) => {
     setModalOpen(true);
     form.setFieldsValue({
@@ -49,7 +64,10 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
       const values = await form.validateFields();
       const { date, start, duration, mentorId, startupId, notes } = values;
 
-      const startDateTime = dayjs(date).hour(start.hour()).minute(start.minute()).second(0);
+      const startDateTime = dayjs(date)
+        .hour(start.hour())
+        .minute(start.minute())
+        .second(0);
       const endDateTime = startDateTime.add(duration, 'minute');
 
       const payload = {
@@ -66,11 +84,12 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
       dispatch(addLocalEvent(payload));
       setModalOpen(false);
       form.resetFields();
-    } catch (error) {
-      console.error('Validation failed:', error);
+    } catch {
+      /* validation error ignored */
     }
   };
 
+  /* ===================== EDITAR ===================== */
   const onSelectEvent = (event) => {
     const res = event.resource;
     setCurrentEvent(res);
@@ -91,7 +110,11 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
     try {
       const values = await editForm.validateFields();
       const { date, start, duration, mentorId, startupId, notes } = values;
-      const startDateTime = dayjs(date).hour(start.hour()).minute(start.minute()).second(0);
+
+      const startDateTime = dayjs(date)
+        .hour(start.hour())
+        .minute(start.minute())
+        .second(0);
       const endDateTime = startDateTime.add(duration, 'minute');
 
       const updated = {
@@ -109,8 +132,8 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
       dispatch(updateLocalEvent(updated));
       setEditModalOpen(false);
       setCurrentEvent(null);
-    } catch (error) {
-      console.error('Validation failed:', error);
+    } catch {
+      /* validation error ignored */
     }
   };
 
@@ -121,22 +144,69 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
     setCurrentEvent(null);
   };
 
+  /* ===================== DnD HANDLERS ===================== */
+  const handleEventDrop = ({ event, start, end }) => {
+    const original = event.resource;
+    const duration = dayjs(end).diff(dayjs(start), 'minute');
+
+    dispatch(
+      updateLocalEvent({
+        id: original.id,
+        start: start.toISOString(),
+        end: end.toISOString(),
+        duration,
+        date: start.toISOString(),
+        title: original.title,
+        mentor: original.mentor,
+        mentee: original.mentee,
+        notes: original.notes,
+      })
+    );
+  };
+
+  const handleEventResize = ({ event, start, end }) => {
+    const original = event.resource;
+    const duration = dayjs(end).diff(dayjs(start), 'minute');
+
+    dispatch(
+      updateLocalEvent({
+        id: original.id,
+        start: start.toISOString(),
+        end: end.toISOString(),
+        duration,
+        date: start.toISOString(),
+        title: original.title,
+        mentor: original.mentor,
+        mentee: original.mentee,
+        notes: original.notes,
+      })
+    );
+  };
+
   return (
     <div className="mentorship-calendar-container">
-      <NormalCalendar
+      <DnDCalendar
         selectable
+        resizable
         localizer={localizer}
         events={rbcEvents}
         views={[Views.MONTH, Views.WEEK, Views.DAY, Views.AGENDA]}
         startAccessor="start"
         endAccessor="end"
         style={{ height: 600 }}
+
+        /* Controlados para que los botones de la toolbar funcionen siempre */
         view={view}
         date={date}
         onView={setView}
         onNavigate={setDate}
+
         onSelectSlot={onSelectSlot}
         onSelectEvent={onSelectEvent}
+        onEventDrop={handleEventDrop}
+        onEventResize={handleEventResize}
+        draggableAccessor={() => true}
+        resizableAccessor={() => true}
         eventPropGetter={(event) => {
           const id = event.resource?.mentor || 'default';
           const bg = stringToColor(id);
@@ -164,7 +234,7 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
         }}
       />
 
-      {/* MODAL PARA NUEVA MENTORÍA */}
+      {/* MODAL CREAR */}
       <Modal
         open={modalOpen}
         onCancel={() => {
@@ -233,7 +303,7 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
         </Form>
       </Modal>
 
-      {/* MODAL PARA EDITAR MENTORÍA */}
+      {/* MODAL EDITAR */}
       <Modal
         open={editModalOpen}
         onCancel={() => {
