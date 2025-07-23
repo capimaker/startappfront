@@ -32,7 +32,7 @@ const PieChart = ({ worked, remaining }) => {
             size: 16,
           },
           title: {
-            text: 'Distribución de Horas',
+            text: 'Mentorías',
             font: {
               size: 20,
               color: lighterTextColor,
