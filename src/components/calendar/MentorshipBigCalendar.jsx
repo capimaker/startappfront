@@ -24,7 +24,7 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
   const dispatch = useDispatch();
   const events = useSelector(selectEvents);
 
-  // --> 1. Añadir estado para la vista y la fecha
+  // Añadir estado para la vista y la fecha
   const [view, setView] = useState(Views.WEEK);
   const [date, setDate] = useState(new Date());
 
@@ -126,7 +126,7 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
     setCurrentEvent(null);
   };
 
-  /* ---- Drag & Drop ---- */
+  /*  Drag & Drop  */
   const handleEventDrop = ({ event, start, end }) => {
     const original = event.resource;
     const duration = dayjs(end).diff(dayjs(start), 'minute');
@@ -174,11 +174,11 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
         endAccessor="end"
         style={{ height: 600 }}
         
-        // --> 3. Pasar el estado y los manejadores como props
+        
         view={view}
         date={date}
-        onView={setView} // o (view) => setView(view)
-        onNavigate={setDate} // o (date) => setDate(date)
+        onView={setView} 
+        onNavigate={setDate} 
 
         onSelectSlot={onSelectSlot}
         onSelectEvent={onSelectEvent}
@@ -213,7 +213,7 @@ const MentorshipBigCalendar = ({ mentors = [], startups = [] }) => {
         }}
       />
 
-      {/* ... El resto del código de los modales no cambia ... */}
+      
       <Modal
         open={modalOpen}
         onCancel={() => setModalOpen(false)}
