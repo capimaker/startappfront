@@ -8,10 +8,7 @@ const GaugeChart = ({ value, max }) => {
   const lighterTextColor = '#fff'; // Para títulos y números grandes, más blanco
   const fontName = 'Montserrat, sans-serif';
 
-  // --- Generación dinámica de ticks ---
-  // Para que coincida con tu imagen (0, 20, 40, 60) cuando max es 60,
-  // vamos a generar 4 ticks equidistantes, incluyendo 0 y max.
-  const numberOfTicks = 4; // Incluye 0 y el valor máximo.
+  const numberOfTicks = 4;
   const dynamicTickValues = [];
   const dynamicTickLabels = [];
   for (let i = 0; i < numberOfTicks; i++) {
@@ -19,7 +16,6 @@ const GaugeChart = ({ value, max }) => {
     dynamicTickValues.push(tickVal);
     dynamicTickLabels.push(`${Math.round(tickVal)}`);
   }
-  // Ejemplo para max=60: [0, 20, 40, 60]
 
   return (
     <Plot
@@ -34,18 +30,18 @@ const GaugeChart = ({ value, max }) => {
               tickfont: {
                 color: lighterTextColor,
                 family: fontName,
-                size: 14, // Tamaño de fuente ligeramente más pequeño para los ticks
+                size: 14,
               },
-              showticklabels: true, // Mostrar etiquetas de los ticks
-              tickmode: 'array', // Usar un array para controlar explícitamente los ticks
-              tickvals: dynamicTickValues, // Los valores donde aparecen las marcas
-              ticktext: dynamicTickLabels, // Las etiquetas de texto para las marcas
-              ticklen: 8, // Longitud de la marca de tick
-              tickwidth: 2, // Ancho de la línea de tick
-              tickcolor: lighterTextColor, // Color de las rayitas
-              ticks: 'outside', // Muestra los ticks fuera del eje
-              tickangle: 0, // Asegura que los números no estén rotados
-              ticklabelstep: 1, // Asegura que todas las etiquetas de tickvals/ticktext se muestren
+              showticklabels: true,
+              tickmode: 'array',
+              tickvals: dynamicTickValues,
+              ticktext: dynamicTickLabels,
+              ticklen: 8,
+              tickwidth: 2,
+              tickcolor: lighterTextColor,
+              ticks: 'outside',
+              tickangle: 0,
+              ticklabelstep: 1,
             },
             bar: {
               color: gaugeBarColor,
@@ -57,9 +53,7 @@ const GaugeChart = ({ value, max }) => {
             bgcolor: 'transparent',
             borderwidth: 0,
             bordercolor: 'transparent',
-            steps: [
-              { range: [0, max], color: 'rgba(255, 255, 255, 0.2)' }, // Fondo del arco del gauge
-            ],
+            steps: [{ range: [0, max], color: 'rgba(255, 255, 255, 0.2)' }],
             threshold: {
               line: { color: gaugeBarColor, width: 0 },
               thickness: 0.75,
@@ -73,12 +67,12 @@ const GaugeChart = ({ value, max }) => {
               color: lighterTextColor,
               family: fontName,
             },
-            y: 1.05, // Ajusta la posición del título hacia arriba para dar más espacio
+            y: 1.05,
           },
           number: {
             suffix: '',
             font: {
-              size: 50, // Tamaño grande para el valor principal
+              size: 50,
               color: lighterTextColor,
               family: fontName,
             },
@@ -86,9 +80,8 @@ const GaugeChart = ({ value, max }) => {
         },
       ]}
       layout={{
-        // CLAVE: Ajustar los márgenes para dar espacio a los ticks y al título
-        margin: { l: 30, r: 30, t: 70, b: 20 }, // Margen para dar espacio a los ticks y título
-        height: 300, // Reducimos la altura del gráfico total. Antes 350px.
+        margin: { l: 30, r: 30, t: 70, b: 20 },
+        height: 300,
         paper_bgcolor: chartBackgroundColor,
         plot_bgcolor: plotBackgroundColor,
         font: {
@@ -96,17 +89,20 @@ const GaugeChart = ({ value, max }) => {
           color: lighterTextColor,
         },
         gauge: {
-          // Ajustar el dominio para que el gauge en sí ocupe un poco menos de espacio
-          // y se sienta más 'contenido' dentro de su contenedor.
-          domain: { x: [0.1, 0.9], y: [0.15, 0.85] }, // Ajustado para un aspecto más compacto y centrado
+          domain: { x: [0.1, 0.9], y: [0.15, 0.85] },
         },
-        autosize: true, // Auto-ajuste al tamaño del contenedor
+        autosize: true,
+        // *** AÑADIDO: Deshabilitar transiciones/animaciones en la carga ***
+        transition: {
+          duration: 0, // Duración de 0 milisegundos
+          easing: 'linear', // Tipo de easing (aunque no importa con duración 0)
+        },
       }}
       config={{
         displayModeBar: false,
-        responsive: true, // Fundamental para la responsividad
+        responsive: true,
       }}
-      style={{ width: '100%', height: '100%' }} // Hace que el gráfico ocupe el 100% del contenedor padre
+      style={{ width: '100%', height: '100%' }}
     />
   );
 };
