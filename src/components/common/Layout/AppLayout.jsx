@@ -1,9 +1,11 @@
+// src/components/common/Layout/AppLayout.jsx
 import useWindowWidth from '../../../hooks/useWindowWidth';
 import NavbarDesktop from '../Navbar/NavbarDesktop/NavbarDesktop';
 import NavbarMobile from '../Navbar/NavbarMobile/NavbarMobile';
 import { Header } from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Background from '../Background/Background';
+import FloatingChatWidget from '../../chat/FloatingChatWidget'; // <-- IMPORTA AQUÍ
 import './appLayout.css';
 
 const AppLayout = ({ children }) => {
@@ -19,19 +21,22 @@ const AppLayout = ({ children }) => {
               <Header />
             </header>
 
-            {isDesktop && (
-              <aside className="sidebar">
-                <NavbarDesktop />
-              </aside>
-            )}
+              {isDesktop && (
+                <aside className="sidebar">
+                  <NavbarDesktop />
+                </aside>
+              )}
 
-            <main className="main__content">{children}</main>
+              <main className="main__content">{children}</main>
 
-            {isDesktop && <footer className="footer">{/* <Footer /> */}</footer>}
+              {isDesktop && <footer className="footer">{/* <Footer /> */}</footer>}
           </div>
 
           {!isDesktop && <NavbarMobile />}
         </div>
+
+        {/* Botón + panel de chat flotante */}
+        <FloatingChatWidget />
       </Background>
     </>
   );

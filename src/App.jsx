@@ -14,6 +14,7 @@ import StartupGallery from './components/startups/StartupGallery';
 import InstructorsGallery from './components/instructors/InstructorsGallery';
 import MentorsGallery from './components/mentors/MentorsGallery';
 
+
 import './App.css'; // Tu archivo CSS global
 
 /**
