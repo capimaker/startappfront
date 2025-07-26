@@ -1,13 +1,4 @@
 .startup-card {
-<<<<<<< HEAD
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
-  text-align: center;
-  padding: 12px;
-  transition: transform 0.2s ease-in-out;
-=======
   background-color: var(--fondo-listas);
   border-radius: 6px;
   box-shadow: none;
@@ -15,21 +6,10 @@
   overflow: hidden; /* Importante para que la imagen no se salga de la tarjeta */
   padding: 18px; /* Mantener este padding para el contenido inferior y los lados del contenedor de la imagen */
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
->>>>>>> develop
   cursor: pointer;
 }
 
 .startup-card:hover {
-<<<<<<< HEAD
-  transform: translateY(-5px);
-}
-
-.startup-card-image {
-  width: 100%;
-  height: 150px;
-  object-fit: contain;
-  margin-bottom: 12px;
-=======
   transform: translateY(-4px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
   background-color: rgba(255, 255, 255, 0.08);
@@ -62,7 +42,6 @@
   background-color: #4a416b; /* Un fondo sólido para el placeholder */
   border: 1px dashed #6b628d; /* Un borde punteado para el placeholder */
   /* Asegúrate de que si el placeholder tiene un fondo blanco, este background-color lo sobrescriba */
->>>>>>> develop
 }
 
 .startup-card-content h3 {
@@ -75,21 +54,6 @@
   min-height: 40px;
 }
 
-<<<<<<< HEAD
-.startup-card-content button {
-  margin-top: 10px;
-  background-color: #1890ff;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.startup-card-content button:hover {
-  background-color: #40a9ff;
-=======
 .startup-card-contact-button {
   margin-top: auto;
   background-color: var(--dark) !important;
@@ -122,5 +86,4 @@
 .startup-card-image[src*='placeholder.png'] {
   background-color: #4a416b;
   border: 1px dashed #6b628d;
->>>>>>> develop
 }
