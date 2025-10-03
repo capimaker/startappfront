@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Inputpass } from './Inputpass';
 import { Inputemail } from './Inputemail';
-import { login } from '../../features/service/authSlice';
+import { loginSuccess } from '../../features/service/authSlice'; // usamos loginSuccess en vez de login
 import { useNavigate } from 'react-router-dom';
 import Background from '../common/Background/Background';
 import { Header } from '../common/Header/Header';
@@ -25,20 +25,19 @@ const Login = ({ onLogin }) => {
     });
   };
 
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    const resultAction = await dispatch(login(formData));
 
-    if (login.fulfilled.match(resultAction)) {
-      const userLogged = resultAction.payload.user;
+    // Validación simple: solo admin/1234
+    if (email === 'admin' && password === '1234') {
+      const userLogged = { username: 'admin', email, role: 'admin' };
+      dispatch(loginSuccess(userLogged));
       if (typeof onLogin === 'function') {
         onLogin(userLogged);
       }
-
       navigate('/dashboard');
     } else {
-      console.error('Login fallido:', resultAction);
-      alert('Login fallido. Verifica tus credenciales.');
+      alert('Credenciales inválidas');
     }
   };
 
