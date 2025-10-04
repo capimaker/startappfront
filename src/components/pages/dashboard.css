@@ -1,6 +1,6 @@
-/* src/components/pages/dashboard.css */
 
-/* ---- utilidades existentes ---- */
+
+/* utilidades existentes */
 .flex-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
 .wrap { flex-wrap: wrap; }
 .mini-card { flex: 1; min-width: 120px; }
@@ -13,7 +13,7 @@
 /* Asegura que el primer hijo del grid item ocupe TODO */
 .layout .react-grid-item > div {
   height: 100%;
-  width: 100%;            /* 🔥 clave para eliminar el “hueco” a la derecha */
+  width: 100%;            /*  clave para eliminar el “hueco” a la derecha */
   display: flex;
   flex-direction: column;
 }
@@ -21,7 +21,7 @@
 /* El item del grid no recorta los handles, pero sí al placeholder via radius */
 .react-grid-item {
   position: relative;
-  overflow: hidden;       /* 🔥 recorta el placeholder para que no sobresalga */
+  overflow: hidden;       /*  recorta el placeholder para que no sobresalga */
   border-radius: 14px;    /* que coincida con tu card */
   z-index: 1;
 }
@@ -30,15 +30,15 @@
 .react-grid-item .ant-card,
 .react-grid-item .ant-card-body {
   height: 100%;
-  width: 100%;            /* 🔥 que la card coincida con el grid item */
+  width: 100%;            /*  que la card coincida con el grid item */
 }
 
 /* Placeholder del drag con el mismo borde que la card */
 .react-grid-placeholder {
-  border-radius: 14px;    /* 🔥 sin “rebose” rojo fuera de la ventana */
+  border-radius: 14px;    /*  sin “rebose” rojo fuera de la ventana */
 }
 
-/* ====== HANDLES de resize invisibles, dentro del borde ====== */
+/* HANDLES de resize invisibles, dentro del borde */
 .react-grid-item > .react-resizable-handle {
   position: absolute !important;
   background: transparent !important;

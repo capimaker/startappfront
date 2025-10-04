@@ -1,4 +1,4 @@
-// App.jsx
+
 import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from './features/service/authSlice.js';
