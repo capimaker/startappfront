@@ -1,50 +1,58 @@
 /* src/components/pages/dashboard.css */
-.flex-row {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  align-items: center;
-}
 
-.wrap {
-  flex-wrap: wrap;
-}
+/* ---- utilidades existentes ---- */
+.flex-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+.wrap { flex-wrap: wrap; }
+.mini-card { flex: 1; min-width: 120px; }
+.chart-wrapper { flex: 1; min-width: 280px; }
+.scroll-card { height: 100%; overflow: auto; }
+.drag-handle { cursor: move; user-select: none; }
+.no-drag { cursor: auto; }
+.calendar-box { height: 100%; }
 
-.mini-card {
-  flex: 1;
-  min-width: 120px;
-}
-
-.chart-wrapper {
-  flex: 1;
-  min-width: 280px;
-}
-
-.scroll-card {
-  height: 100%;
-  overflow: auto;
-}
-
-/* Handle para mover las cards */
-.drag-handle {
-  cursor: move;
-  user-select: none;
-}
-
-/* Evita iniciar drag dentro de inputs/calendario/etc. */
-.no-drag {
-  cursor: auto;
-}
-
-/* Caja del calendario para evitar que el grid capture eventos */
-.calendar-box {
-  height: 100%;
-}
-
-/* Opcional: asegura que el contenido no se solape cuando la card es pequeña */
+/* Asegura que el primer hijo del grid item ocupe TODO */
 .layout .react-grid-item > div {
   height: 100%;
+  width: 100%;            /* 🔥 clave para eliminar el “hueco” a la derecha */
   display: flex;
   flex-direction: column;
 }
 
+/* El item del grid no recorta los handles, pero sí al placeholder via radius */
+.react-grid-item {
+  position: relative;
+  overflow: hidden;       /* 🔥 recorta el placeholder para que no sobresalga */
+  border-radius: 14px;    /* que coincida con tu card */
+  z-index: 1;
+}
+
+/* La card rellena 100% del grid item */
+.react-grid-item .ant-card,
+.react-grid-item .ant-card-body {
+  height: 100%;
+  width: 100%;            /* 🔥 que la card coincida con el grid item */
+}
+
+/* Placeholder del drag con el mismo borde que la card */
+.react-grid-placeholder {
+  border-radius: 14px;    /* 🔥 sin “rebose” rojo fuera de la ventana */
+}
+
+/* ====== HANDLES de resize invisibles, dentro del borde ====== */
+.react-grid-item > .react-resizable-handle {
+  position: absolute !important;
+  background: transparent !important;
+  opacity: 0 !important;
+  z-index: 1000 !important;
+  pointer-events: auto !important;
+}
+
+.react-grid-item > .react-resizable-handle-e { top: 0; right: 0; width: 10px; height: 100%; cursor: ew-resize; }
+.react-grid-item > .react-resizable-handle-w { top: 0; left: 0;  width: 10px; height: 100%; cursor: ew-resize; }
+.react-grid-item > .react-resizable-handle-s { left: 0; right: 0; bottom: 0; height: 10px; cursor: ns-resize; }
+.react-grid-item > .react-resizable-handle-n { left: 0; right: 0; top: 0;    height: 10px; cursor: ns-resize; }
+
+.react-grid-item > .react-resizable-handle-se { right: 0; bottom: 0; width: 14px; height: 14px; cursor: se-resize; }
+.react-grid-item > .react-resizable-handle-sw { left: 0;  bottom: 0; width: 14px; height: 14px; cursor: sw-resize; }
+.react-grid-item > .react-resizable-handle-ne { right: 0; top: 0;    width: 14px; height: 14px; cursor: ne-resize; }
+.react-grid-item > .react-resizable-handle-nw { left: 0;  top: 0;    width: 14px; height: 14px; cursor: nw-resize; }

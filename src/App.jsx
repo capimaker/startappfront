@@ -1,123 +1,66 @@
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+// App.jsx
+import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { logout } from './features/service/authSlice.js'; // Asegúrate de que la ruta sea correcta
+import { logout } from './features/service/authSlice.js';
 
-// Importa tus componentes
 import AppLayout from './components/common/Layout/AppLayout';
 import Login from './components/Login/Login.jsx';
 import MentorshipSessionForm from './components/mentorship/MentorshipSessionForm';
 import Details from './components/pages/Details.jsx';
 import DashboardPage from './components/pages/DashboardPage.jsx';
 import StartupGallery from './components/startups/StartupGallery';
-//import { Header } from './components/common/Header/Header';
-//import { Footer } from './components/common/Footer/Footer';
 import InstructorsGallery from './components/instructors/InstructorsGallery';
 import MentorsGallery from './components/mentors/MentorsGallery';
 
+import './App.css';
 
-import './App.css'; // Tu archivo CSS global
-
-/**
- * Componente que contiene toda la lógica de enrutamiento y acceso a hooks.
- * Debe ser un descendiente de BrowserRouter.
- */
 function MainRouterContent() {
-  // Obtiene el estado del usuario desde Redux
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // useNavigate debe usarse dentro del contexto de BrowserRouter
+  const navigate = useNavigate();
 
-  /**
-   * Maneja el cierre de sesión del usuario.
-   * Dispara la acción de logout y navega a la página de inicio.
-   */
   const handleLogout = async () => {
-    await dispatch(logout());
-    navigate('/');
+    try {
+      await dispatch(logout());
+    } finally {
+      navigate('/', { replace: true });
+    }
   };
 
-  /**
-   * Función auxiliar para renderizar una ruta que requiere autenticación
-   * y el componente AppLayout.
-   * Si el usuario está autenticado, muestra el componente dentro de AppLayout.
-   * Si no, redirige al componente de Login.
-   * @param {React.ReactNode} Component - El componente a renderizar si el usuario está autenticado.
-   * @returns {React.ReactNode} El componente envuelto en AppLayout o el componente Login.
-   */
-  const renderAuthenticatedRoute = (Component) => {
-    return user ? <AppLayout onLogout={handleLogout}>{Component}</AppLayout> : <Login />;
-  };
+  const withLayout = (node) => (
+    <AppLayout onLogout={handleLogout}>{node}</AppLayout>
+  );
+
+  // Si no hay user, redirige a "/"; si hay user, envuelve con AppLayout
+  const requireAuth = (node) => (user ? withLayout(node) : <Navigate to="/" replace />);
 
   return (
-
     <Routes>
-      <Route path="/" element={user ? <AppLayout onLogout={handleLogout} /> : <Login />} />
+      {/* Ruta pública: login. Si ya hay sesión, envía al dashboard */}
       <Route
-        path="/dashboard"
-        element={
-          user ? (
-            <AppLayout onLogout={handleLogout}>
-              <DashboardPage />
-            </AppLayout>
-          ) : (
-            <Login />
-          )
-        }
+        path="/"
+        element={user ? <Navigate to="/dashboard" replace /> : <Login />}
       />
 
-      <Route
-        path="/addmentorship"
-        element={
-          user ? (
-            <AppLayout onLogout={handleLogout}>
-              <MentorshipSessionForm />
-            </AppLayout>
-          ) : (
-            <Login />
-          )
-        }
-      />
-      <Route
-        path="/details"
-        element={
-          user ? (
-            <AppLayout onLogout={handleLogout}>
-              <Details />
-            </AppLayout>
-          ) : (
-            <Login />
-          )
-        }
-      />
-      {/* Ruta de inicio: Si el usuario está autenticado, muestra un mensaje de bienvenida
-          dentro de AppLayout, de lo contrario, muestra Login.
-          Puedes reemplazar <div>Bienvenido</div> con tu componente de Dashboard o Home. */}
-      <Route path="/" element={renderAuthenticatedRoute(<div>Bienvenido a la plataforma</div>)} />
+      {/* Privadas (cada una se define una sola vez) */}
+      <Route path="/dashboard"        element={requireAuth(<DashboardPage />)} />
+      <Route path="/addmentorship"    element={requireAuth(<MentorshipSessionForm />)} />
+      <Route path="/agendarmentoria"  element={requireAuth(<MentorshipSessionForm />)} />
+      <Route path="/details"          element={requireAuth(<Details />)} />
+      <Route path="/startups"         element={requireAuth(<StartupGallery />)} />
+      <Route path="/mentors"          element={requireAuth(<MentorsGallery />)} />
+      <Route path="/instructors"      element={requireAuth(<InstructorsGallery />)} />
 
-      {/* Rutas que requieren autenticación y el AppLayout */}
-      <Route path="/addmentorship" element={renderAuthenticatedRoute(<MentorshipSessionForm />)} />
-      <Route path="/details" element={renderAuthenticatedRoute(<Details />)} />
-      <Route path="/agendarmentoria" element={renderAuthenticatedRoute(<MentorshipSessionForm />)} />
-      <Route path="/startups" element={renderAuthenticatedRoute(<StartupGallery />)} />
-      <Route path="/mentors" element={renderAuthenticatedRoute(<MentorsGallery />)} />
-      <Route path="/instructors" element={renderAuthenticatedRoute(<InstructorsGallery />)} />
-
-      {/* Puedes añadir una ruta para manejar páginas no encontradas (404) si lo deseas */}
+      {/* 404 opcional */}
       {/* <Route path="*" element={<NotFoundPage />} /> */}
     </Routes>
   );
 }
 
-/**
- * Componente principal de la aplicación.
- * Envuelve toda la lógica de enrutamiento con BrowserRouter.
- */
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
       <MainRouterContent />
     </BrowserRouter>
   );
 }
-
-export default App;

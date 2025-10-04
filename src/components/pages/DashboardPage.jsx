@@ -1,10 +1,10 @@
 // src/components/pages/DashboardPage.jsx
 import React, { useEffect, useMemo, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Card, Typography, Divider } from 'antd';
+import { Card, Typography } from 'antd';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 
-import { selectTotals, setTotals } from '../../features/hours/hoursSlice';
+import { selectTotals } from '../../features/hours/hoursSlice';
 import { getAllMentors } from '../../features/mentors/mentorsSlice';
 import { getAllStartups } from '../../features/startups/startupSlice';
 
@@ -25,19 +25,18 @@ const { Title } = Typography;
 const ResponsiveGridLayout = WidthProvider(Responsive);
 const LS_KEY = 'dashboard_layout_v1';
 
-// Layout inicial (12 columnas en lg)
+// Layout inicial ahora pensado para 24 columnas
 const defaultLayout = [
-  { i: 'totalsNumbers', x: 4, y: 0, w: 8, h: 5, minW: 3, minH: 4 },
-  { i: 'chartsRow',     x: 0, y: 5, w: 12, h: 16, minW: 6, minH: 12 },
-  { i: 'calendar',      x: 6, y: 21, w: 6, h: 24, minW: 4, minH: 16 },
-  { i: 'notes',         x: 0, y: 45, w: 6, h: 12, minW: 4, minH: 8 },
-  { i: 'weather',       x: 6, y: 45, w: 3, h: 12, minW: 3, minH: 6 },
-  { i: 'news',          x: 9, y: 45, w: 3, h: 12, minW: 3, minH: 6 },
+  { i: 'totalsNumbers', x: 8,  y: 0,  w: 16, h: 5,  minW: 6,  minH: 4 },
+  { i: 'chartsRow',     x: 0,  y: 5,  w: 24, h: 16, minW: 8,  minH: 12 },
+  { i: 'weather',       x: 12, y: 45, w: 6,  h: 12, minW: 3,  minH: 6 },
+  { i: 'calendar',      x: 12, y: 21, w: 12, h: 24, minW: 6,  minH: 16 },
+  { i: 'notes',         x: 0,  y: 45, w: 12, h: 12, minW: 6,  minH: 8 },
+  { i: 'news',          x: 18, y: 45, w: 6,  h: 12, minW: 3,  minH: 6 },
 ];
 
 const DashboardPage = () => {
   const dispatch = useDispatch();
-
   const totals   = useSelector(selectTotals);
   const mentors  = useSelector(s => s.mentors?.mentors || []);
   const startups = useSelector(s => s.startups?.startups || []);
@@ -52,10 +51,6 @@ const DashboardPage = () => {
   const progress  = totals?.progress  ?? 0;
   const total     = totals?.total     ?? 1;
 
-  const onChangeTotals = (field) => (value) => {
-    dispatch(setTotals({ ...totals, [field]: value }));
-  };
-
   const [layouts, setLayouts] = useState(() => {
     try {
       return JSON.parse(localStorage.getItem(LS_KEY)) || { lg: defaultLayout };
@@ -69,7 +64,6 @@ const DashboardPage = () => {
     localStorage.setItem(LS_KEY, JSON.stringify(allLayouts));
   };
 
-  // ——— Tus cards existentes ———
   const TotalsNumbers = useMemo(() => (
     <Card size="small" title={<div className="drag-handle">Resumen</div>}>
       <div className="flex-row">
@@ -101,7 +95,6 @@ const DashboardPage = () => {
     </Card>
   ), [mentors, startups]);
 
-  // ——— Nuevos widgets ———
   const NotesCard = useMemo(() => (
     <Card size="small" className="scroll-card" title={<div className="drag-handle">🗒️ Notas</div>}>
       <NoteWidget />
@@ -121,8 +114,8 @@ const DashboardPage = () => {
   ), []);
 
   return (
-    <div style={{ padding: 24 }}>
-      <Title level={2} style={{ color: '#fff' }}>⏱️ Seguimiento de Horas del Proyecto</Title>
+    <div className="dashboard-page-container">
+      <Title level={2} className="dashboard-page-title">⏱️ Seguimiento de Horas del Proyecto</Title>
 
       <ResponsiveGridLayout
         className="layout"
@@ -133,11 +126,11 @@ const DashboardPage = () => {
         preventCollision
         isBounded={false}
         breakpoints={{ lg:1200, md:996, sm:768, xs:480, xxs:0 }}
-        cols={{ lg:12, md:10, sm:8, xs:4, xxs:2 }}
+        cols={{ lg:24, md:12, sm:8, xs:4, xxs:2 }}   // 🔥 ahora 24 columnas en lg
         onLayoutChange={onLayoutChange}
         draggableHandle=".drag-handle"
-        draggableCancel=".no-drag, .calendar-box, .calendar-box *, button, .rbc-toolbar, .rbc-button-link, .rbc-btn-group, input, textarea, select, .ant-select-selector, .ant-picker, .ant-btn"
-        resizeHandles={['se','e','s']}
+        draggableCancel=".no-drag, .calendar-box, .calendar-box *, button, input, textarea, select"
+        resizeHandles={['e','w','s','n','se','sw','ne','nw']}
       >
         <div key="totalsNumbers">{TotalsNumbers}</div>
         <div key="chartsRow">{ChartsRow}</div>

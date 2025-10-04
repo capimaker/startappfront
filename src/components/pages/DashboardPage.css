@@ -1,19 +1,19 @@
 /* Estilos generales para el contenedor de la página Dashboard */
 .dashboard-page-container {
-  padding: 24px; /* Mantener el padding general */
+  padding: 24px;
 }
 
 /* Estilos para el título principal */
 .dashboard-page-container .dashboard-page-title {
-  color: #fff; /* Ejemplo: asegurar que el título sea blanco si tu fondo es oscuro */
+  color: #fff;
   margin-bottom: 24px;
   font-weight: 300;
 }
 
-/* Estilos para las tarjetas de entrada (Horas totales, Horas realizadas) */
+/* Estilos para las tarjetas de entrada */
 .dashboard-page-container .dashboard-card-inputs {
-  background-color: rgba(255, 255, 255, 0.1); /* Fondo translúcido */
-  border: none; /* Sin borde si no lo quieres */
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
   margin-bottom: 24px;
 }
 
@@ -21,52 +21,35 @@
 .dashboard-page-container .dashboard-card-summary {
   background-color: rgba(255, 255, 255, 0.08);
   border: none;
-  text-align: center; /* Centrar el texto */
-  color: #fff; /* Color de texto */
-  font-size: 16px; /* Tamaño de fuente */
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
 }
 
 .dashboard-page-container .dashboard-card-summary b {
-  color: #7c4cdd; /* Color para los valores en negrita */
+  color: #7c4cdd;
 }
 
-/* Estilos para la columna que contiene los gráficos (Gauge y Pie) */
-/* .dashboard-page-container .dashboard-chart-col {
-  
-} */
-
-/* Estilos específicos para la tarjeta del GaugeChart */
+/* Estilos para el GaugeChart */
 .dashboard-page-container .dashboard-gauge-chart-card {
-  background-color: rgba(255, 255, 255, 0.1); /* Fondo translúcido */
+  background-color: rgba(255, 255, 255, 0.1);
   border: none;
-  /* La altura se controla directamente en el componente JSX en este caso para coincidir con el gráfico */
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: center; */
-  /* align-items: center; */
 }
 
-/* Estilos específicos para la tarjeta del PieChart */
+/* Estilos para el PieChart */
 .dashboard-page-container .dashboard-pie-chart-card {
   background-color: rgba(255, 255, 255, 0.1);
   border: none;
-  /* La altura se controla directamente en el componente JSX en este caso para coincidir con el gráfico */
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: center; */
-  /* align-items: center; */
 }
 
-/* Estilos para la tarjeta de tareas y gráficos de barras */
+/* Estilos para otras tarjetas (ej. tareas, widgets adicionales) */
 .dashboard-page-container .dashboard-task-card {
   background-color: rgba(255, 255, 255, 0.1);
   border: none;
   padding: 24px;
 }
 
-/* Estilos para el título de las tareas */
 .dashboard-page-container .dashboard-task-title {
   color: #fff;
   margin-bottom: 16px;
 }
-
